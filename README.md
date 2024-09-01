@@ -27,6 +27,7 @@ go to branch with name </branch/>
 
 
 ## how to merge your branch to main and push:
+#### PS: the "</ />" are just for syntaxing do not add them when doing the steps
 #### Make sure you go into your branch first (steps 1 to 2)
 ### 1) git checkout </my branch name/> 
 ### 2) git pull origin main 
@@ -36,8 +37,9 @@ go to branch with name </branch/>
 ### 4) git commit -m "message" 
 ### 5) git checkout main (this takes you back to main)
 ### 6) git pull origin main 
-### 7) git merge </branch name/>
+### 7) git merge </my branch name/>
 ### 8) git push 
+
 
 
 
