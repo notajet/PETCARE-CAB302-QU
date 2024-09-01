@@ -7,7 +7,7 @@
 ### 1) git add . 
 This adds all the files that have been editted
 
-### 2) git commit -m "</message/>" 
+### 2) git commit -m "message" 
 this commits the files you added with a message 
 
 ### 3) git push
