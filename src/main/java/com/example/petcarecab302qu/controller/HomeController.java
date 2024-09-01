@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -22,7 +23,19 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    public Button exitButton;
+
+    @FXML
+    public void handleExitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
+    }
     public void handlePetProfile(ActionEvent event) {
         // TODO
     }
 }
+
+
