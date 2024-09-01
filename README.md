@@ -26,8 +26,8 @@ create a new branch with name </branch/>
 go to branch with name </branch/> 
 
 
-### how to merge your branch to main and push:
-### Make sure you go into your branch first 
+## how to merge your branch to main and push:
+#### Make sure you go into your branch first (steps 1 to 2)
 ### 1) git checkout </my branch name/> 
 ### 2) git pull origin main 
 #### (do this when you go into your branch to pull changes made in main, it's good practice to do this even if nothing has changed as a double check) 
