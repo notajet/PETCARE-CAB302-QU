@@ -10,6 +10,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.sql.DriverManager;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,30 +52,41 @@ public class LoginController {
 
         //Checks that username and password are both contained in the database under the same ID
         try {
-            String query = "SELECT * FROM contacts WHERE firstName = ? AND password = ?";
+            String query = "SELECT id FROM contacts WHERE firstName = ? AND password = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,firstname);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
+            error.setText("Authentication Successful");
+            error.setVisible(true);
             if (resultSet.next()) {
                 // firstname and password contained in database
+                error.setText("Authentication Successful");
+                error.setVisible(true);
+                return;
                 // Will need to then lead to homepage, will be put in later
-
             }
+            else
+            {
+                error.setText("Authentication Unsuccessful");
+                error.setVisible(true);
+                return;
+            }
+            /*
             else {
                 // firstname and password not contained in database
                 error.setText("Authentication Unsuccessful");
                 error.setVisible(true);
                 return;
             }
+            /*
+             */
         } catch (Exception e) {
             e.printStackTrace();
         }
         //Clears fields
         Firstname.clear();
         Password.clear();
-        error.setText("Authentication Successful");
-        error.setVisible(true);
         //Include link to homepage here
     }
 
