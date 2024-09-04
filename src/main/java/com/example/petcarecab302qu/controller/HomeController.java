@@ -24,34 +24,30 @@ public class HomeController {
         }
     }
 
-    @FXML
-    public void handleSignUpAction(ActionEvent event) {
+    public void handleLogin(ActionEvent event) {
         try {
-            // Load the sign-up view
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/signup-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/login-view.fxml"));
             Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(loader.load());
+            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
             stage.setScene(scene);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
 
 
-        @FXML
-        public Button exitButton;
+    @FXML
+    public Button exitButton;
 
-        @FXML
-        public void handleExitButtonAction (ActionEvent event){
-            Stage stage = (Stage) exitButton.getScene().getWindow();
-            stage.close();
-        }
-        public void handlePetProfile (ActionEvent event){
-            // TODO
-        }
+    @FXML
+    public void handleExitButtonAction(ActionEvent event) {
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
-
-
-
+    public void handlePetProfile(ActionEvent event) {
+        // TODO
+    }
+}
 
 
