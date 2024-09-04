@@ -61,9 +61,16 @@ public class LoginController {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                // Valid firstname and password
-            } else {
-                // Invalid firstname and password
+                // firstname and password contained in database
+                error.setText("Authentication Successful");
+                error.setVisible(true);
+                // Will need to then lead to homepage, will be put in later
+            }
+            else {
+                // firstname and password not contained in database
+                error.setText("Authentication Unsuccessful");
+                error.setVisible(true);
+                return;
             }
         } catch (Exception e) {
             e.printStackTrace();
