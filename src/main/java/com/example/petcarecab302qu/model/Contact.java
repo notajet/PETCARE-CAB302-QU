@@ -6,12 +6,14 @@ public class Contact {
     private String lastName;
     private String email;
     private String phone;
+    private String password;
 
-    public Contact(String firstName, String lastName, String email, String phone) {
+    public Contact(String firstName, String lastName, String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
+        this.password = password;
     }
 
     public int getId() {
@@ -52,6 +54,14 @@ public class Contact {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password){
+        this.password = password;
     }
 
     public String getFullName() {
