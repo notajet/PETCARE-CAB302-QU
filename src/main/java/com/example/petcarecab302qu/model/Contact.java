@@ -1,21 +1,23 @@
 package com.example.petcarecab302qu.model;
 
+
 public class Contact {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-    private String password;
+    private String password;  // New field
 
     public Contact(String firstName, String lastName, String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.password = password;
+        this.password = password;  // Initialize the password
     }
 
+    // Getters and Setters for all fields, including password
     public int getId() {
         return id;
     }
@@ -60,7 +62,7 @@ public class Contact {
         return password;
     }
 
-    public void setPassword(String password){
+    public void setPassword(String password) {
         this.password = password;
     }
 
