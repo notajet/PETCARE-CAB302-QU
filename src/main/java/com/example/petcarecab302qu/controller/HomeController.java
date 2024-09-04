@@ -24,6 +24,7 @@ public class HomeController {
         }
     }
 
+    @FXML
     public void handleLogin(ActionEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/login-view.fxml"));
