@@ -9,8 +9,8 @@ import javafx.scene.layout.*;
 
 public class HelloApplication extends Application {
 
-    public static final int WIDTH = 650;  // Define the width
-    public static final int HEIGHT = 500; // Define the height
+    public static final int WIDTH = 800;  // Define the width
+    public static final int HEIGHT = 570; // Define the height
 
     @Override
     public void start(Stage stage) throws Exception {
