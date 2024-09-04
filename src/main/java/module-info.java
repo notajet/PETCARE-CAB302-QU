@@ -2,6 +2,7 @@ module com.example.petcarecab302qu {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires java.desktop;
 
 
     opens com.example.petcarecab302qu to javafx.fxml;
