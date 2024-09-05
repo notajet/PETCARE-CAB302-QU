@@ -36,7 +36,19 @@ public class HomeController {
             e.printStackTrace();
         }
     }
+    public void handleDietButton(ActionEvent event){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/diet-view.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+            System.out.println("Diet button clicked!");
 
+    }
+        catch (IOException e) {
+        e.printStackTrace();
+    }
+}
 
     @FXML
     public Button exitButton;
