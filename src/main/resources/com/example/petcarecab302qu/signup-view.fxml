@@ -22,6 +22,7 @@
     <TextField fx:id="emailField" promptText="Email" style="-fx-font-size: 14px;" />
     <TextField fx:id="phoneField" promptText="Phone" style="-fx-font-size: 14px;" />
     <PasswordField fx:id="passwordField" promptText="Password" style="-fx-font-size: 14px;" />
+    <Button text="Back" onAction="#handleBackButton" style="-fx-font-size: 14px; -fx-background-color: #ff6347; -fx-text-fill: white;"/>
     <Button text="Sign Up" onAction="#handleSignUpAction" style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;" />
     <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
 </VBox>
