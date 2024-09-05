@@ -17,15 +17,16 @@ public class SqliteContactDAO implements IContactDAO {
     }
 
     private void createTable() {
-        // Create table if not exists
         try {
             Statement statement = connection.createStatement();
+            // Ensure space between columns
             String query = "CREATE TABLE IF NOT EXISTS contacts ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "firstName VARCHAR NOT NULL,"
                     + "lastName VARCHAR NOT NULL,"
                     + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL"
+                    + "email VARCHAR NOT NULL,"   // Add a comma here after "email"
+                    + "password VARCHAR NOT NULL" // Ensure the password is separated correctly
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -37,13 +38,14 @@ public class SqliteContactDAO implements IContactDAO {
     @Override
     public void addContact(Contact contact) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email) VALUES (?, ?, ?, ?)");
+            // Correct number of fields in the prepared statement and SQL syntax
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email, password) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
             statement.setString(4, contact.getEmail());
+            statement.setString(5, contact.getPassword());  // Add password to the query
             statement.executeUpdate();
-            // Set the id of the new contact
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 contact.setId(generatedKeys.getInt(1));
@@ -90,7 +92,8 @@ public class SqliteContactDAO implements IContactDAO {
                 String lastName = resultSet.getString("lastName");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
+                String password = resultSet.getString("password");
+                Contact contact = new Contact(firstName, lastName, phone, email, password);
                 contact.setId(id);
                 return contact;
             }
@@ -113,7 +116,8 @@ public class SqliteContactDAO implements IContactDAO {
                 String lastName = resultSet.getString("lastName");
                 String phone = resultSet.getString("phone");
                 String email = resultSet.getString("email");
-                Contact contact = new Contact(firstName, lastName, phone, email);
+                String password = resultSet.getString("password");
+                Contact contact = new Contact(firstName, lastName, phone, email, password);
                 contact.setId(id);
                 contacts.add(contact);
             }
