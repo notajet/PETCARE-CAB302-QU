@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Initial_SetUP__2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Initial_SetUP__2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_9_2024__8_22pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_9_2024__8_22pm__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" afterDir="false" />
     </list>
@@ -42,8 +41,8 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;git@github.com:notajet/PETCARE-CAB302-QU.git&quot;,
-    &quot;accountId&quot;: &quot;9dbfaa64-650c-45e5-b0a1-f6cda094a97e&quot;
+    &quot;url&quot;: &quot;https://github.com/notajet/PETCARE-CAB302-QU.git&quot;,
+    &quot;accountId&quot;: &quot;54f9d560-3396-46c5-b7d7-2c3cc4eec78c&quot;
   }
 }</component>
   <component name="MavenImportPreferences">
@@ -135,6 +134,21 @@
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -145,7 +159,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="origin/Oliver" />
+                        <option value="oliver" />
                       </list>
                     </value>
                   </entry>

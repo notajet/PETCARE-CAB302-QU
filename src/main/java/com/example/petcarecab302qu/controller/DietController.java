@@ -1,34 +1,17 @@
-/*package com.example.petcarecab302qu.controller;
+
+package com.example.petcarecab302qu.controller;
+
 import com.example.petcarecab302qu.HelloApplication;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
-import java.io.IOException;
-public class DietController {
-
-
-
-
-
-    public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
-}
-*/package com.example.petcarecab302qu.controller;
-
-import com.example.petcarecab302qu.HelloApplication;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -42,19 +25,49 @@ public class DietController {
 
 
     public void handleAddDietPlan(ActionEvent event) {
-        TextArea newDietPlan = new TextArea("New Diet Plan Details");
-        newDietPlan.setPrefSize(300, 200);
-        newDietPlan.setWrapText(true);
-        newDietPlan.setStyle("-fx-font-size: 14px; -fx-padding: 10px;");
 
-        AnchorPane.setLeftAnchor(newDietPlan, 350.0);
-        AnchorPane.setTopAnchor(newDietPlan, 20.0);
+            // Create a new VBox to hold the form elements
+            VBox dietFormBox = new VBox(10);
+            dietFormBox.setPrefSize(300, 250);
+            dietFormBox.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
 
-        rootPane.getChildren().add(newDietPlan);
+            Label nameLabel = new Label("Diet Plan Name:");
+            TextField nameInput = new TextField();
+            nameInput.setPromptText("Enter diet plan name");
 
-        System.out.println("Add Diet Plan button clicked and box created!");
+            Label durationLabel = new Label("How long will the diet plan last (in days):");
+            TextField durationInput = new TextField();
+            durationInput.setPromptText("Enter number of days");
+
+            Button saveButton = new Button("Save Diet Plan");
+            saveButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+            saveButton.setOnAction(e -> {
+                System.out.println("Diet Plan Name: " + nameInput.getText() + ", Duration: " + durationInput.getText() + " days");
+            });
+
+            // Add all the form elements to the VBox
+            dietFormBox.getChildren().addAll(nameLabel, nameInput, durationLabel, durationInput, saveButton);
+
+            // Calculate the position to place the form right under the button
+            Button addButton = (Button) event.getSource();  // The Add Diet Plan button that triggered the event
+            double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight(); // Position below the button
+            double buttonLayoutX = addButton.getLayoutX(); // Same X position as the button
+            double verticalOffset = 50.0;  // Space between button and form
+
+            // Center the form horizontally relative to the button
+            AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);  // Lower it by verticalOffset
+            AnchorPane.setLeftAnchor(dietFormBox, buttonLayoutX - (dietFormBox.getPrefWidth() - addButton.getPrefWidth()) / 2); // Center it horizontally
+
+            // Add the VBox (form) to the root pane
+            rootPane.getChildren().add(dietFormBox);
+
+            System.out.println("Add Diet Plan form created below the button!");
 
     }
+
+
+
+
 
 
 
