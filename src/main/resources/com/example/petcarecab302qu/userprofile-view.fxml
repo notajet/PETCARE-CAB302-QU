@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 
 <VBox alignment="TOP_LEFT" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.petcarecab302qu.controller.MainController"
+      fx:controller="com.example.petcarecab302qu.controller.UserProfileController"
       style="-fx-background-color: #f0f0f0;">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
@@ -24,6 +24,7 @@
 
     <HBox VBox.vgrow="ALWAYS" spacing="20.0">
         <VBox spacing="10.0" style="-fx-background-color: white; -fx-padding: 15px; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-border-color: #dcdcdc; -fx-border-width: 1px;">
+            <TextField fx:id="searchTextField" promptText="Search by name, email or phone..." />
             <ListView fx:id="contactsListView" style="-fx-font-size: 14px;" />
             <Button text="New" onAction="#onAdd" maxWidth="Infinity" style="-fx-font-size: 16px; -fx-background-color: #1e90ff; -fx-text-fill: white;"/>
         </VBox>
@@ -36,6 +37,7 @@
                     <ColumnConstraints minWidth="100" />
                     <ColumnConstraints hgrow="ALWAYS"/>
                 </columnConstraints>
+
                 <Label text="First Name:" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-size: 14px;" />
                 <Label text="Last Name:" GridPane.columnIndex="0" GridPane.rowIndex="1" style="-fx-font-size: 14px;" />
                 <Label text="Email:" GridPane.columnIndex="0" GridPane.rowIndex="2" style="-fx-font-size: 14px;" />
