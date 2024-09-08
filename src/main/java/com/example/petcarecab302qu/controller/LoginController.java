@@ -88,4 +88,16 @@ public class LoginController {
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
+
+    public void handleSignUpAction(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/signup-view.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
