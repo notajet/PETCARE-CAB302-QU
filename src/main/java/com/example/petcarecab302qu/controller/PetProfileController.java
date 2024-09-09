@@ -1,6 +1,6 @@
 package com.example.petcarecab302qu.controller;
 
-public class PetprofileController {
+public class PetProfileController {
 
 
 }
