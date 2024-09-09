@@ -33,6 +33,9 @@ public class LoginController {
     private Connection connection;
 
     //private SqliteContactDAO connection = new SqliteContactDAO();
+    /**
+     * A method to handle the login process based on the Login details gathered from the GUI
+     */
     @FXML
     public void handlelogin() {
         //Gets username and password text
