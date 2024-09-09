@@ -34,6 +34,9 @@ public class LoginController {
 
     //private SqliteContactDAO connection = new SqliteContactDAO();
     @FXML
+    /***
+     * Handles the login process taking user inputs from the GUI.
+     */
     public void handlelogin() {
         //Gets username and password text
         String email = Email.getText();
