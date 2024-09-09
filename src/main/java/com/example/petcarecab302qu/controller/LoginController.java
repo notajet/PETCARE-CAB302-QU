@@ -22,7 +22,7 @@ import static java.lang.System.out;
 
 public class LoginController {
     @FXML
-    private TextField Firstname;
+    private TextField Email;
     @FXML
     private PasswordField Password;
     @FXML
@@ -36,11 +36,11 @@ public class LoginController {
     @FXML
     public void handlelogin() {
         //Gets username and password text
-        String firstname = Firstname.getText();
+        String email = Email.getText();
         String password = Password.getText();
 
         //Checks if the firstname field is empty
-        if (firstname.isEmpty())
+        if (email.isEmpty())
         {
             error.setText("Please provide firstname.");
             error.setVisible(true);
@@ -56,10 +56,10 @@ public class LoginController {
 
         //Checks that username and password are both contained in the database under the same ID
         try {
-            String query = "SELECT * FROM contacts WHERE firstName = ? AND password = ?";
+            String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
             connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,firstname);
+            statement.setString(1,email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -76,7 +76,7 @@ public class LoginController {
             e.printStackTrace();
         }
         //Clears fields
-        Firstname.clear();
+        Email.clear();
         Password.clear();
         //Include link to homepage here
     }
