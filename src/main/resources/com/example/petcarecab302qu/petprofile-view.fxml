@@ -1,16 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.TextField?>
+<VBox alignment="TOP_CENTER" spacing="10" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.petcarecab302qu.controller.PetprofileController">
+    <!-- Top Menu or Navigation Buttons -->
+    <HBox alignment="CENTER_LEFT">
+        <Button fx:id="backButton" text="Back" onAction="#handleBackButton"/>
+        <Label text="PetHub - Pets Profile" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+    </HBox>
 
-<!-- change to border pane -->
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.petcarecab302qu.controller.PetprofileController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Button>TEST</Button>
+    <Label text="Name" />
+    <TextField fx:id="nameField" promptText="Enter pet name" />
 
-</AnchorPane>
+    <Label text="Age" />
+    <TextField fx:id="ageField" promptText="Enter pet age" />
+
+    <Label text="Gender" />
+    <TextField fx:id="genderField" promptText="Enter pet gender" />
+
+    <Label text="Breed" />
+    <TextField fx:id="breedField" promptText="Enter pet breed" />
+
+    <Label text="Weight" />
+    <TextField fx:id="weightField" promptText="Enter pet weight" />
+
+    <Label text="Height" />
+    <TextField fx:id="heightField" promptText="Enter pet height" />
+
+    <Label text="Image URL" />
+    <TextField fx:id="imageUrlField" promptText="Enter image URL" />
+
+    <Button fx:id="saveButton" text="Add New Pet" onAction="#savePet" style="-fx-background-color: lightgreen; -fx-font-size: 16px;"/>
+
+    <VBox fx:id="petsList" alignment="TOP_CENTER" spacing="10">
+        <!-- Repeatable Pet Profile Element -->
+    </VBox>
+
+</VBox>
+

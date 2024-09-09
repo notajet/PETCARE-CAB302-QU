@@ -3,10 +3,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class SqliteConnection {
+public class SqliteConnectionContacts {
     private static Connection instance = null;
 
-    private SqliteConnection() {
+    private SqliteConnectionContacts() {
         String url = "jdbc:sqlite:contacts.db";
         try {
             instance = DriverManager.getConnection(url);
@@ -17,7 +17,7 @@ public class SqliteConnection {
 
     public static Connection getInstance() {
         if (instance == null) {
-            new SqliteConnection();
+            new SqliteConnectionContacts();
         }
         return instance;
     }
