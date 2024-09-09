@@ -45,17 +45,17 @@ public class DietController {
                 System.out.println("Diet Plan Name: " + nameInput.getText() + ", Duration: " + durationInput.getText() + " days");
             });
 
-            // Add all the form elements to the VBox
+
             dietFormBox.getChildren().addAll(nameLabel, nameInput, durationLabel, durationInput, saveButton);
 
             // Calculate the position to place the form right under the button
-            Button addButton = (Button) event.getSource();  // The Add Diet Plan button that triggered the event
-            double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight(); // Position below the button
-            double buttonLayoutX = addButton.getLayoutX(); // Same X position as the button
-            double verticalOffset = 50.0;  // Space between button and form
+            Button addButton = (Button) event.getSource();
+            double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight();
+            double buttonLayoutX = addButton.getLayoutX();
+            double verticalOffset = 110.0;
 
             // Center the form horizontally relative to the button
-            AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);  // Lower it by verticalOffset
+            AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);
             AnchorPane.setLeftAnchor(dietFormBox, buttonLayoutX - (dietFormBox.getPrefWidth() - addButton.getPrefWidth()) / 2); // Center it horizontally
 
             // Add the VBox (form) to the root pane
