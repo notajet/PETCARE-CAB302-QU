@@ -7,6 +7,7 @@ module com.example.petcarecab302qu {
 
     opens com.example.petcarecab302qu to javafx.fxml;
     exports com.example.petcarecab302qu;
+    exports com.example.petcarecab302qu.model;
     exports com.example.petcarecab302qu.controller;
     opens com.example.petcarecab302qu.controller to javafx.fxml;
 }
