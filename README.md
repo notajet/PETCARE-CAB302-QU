@@ -1,4 +1,5 @@
 # PETCARE-CAB302-QU
+git pull origin main
 
 ## Git Cheat Sheet
 
@@ -20,7 +21,7 @@ we need to branch so that we're all not working on the main and mess everything 
 this lists out all the branches
 
 ### git branch </branch/>
-create a new branch with name </branch/>
+create a new b~~~~ranch with name </branch/>
 
 ### git chekout </branch/>
 go to branch with name </branch/> 
