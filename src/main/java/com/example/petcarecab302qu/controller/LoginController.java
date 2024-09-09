@@ -45,14 +45,14 @@ public class LoginController {
         //Checks if the firstname field is empty
         if (email.isEmpty())
         {
-            error.setText("Please provide firstname.");
+            error.setText("Please provide email.");
             error.setVisible(true);
             return;
         }
         //Checks if the password field is empty
         else if (password.isEmpty())
         {
-            error.setText("Please provide Password.");
+            error.setText("Please provide password.");
             error.setVisible(true);
             return;
         }
