@@ -34,7 +34,7 @@ public class LoginController {
 
     //private SqliteContactDAO connection = new SqliteContactDAO();
     /**
-     * A method to handle the login process based on the Login details gathered from the GUI
+     * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
     @FXML
     public void handlelogin() {
@@ -57,7 +57,6 @@ public class LoginController {
             return;
         }
 
-        //Checks that username and password are both contained in the database under the same ID
         try {
             String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
             connection = SqliteConnection.getInstance();
@@ -66,9 +65,7 @@ public class LoginController {
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                // firstname and password contained in database
                 error.setText("Authentication Successful");
-                // Will need to then lead to homepage, will be put in later
             }
             else if (!resultSet.next())
             {
