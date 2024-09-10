@@ -6,6 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/LoginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/Pet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/PetprofileController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/PetprofileController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteConnectionContacts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteContactDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteContactDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/petprofile-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/petprofile-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +75,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "Taj",
+    "git-widget-placeholder": "testsuite",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
