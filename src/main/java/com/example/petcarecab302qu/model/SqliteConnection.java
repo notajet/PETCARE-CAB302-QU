@@ -15,6 +15,7 @@ public class SqliteConnection {
         }
     }
 
+
     public static Connection getInstance() {
         if (instance == null) {
             new SqliteConnection();
