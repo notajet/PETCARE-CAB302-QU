@@ -18,9 +18,13 @@ public class SignupControllerTest {
 
     @BeforeAll
     public static void initToolkit() {
-        Platform.startup(() -> {}); // Initialize the JavaFX toolkit for testing
-    }
+        // Set system properties to enforce headless mode for JavaFX
+        System.setProperty("java.awt.headless", "true");
+        System.setProperty("prism.order", "sw");  // Use software rendering
 
+        // Initialize the JavaFX toolkit for testing
+        Platform.startup(() -> {});
+    }
 
     @BeforeEach
     public void setUp() {
