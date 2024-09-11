@@ -1,9 +1,13 @@
 package com.example.petcarecab302qu.model;
 
+import com.example.petcarecab302qu.controller.DietPlan;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SqliteDietDAO {
 
@@ -38,24 +42,51 @@ public class SqliteDietDAO {
 
 
     // Updated addDietPlan method to save breakfast, lunch, and dinner
-    public void addDietPlan(String name, int duration, String breakfast, String lunch, String dinner) {
+
+
+    public void addDietPlan(DietPlan dietPlan) {
         try {
             PreparedStatement statement = connection.prepareStatement(
                     "INSERT INTO diet_plans (name, duration, breakfast, lunch, dinner) VALUES (?, ?, ?, ?, ?)",
-                    Statement.RETURN_GENERATED_KEYS);
-            statement.setString(1, name);
-            statement.setInt(2, duration);
-            statement.setString(3, breakfast);
-            statement.setString(4, lunch);
-            statement.setString(5, dinner);
+                    Statement.RETURN_GENERATED_KEYS
+            );
+            statement.setString(1, dietPlan.getName());
+            statement.setInt(2, dietPlan.getDuration());
+            statement.setString(3, dietPlan.getBreakfast());
+            statement.setString(4, dietPlan.getLunch());
+            statement.setString(5, dietPlan.getDinner());
             statement.executeUpdate();
+
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int generatedId = generatedKeys.getInt(1);
+                dietPlan.setId(generatedId);  // Set the generated ID back into the DietPlan object
                 System.out.println("Diet Plan saved with ID: " + generatedId);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+    public List<DietPlan> getAllDietPlans() {
+        List<DietPlan> dietPlans = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM diet_plans");
+            while (resultSet.next()) {
+                DietPlan dietPlan = new DietPlan(
+                        resultSet.getString("name"),
+                        resultSet.getInt("duration"),
+                        resultSet.getString("breakfast"),
+                        resultSet.getString("lunch"),
+                        resultSet.getString("dinner")
+                );
+                dietPlan.setId(resultSet.getInt("id"));
+                dietPlans.add(dietPlan);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dietPlans;
+    }
+
 }
