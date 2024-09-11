@@ -68,11 +68,17 @@
                 </configuration>
             </plugin>
 
-            <!-- Surefire Plugin for JUnit 5 Tests -->
+            <!-- Surefire Plugin for JUnit 5 Tests in Headless Mode -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.5</version>
+                <configuration>
+                    <argLine>-Dprism.order=sw -Djava.awt.headless=true -Dtestfx.headless=true</argLine>
+                    <systemPropertyVariables>
+                        <java.awt.headless>true</java.awt.headless>
+                    </systemPropertyVariables>
+                </configuration>
             </plugin>
 
             <!-- JavaFX Maven Plugin -->
