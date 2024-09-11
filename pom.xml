@@ -36,27 +36,6 @@
             <version>3.41.2.1</version>
         </dependency>
 
-        <!-- TestFX Core and JUnit Integration -->
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-core</artifactId>
-            <version>${testfx.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>testfx-junit5</artifactId>
-            <version>${testfx.version}</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.testfx</groupId>
-            <artifactId>openjfx-monocle</artifactId>
-            <version>1.8.0_20</version>
-            <scope>test</scope>
-        </dependency>
-
 
         <!-- JUnit 5 API for Testing -->
         <dependency>
