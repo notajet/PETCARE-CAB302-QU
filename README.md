@@ -40,6 +40,7 @@ go to branch with name </branch/>
 ### 7) git merge </my branch name/>
 ### 8) git push 
 
+### If you want to just push your branch only to Github, use: git push origin </ your branch name/>
 
 
 
