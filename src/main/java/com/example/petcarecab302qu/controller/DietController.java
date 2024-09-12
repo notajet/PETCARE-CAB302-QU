@@ -6,6 +6,7 @@ import com.example.petcarecab302qu.model.SqliteDietDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -15,8 +16,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
+import javafx.geometry.Insets;
 
 /*
 public class DietController {
@@ -222,7 +225,11 @@ public class DietController {
             // Load the diet plan into the form for editing
             loadDietPlanIntoForm(dietPlan);
         });
-        dietListBox.getChildren().add(dietPlanButton);  // Add the button to the VBox on the side
+        dietListBox.setSpacing(10);  // Space between buttons
+        dietListBox.setPadding(new Insets(10));  // Padding around VBox
+        dietListBox.setAlignment(Pos.TOP_CENTER);
+        dietListBox.getChildren().add(dietPlanButton);
+        // Add the button to the VBox on the side
     }
 
 
