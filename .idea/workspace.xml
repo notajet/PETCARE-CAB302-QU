@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/HomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,12 +63,12 @@
     &quot;assignee&quot;: &quot;3bap&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/notajet/PETCARE-CAB302-QU.git&quot;,
-    &quot;accountId&quot;: &quot;2ed71337-4d93-43d8-ba6f-8465b1d14575&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:notajet/PETCARE-CAB302-QU.git",
+    "accountId": "9dbfaa64-650c-45e5-b0a1-f6cda094a97e"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -88,7 +89,7 @@
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
-    "JUnit.All in PETCARE-CAB302-QU.executor": "Run",
+    "JUnit.All in PETCARE-CAB302-QU.executor": "Coverage",
     "JUnit.ContactManagerTest.executor": "Run",
     "JUnit.SignupControllerTest.executor": "Run",
     "JUnit.SignupTest.executor": "Run",
@@ -195,5 +196,8 @@
     <MESSAGE value="Login #5" />
     <MESSAGE value="Login #11" />
     <option name="LAST_COMMIT_MESSAGE" value="Login #11" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/PETCARE_CAB302_QU$All_in_PETCARE_CAB302_QU.ic" NAME="All in PETCARE-CAB302-QU Coverage Results" MODIFIED="1726139169193" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>
