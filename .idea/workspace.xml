@@ -5,7 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Initial_SetUP__2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Initial_SetUP__2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_9_2024__8_22pm__Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_4_9_2024__8_22pm__Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/HomeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -98,7 +101,7 @@
     "Repository.Attach.Sources": "false",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "integration",
+    "git-widget-placeholder": "oliver",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
@@ -175,7 +178,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725785146933</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Login #5">
+      <option name="closed" value="true" />
+      <created>1726128261361</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726128261361</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,8 +203,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial SetUP #2" />
     <MESSAGE value="Login #4" />
-    <MESSAGE value="Login #5" />
     <MESSAGE value="Login #11" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login #11" />
+    <MESSAGE value="Login #5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login #5" />
   </component>
 </project>
