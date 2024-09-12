@@ -3,6 +3,7 @@ package com.example.petcarecab302qu.controller;
 import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.SqliteConnection;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
+import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.sql.Connection;
@@ -33,6 +34,7 @@ public class LoginController {
     private Connection connection;
 
     //private SqliteContactDAO connection = new SqliteContactDAO();
+
     /**
      * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
@@ -43,15 +45,13 @@ public class LoginController {
         String password = Password.getText();
 
         //Checks if the firstname field is empty
-        if (email.isEmpty())
-        {
+        if (email.isEmpty()) {
             error.setText("Please provide email.");
             error.setVisible(true);
             return;
         }
         //Checks if the password field is empty
-        else if (password.isEmpty())
-        {
+        else if (password.isEmpty()) {
             error.setText("Please provide password.");
             error.setVisible(true);
             return;
@@ -61,14 +61,12 @@ public class LoginController {
             String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
             connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,email);
+            statement.setString(1, email);
             statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 error.setText("Authentication Successful");
-            }
-            else if (!resultSet.next())
-            {
+            } else if (!resultSet.next()) {
                 error.setText("Authentication Unsuccessful");
             }
             error.setVisible(true);
@@ -82,22 +80,13 @@ public class LoginController {
     }
 
 
+    @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
+        SceneLoader.handleBackButton(event);
     }
 
+    @FXML
     public void handleSignUpAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/signup-view.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-            stage.setScene(scene);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
     }
 }

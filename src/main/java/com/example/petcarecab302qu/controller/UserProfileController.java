@@ -1,5 +1,6 @@
 package com.example.petcarecab302qu.controller;
 
+import com.example.petcarecab302qu.util.SceneLoader;
 import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
 import com.example.petcarecab302qu.model.ContactManager;
@@ -153,9 +154,6 @@ public class UserProfileController {
 
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
+        SceneLoader.handleBackButton(event);
     }
 }
