@@ -2,25 +2,27 @@ package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
-import com.example.petcarecab302qu.model.IContactDAO;
+import com.example.petcarecab302qu.model.ContactManager;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.List;
 
-public class MainController {
+public class UserProfileController {
 
     @FXML
     private ListView<Contact> contactsListView;
-    private final IContactDAO contactDAO;
+
+    @FXML
+    private TextField searchTextField;
+
+    private ContactManager contactManager;
 
     @FXML
     private TextField firstNameTextField;
@@ -36,15 +38,10 @@ public class MainController {
     @FXML
     private VBox contactContainer;
 
-    public MainController() {
-        contactDAO = new SqliteContactDAO();
+    public UserProfileController() {
+        contactManager = new ContactManager(new SqliteContactDAO());
     }
 
-    /**
-     * Programmatically selects a contact in the list view and
-     * updates the text fields with the contact's information.
-     * @param contact The contact to select.
-     */
     private void selectContact(Contact contact) {
         contactsListView.getSelectionModel().select(contact);
         if (contact != null) {
@@ -53,18 +50,12 @@ public class MainController {
             emailTextField.setText(contact.getEmail());
             phoneTextField.setText(contact.getPhone());
 
-            // Check if passwordTextField is not null before setting the password
             if (passwordTextField != null) {
                 passwordTextField.setText(contact.getPassword());
-            } else {
-                System.out.println("passwordTextField is null");
             }
         }
     }
 
-    /**
-     * Renders a cell in the contacts list view by setting the text to the contact's full name.
-     */
     private ListCell<Contact> renderCell(ListView<Contact> contactListView) {
         return new ListCell<>() {
             @Override
@@ -79,12 +70,10 @@ public class MainController {
         };
     }
 
-    /**
-     * Synchronizes the contacts list view with the contacts in the database.
-     */
     private void syncContacts() {
         contactsListView.getItems().clear();
-        List<Contact> contacts = contactDAO.getAllContacts();
+        String query = searchTextField.getText();
+        List<Contact> contacts = contactManager.searchContacts(query);
         boolean hasContact = !contacts.isEmpty();
         if (hasContact) {
             contactsListView.getItems().addAll(contacts);
@@ -96,6 +85,15 @@ public class MainController {
     public void initialize() {
         contactsListView.setCellFactory(this::renderCell);
         syncContacts();
+
+        contactsListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectContact(newValue);
+            }
+        });
+
+        searchTextField.textProperty().addListener((observable, oldValue, newValue) -> syncContacts());
+
         contactsListView.getSelectionModel().selectFirst();
         Contact firstContact = contactsListView.getSelectionModel().getSelectedItem();
         if (firstContact != null) {
@@ -116,7 +114,7 @@ public class MainController {
                 selectedContact.setPassword(passwordTextField.getText());
             }
 
-            contactDAO.updateContact(selectedContact);
+            contactManager.updateContact(selectedContact);
             syncContacts();
         }
     }
@@ -125,7 +123,7 @@ public class MainController {
     private void onDelete() {
         Contact selectedContact = contactsListView.getSelectionModel().getSelectedItem();
         if (selectedContact != null) {
-            contactDAO.deleteContact(selectedContact);
+            contactManager.deleteContact(selectedContact);
             syncContacts();
         }
     }
@@ -139,7 +137,7 @@ public class MainController {
         final String DEFAULT_PASSWORD = "";
 
         Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE, DEFAULT_PASSWORD);
-        contactDAO.addContact(newContact);
+        contactManager.addContact(newContact);
         syncContacts();
         selectContact(newContact);
         firstNameTextField.requestFocus();

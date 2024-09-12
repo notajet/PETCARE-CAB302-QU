@@ -33,4 +33,8 @@ public interface IContactDAO {
      * @return A list of all contacts in the database.
      */
     public List<com.example.petcarecab302qu.model.Contact> getAllContacts();
+
+    boolean emailExists(String email);  // Method to check if email exists
 }
+
+

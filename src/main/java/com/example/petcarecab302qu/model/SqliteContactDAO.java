@@ -25,8 +25,8 @@ public class SqliteContactDAO implements IContactDAO {
                     + "firstName VARCHAR NOT NULL,"
                     + "lastName VARCHAR NOT NULL,"
                     + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL,"   // Add a comma here after "email"
-                    + "password VARCHAR NOT NULL" // Ensure the password is separated correctly
+                    + "email VARCHAR NOT NULL,"
+                    + "password VARCHAR NOT NULL"
                     + ")";
             statement.execute(query);
         } catch (Exception e) {
@@ -125,5 +125,21 @@ public class SqliteContactDAO implements IContactDAO {
             e.printStackTrace();
         }
         return contacts;
+    }
+
+    @Override
+    public boolean emailExists(String email) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT COUNT(*) FROM contacts WHERE email = ?");
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                int count = resultSet.getInt(1);
+                return count > 0;  // If count > 0, email exists
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

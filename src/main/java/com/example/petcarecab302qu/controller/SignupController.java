@@ -3,6 +3,8 @@ package com.example.petcarecab302qu.controller;
 import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
+import com.example.petcarecab302qu.model.IContactDAO;
+import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,30 +21,31 @@ public class SignupController {
     @FXML
     private TextField firstNameField;
 
-
     @FXML
     private TextField lastNameField;
-
 
     @FXML
     private TextField emailField;
 
-
     @FXML
     private TextField phoneField;
 
-
     @FXML
-    private TextField passwordField;
-
+    private PasswordField passwordField;
 
     @FXML
     private Text errorMessage;
 
-    private SqliteContactDAO contactDAO = new SqliteContactDAO();
+    @FXML
+    private IContactDAO contactDAO;
+
+    public SignupController() {
+        this.contactDAO = new SqliteContactDAO();
+    }
+
 
     @FXML
-    public void handleSignUpAction(){
+    public void handleSignUpAction() {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -55,6 +58,26 @@ public class SignupController {
             return;
         }
 
+        if (!email.matches("^[A-Za-z0-9+_.-]+@(.+)$")) {
+            errorMessage.setText("Please enter a valid email address.");
+            errorMessage.setStyle("-fx-text-fill: red;");
+            errorMessage.setVisible(true);
+            return;
+        }
+
+        if (password.length() < 8 || !password.matches(".*\\d.*") || !password.matches(".*[a-zA-Z].*")) {
+            errorMessage.setText("Password must be at least 8 characters long and contain both letters and numbers.");
+            errorMessage.setStyle("-fx-text-fill: red;");
+            errorMessage.setVisible(true);
+            return;
+        }
+
+        if (contactDAO.emailExists(email)) {
+            errorMessage.setText("Email already exists. Please use a different email.");
+            errorMessage.setStyle("-fx-text-fill: red;");
+            errorMessage.setVisible(true);
+            return;  // Prevent adding the contact
+        }
 
         Contact newContact = new Contact(firstName, lastName, email, phone, password);
         contactDAO.addContact(newContact);
@@ -69,12 +92,21 @@ public class SignupController {
         errorMessage.setStyle("-fx-text-fill: green;");
         errorMessage.setVisible(true);
     }
+
+    @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
+        SceneLoader.handleBackButton(event);
+    }
+
+    public void handleLogin(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/login-view.fxml"));
+            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+            stage.setScene(scene);
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
-
-
