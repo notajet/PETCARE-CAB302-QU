@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -128,9 +129,9 @@ public class DietController {
     private TextField dinnerInput;
     @FXML
     private AnchorPane rootPane;
-
     @FXML
-    private VBox dietListBox;  // A VBox to display the diet plans dynamically
+    private HBox dietListBox;
+
 
     private SqliteDietDAO dietDAO;
 
@@ -139,7 +140,9 @@ public class DietController {
     }
 
     public void initialize() {
-        loadAllDietPlans();  // Load all diet plans when the UI is initialized
+        loadAllDietPlans();
+        rootPane.getChildren().remove(dietListBox);  // Remove it temporarily
+        rootPane.getChildren().add(dietListBox);// Load all diet plans when the UI is initialized
     }
 
     // Method to load all diet plans from the database and display them
@@ -218,22 +221,27 @@ public class DietController {
     }
 
     // Method to dynamically add a diet plan to the UI
+    // Method to dynamically add a diet plan to the UI
+    // Method to dynamically add a diet plan to the UI
     private void addDietPlanToUI(DietPlan dietPlan) {
         Button dietPlanButton = new Button(dietPlan.getName());  // Button representing the diet plan
         dietPlanButton.setStyle("-fx-background-color: #90CAF9; -fx-text-fill: white;");
+
+        // Set action when the button is clicked
         dietPlanButton.setOnAction(e -> {
-            // Load the diet plan into the form for editing
-            loadDietPlanIntoForm(dietPlan);
+            loadDietPlanIntoForm(dietPlan);  // Load the diet plan into a form for editing
         });
-        dietListBox.setSpacing(10);  // Space between buttons
-        dietListBox.setPadding(new Insets(10));  // Padding around VBox
-        dietListBox.setAlignment(Pos.TOP_CENTER);
+
+        // Add the button to the HBox (dietListBox)
         dietListBox.getChildren().add(dietPlanButton);
-        // Add the button to the VBox on the side
+
+        // Log for debugging
+        System.out.println("Added Diet Plan button: " + dietPlan.getName());
     }
 
 
-        private void loadDietPlanIntoForm(DietPlan dietPlan) {
+
+    private void loadDietPlanIntoForm(DietPlan dietPlan) {
             // Populate the form fields with the selected diet plan's details
             nameInput.setText(dietPlan.getName());
             durationInput.setText(String.valueOf(dietPlan.getDuration()));  // Convert int to String for duration
