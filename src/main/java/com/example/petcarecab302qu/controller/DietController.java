@@ -7,7 +7,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -141,6 +143,7 @@ public class DietController {
 
     public void initialize() {
         loadAllDietPlans();
+        displayDietPlans();
         rootPane.getChildren().remove(dietListBox);  // Remove it temporarily
         rootPane.getChildren().add(dietListBox);// Load all diet plans when the UI is initialized
     }
@@ -199,6 +202,7 @@ public class DietController {
                 addDietPlanToUI(newDietPlan);
 
                 System.out.println("Diet Plan saved: " + dietName + ", Duration: " + dietDuration + " days, Breakfast: " + breakfast + ", Lunch: " + lunch + ", Dinner: " + dinner);
+                reloadPage();
             } catch (NumberFormatException ex) {
                 System.out.println("Invalid input for duration: " + dietDurationStr);
             }
@@ -217,7 +221,6 @@ public class DietController {
 
         rootPane.getChildren().add(dietFormBox);
 
-        System.out.println("Add Diet Plan form created below the button!");
     }
 
     // Method to dynamically add a diet plan to the UI
@@ -259,6 +262,78 @@ public class DietController {
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
+    }
+    // Method to load and display all diet plans in the UI
+    private void displayDietPlans() {
+        dietListBox.getChildren().clear();  // Clear the UI before loading new plans
+
+        List<DietPlan> dietPlans = dietDAO.getAllDietPlans();  // Fetch all diet plans from the database
+
+        for (DietPlan dietPlan : dietPlans) {
+            // Create a label to display the diet plan's name
+            Label dietPlanLabel = new Label(dietPlan.getName());
+
+            // Create a delete button for each diet plan
+            Button deleteButton = new Button("Delete");
+            deleteButton.setStyle("-fx-background-color: #FF6347; -fx-text-fill: white;");
+
+            // Create a view button to display the details of the diet plan
+            Button viewButton = new Button("View");
+            viewButton.setStyle("-fx-background-color: #1e90ff; -fx-text-fill: white;");
+
+            // Set the action when the delete button is clicked
+            deleteButton.setOnAction(e -> {
+                dietDAO.deleteDietPlan(dietPlan.getId());  // Delete the plan from the database
+                displayDietPlans();  // Reload the page after deletion
+            });
+
+            // Set the action when the view button is clicked
+            viewButton.setOnAction(e -> {
+                showDietPlanDetails(dietPlan);  // Show the details of the selected diet plan
+            });
+
+            // Create an HBox to hold the label, view, and delete buttons
+            HBox dietPlanHBox = new HBox(10);  // 10px spacing between items
+            dietPlanHBox.getChildren().addAll(dietPlanLabel, viewButton, deleteButton);
+
+            // Add the HBox to the main UI layout (dietListBox)
+            dietListBox.getChildren().add(dietPlanHBox);
+        }
+    }
+
+    private void reloadPage() {
+        try {
+            // Get the current stage from any node in the scene (e.g., dietListBox)
+            Stage stage = (Stage) dietListBox.getScene().getWindow();
+
+            // Load the current FXML file again
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/diet-view.fxml"));
+            Parent root = loader.load();
+
+            // Set the scene again
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void showDietPlanDetails(DietPlan dietPlan) {
+        // Create an Alert dialog to display the details
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Diet Plan Details");
+        alert.setHeaderText("Details for: " + dietPlan.getName());
+
+        // Build the content string to display the diet plan details
+        StringBuilder content = new StringBuilder();
+        content.append("Duration: ").append(dietPlan.getDuration()).append(" days\n");
+        content.append("Breakfast: ").append(dietPlan.getBreakfast()).append("\n");
+        content.append("Lunch: ").append(dietPlan.getLunch()).append("\n");
+        content.append("Dinner: ").append(dietPlan.getDinner());
+
+        alert.setContentText(content.toString());
+
+        // Show the dialog
+        alert.showAndWait();
     }
 }
 

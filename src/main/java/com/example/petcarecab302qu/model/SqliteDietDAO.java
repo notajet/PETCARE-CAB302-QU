@@ -88,5 +88,23 @@ public class SqliteDietDAO {
         }
         return dietPlans;
     }
+    public void deleteDietPlan(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "DELETE FROM diet_plans WHERE id = ?"
+            );
+            statement.setInt(1, id);
+            int rowsAffected = statement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Diet Plan with ID " + id + " deleted successfully.");
+            } else {
+                System.out.println("No Diet Plan found with ID " + id);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
 }
