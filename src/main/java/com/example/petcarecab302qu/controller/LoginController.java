@@ -39,7 +39,7 @@ public class LoginController {
      * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
     @FXML
-    public void handlelogin() {
+    public void handlelogin(ActionEvent event) {
         //Gets username and password text
         String email = Email.getText();
         String password = Password.getText();
@@ -66,6 +66,7 @@ public class LoginController {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 error.setText("Authentication Successful");
+                SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
             } else if (!resultSet.next()) {
                 error.setText("Authentication Unsuccessful");
             }
