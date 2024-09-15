@@ -1,0 +1,14 @@
+Index: src/main/java/com/example/petcarecab302qu/controller/OpenerController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/petcarecab302qu/controller/OpenerController.java b/src/main/java/com/example/petcarecab302qu/controller/OpenerController.java
+new file mode 100644
+--- /dev/null	(date 1725929834293)
++++ b/src/main/java/com/example/petcarecab302qu/controller/OpenerController.java	(date 1725929834293)
+@@ -0,0 +1,4 @@
++package com.example.petcarecab302qu.controller;
++
++public class OpenerController {
++}
