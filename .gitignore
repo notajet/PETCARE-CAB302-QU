@@ -40,3 +40,4 @@ build/
 
 ### out file ###
 out/
+/docs/javadoc/
