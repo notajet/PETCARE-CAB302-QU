@@ -12,7 +12,7 @@ public class SqliteContactDAO implements IContactDAO {
     private Connection connection;
 
     public SqliteContactDAO() {
-        connection = SqliteConnectionContacts.getInstance();
+        connection = SqliteConnection.getInstance();
         createTable();
     }
 

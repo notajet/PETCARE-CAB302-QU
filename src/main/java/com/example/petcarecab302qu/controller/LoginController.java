@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.HelloApplication;
-import com.example.petcarecab302qu.model.SqliteConnectionContacts;
+import com.example.petcarecab302qu.model.SqliteConnection;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import java.sql.Connection;
@@ -54,7 +54,7 @@ public class LoginController {
         //Checks that username and password are both contained in the database under the same ID
         try {
             String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
-            connection = SqliteConnectionContacts.getInstance();
+            connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1,email);
             statement.setString(2, password);
