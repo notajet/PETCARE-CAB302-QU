@@ -1,24 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.RadioButton?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.*?>
 <?import javafx.scene.shape.Circle?>
 
-<?import javafx.scene.control.Label?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.HomeController">
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController">
     <!-- Header Section at the Top -->
     <top>
         <HBox alignment="CENTER_LEFT" style="-fx-background-color: #ff5347;" spacing="10.0" prefHeight="60.0">
@@ -72,27 +64,39 @@
                 <Text text="Log New Exercise" style="-fx-font-weight: bold;" />
 
                 <HBox spacing="10.0">
-                    <RadioButton text="Walk" />
-                    <RadioButton text="Play" />
-                    <RadioButton text="Run" />
+
+                    <RadioButton fx:id="walkRadioButton" onAction="#handleExerciseRadioButton" text="Walk" />
+                    <RadioButton fx:id="runRadioButton" onAction="#handleExerciseRadioButton" text="Run" />
+                    <RadioButton fx:id="playRadioButton" onAction="#handleExerciseRadioButton" text="Play" />
+
                 </HBox>
 
                 <!-- Duration -->
-                <Text text="Duration" style="-fx-font-weight: bold;" />
+                <Text text="Duration" style="-fx-font-weight: bold;"/>
 
                 <HBox spacing="10.0">
-                    <Spinner  prefWidth="80.0" />
-                    <Text text="h" />
-                    <Spinner prefWidth="80.0" />
-                    <Text text="m" />
+                    <Spinner fx:id="hourSpinner" BorderPane.alignment="CENTER" >
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="10"/>
+                        </valueFactory>
+                    </Spinner>
+                    <Text text="hr"/>
+
+                    <Spinner fx:id="minuteSpinner" BorderPane.alignment="CENTER" >
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="60"/>
+                        </valueFactory>
+                    </Spinner>
+                    <Text text="mins"/>
                 </HBox>
 
                 <!-- Extra Notes -->
-                <Text text="Extra Notes" style="-fx-font-weight: bold;" />
-                <TextArea fx:id="notesArea" promptText="Add any extra notes here..." prefHeight="100.0" />
+                <Text text="Extra Notes" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="notesArea" promptText="Add any extra notes here..." prefHeight="100.0"/>
 
                 <!-- Save Button -->
-                <Button text="Save"  style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Button text="Save" onAction="#handleSaveExerciseButton" style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
             </VBox>
         </HBox>
     </center>
