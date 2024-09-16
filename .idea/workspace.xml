@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/pet.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contacts.db" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/pet.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +197,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="oliver" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
