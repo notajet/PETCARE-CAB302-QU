@@ -1,20 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.control.CheckBox?>
-<?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.TextArea?>
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.HomeController">
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.Circle?>
+
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController">
     <!-- Header Section at the Top -->
     <top>
         <HBox alignment="CENTER_LEFT" style="-fx-background-color: #ff5347;" spacing="10.0" prefHeight="60.0">
@@ -30,49 +26,77 @@
 
     <!-- Navigation Bar on the Left -->
     <left>
-        <VBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f0f0f0;" prefWidth="150.0">
-            <Button text="Pet Profile" onAction="#handlePetProfile" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Diet" onAction="#handleDietPlan" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Exercise" onAction="#handleExercise" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Schedule" onAction="#handleSchedule" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Settings" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+        <VBox alignment="CENTER_LEFT" spacing="5.0" style="-fx-background-color: #f0f0f0;" prefWidth="150.0">
+            <Button text="Pet Profile" onAction="#handlePetProfile" prefWidth="160.0" minHeight="80.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+            <Button text="Diet" onAction="#handleDietPlan" prefWidth="160.0" minHeight="80.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+            <Button text="Exercise" onAction="#handleExercise" prefWidth="160.0" minHeight="80.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+            <Button text="Schedule" onAction="#handleSchedule" prefWidth="160.0" minHeight="80.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+            <Button text="Settings" prefWidth="160.0" minHeight="80.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
         </VBox>
     </left>
 
     <!-- Main -->
     <center>
         <HBox spacing="20.0">
-            <!-- Left Section: Pet Profiles-->
-            <VBox spacing="20.0" prefWidth="20.0">
-                <!-- Pet Profiles List -->
-                <Text text="Pet" />
+            <!-- Pet Profiles
+            remember to change it to images later when there is existing pet in the profile-->
+            <VBox spacing="10.0">
+                <VBox alignment="CENTER">
+                    <Label text="Pet 1" style="-fx-font-weight: bold;" />
+                    <Circle radius="25.0" fill="lightgray" />
+                </VBox>
+                <VBox alignment="CENTER">
+                    <Label text="Pet 2" style="-fx-font-weight: bold;" />
+                    <Circle radius="25.0" fill="lightgray" />
+                </VBox>
             </VBox>
 
-            <!-- Right Section: Log Exercise -->
-            <VBox>
-                <!-- Weekly Tracker -->
+            <!-- Log Exercise -->
+            <VBox spacing="20">
+                <!-- Tracker -->
                 <Text text="Weekly Progress Tracker" style="-fx-font-weight: bold;" />
-                <ProgressBar prefWidth="200.0" progress="0"/>
+                <HBox spacing="10.0">
+                    <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+                    <Label fx:id="progressPercentage" text="0%" />
+                </HBox>
 
-                <!-- Exercise Logging Options -->
+                <!-- Log Types of Exercise-->
                 <Text text="Log New Exercise" style="-fx-font-weight: bold;" />
 
                 <HBox spacing="10.0">
-                    <CheckBox fx:id="walkCheckBox" text="Walk" />
-                    <CheckBox fx:id="playCheckBox" text="Play" />
-                    <CheckBox fx:id="runCheckBox" text="Run" />
+
+                    <RadioButton fx:id="walkRadioButton" onAction="#handleExerciseRadioButton" text="Walk" />
+                    <RadioButton fx:id="runRadioButton" onAction="#handleExerciseRadioButton" text="Run" />
+                    <RadioButton fx:id="playRadioButton" onAction="#handleExerciseRadioButton" text="Play" />
+
                 </HBox>
 
-                <!-- Duration Timer -->
-                <Text text="Duration" style="-fx-font-weight: bold;" />
-                <TextField fx:id="durationField" promptText="Enter duration (e.g., 30 mins)" />
+                <!-- Duration -->
+                <Text text="Duration" style="-fx-font-weight: bold;"/>
+
+                <HBox spacing="10.0">
+                    <Spinner fx:id="hourSpinner" BorderPane.alignment="CENTER" >
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="10"/>
+                        </valueFactory>
+                    </Spinner>
+                    <Text text="hr"/>
+
+                    <Spinner fx:id="minuteSpinner" BorderPane.alignment="CENTER" >
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="60"/>
+                        </valueFactory>
+                    </Spinner>
+                    <Text text="mins"/>
+                </HBox>
 
                 <!-- Extra Notes -->
-                <Text text="Extra Notes" style="-fx-font-weight: bold;" />
-                <TextArea fx:id="notesArea" promptText="Add any extra notes here..." prefHeight="100.0" />
+                <Text text="Extra Notes" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="notesArea" promptText="Add any extra notes here..." prefHeight="100.0"/>
 
                 <!-- Save Button -->
-                <Button text="Save"  style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Button text="Save" onAction="#handleSaveExerciseButton" style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
             </VBox>
         </HBox>
     </center>
