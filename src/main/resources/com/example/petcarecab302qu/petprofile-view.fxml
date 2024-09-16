@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetprofileController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetProfileController">
 
     <Button fx:id="backButton" layoutX="10" layoutY="10" mnemonicParsing="false" text="Back"
             onAction="#handleBackButton"
