@@ -14,6 +14,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.io.IOException;
 
+/** A Class that contains all the methods needed for the login interface to run and be
+ *  controlled by the user's input
+ *
+ */
 public class LoginController {
     @FXML
     private TextField Email;
