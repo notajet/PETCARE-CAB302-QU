@@ -142,4 +142,9 @@ public class SqliteContactDAO implements IContactDAO {
         }
         return false;
     }
+
+    @Override
+    public boolean authenticateUser(String email, String password) throws Exception {
+        return false;
+    }
 }
