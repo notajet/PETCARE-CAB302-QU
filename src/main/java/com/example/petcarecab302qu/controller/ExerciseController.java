@@ -3,11 +3,8 @@ package com.example.petcarecab302qu.controller;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import com.example.petcarecab302qu.util.SceneLoader;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import java.sql.Connection;
 import javafx.scene.control.*;
-import javafx.scene.text.Text;
+import javafx.scene.text.*;
 
 
 public class ExerciseController {
@@ -45,7 +42,7 @@ public class ExerciseController {
         runRadioButton.setToggleGroup(toggleGroup);
         playRadioButton.setToggleGroup(toggleGroup);
 
-        walkRadioButton.setSelected(true);
+
     }
 
     private String exerciseType;
@@ -53,10 +50,13 @@ public class ExerciseController {
     @FXML
     public void handleExerciseRadioButton(){
         if (walkRadioButton.isSelected()){
+            walkRadioButton.setSelected(true);
             exerciseType = "walk";
         } else if (runRadioButton.isSelected()){
+            runRadioButton.setSelected(true);
             exerciseType = "run";
         }else if (playRadioButton.isSelected()){
+            playRadioButton.setSelected(true);
             exerciseType = "play";
         }
     }
