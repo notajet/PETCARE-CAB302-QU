@@ -21,7 +21,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class PetprofileController {
+public class PetProfileController {
 
     @FXML
     private TextField nameField;
