@@ -2,24 +2,17 @@ package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.SqliteConnection;
-import com.example.petcarecab302qu.model.SqliteContactDAO;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import java.sql.Connection;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.io.IOException;
-
-import static java.lang.System.out;
-
 
 public class LoginController {
     @FXML
@@ -33,24 +26,22 @@ public class LoginController {
 
     private Connection connection;
 
-    //private SqliteContactDAO connection = new SqliteContactDAO();
-
     /**
      * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
     @FXML
-    public void handlelogin(ActionEvent event) {
-        //Gets username and password text
+    public void handleLogin(ActionEvent event) { // Updated method name
+        // Gets username and password text
         String email = Email.getText();
         String password = Password.getText();
 
-        //Checks if the firstname field is empty
+        // Checks if the email field is empty
         if (email.isEmpty()) {
             error.setText("Please provide email.");
             error.setVisible(true);
             return;
         }
-        //Checks if the password field is empty
+        // Checks if the password field is empty
         else if (password.isEmpty()) {
             error.setText("Please provide password.");
             error.setVisible(true);
@@ -67,19 +58,17 @@ public class LoginController {
             if (resultSet.next()) {
                 error.setText("Authentication Successful");
                 SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
-            } else if (!resultSet.next()) {
+            } else {
                 error.setText("Authentication Unsuccessful");
             }
             error.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Clears fields
+        // Clears fields
         Email.clear();
         Password.clear();
-        //Include link to homepage here
     }
-
 
     @FXML
     public void handleBackButton(ActionEvent event) throws IOException {

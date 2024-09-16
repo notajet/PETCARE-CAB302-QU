@@ -1,5 +1,4 @@
 package com.example.petcarecab302qu.model;
-import com.example.petcarecab302qu.controller.SignupController;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,17 +47,17 @@ public class MockContactDAO implements IContactDAO {
         return new ArrayList<>(contacts);
     }
 
-    // Login method to validate email and password
-    public Contact login(String email, String password) {
+    @Override
+    public boolean authenticateUser(String email, String password) {
         for (Contact contact : contacts) {
             if (contact.getEmail().equals(email) && contact.getPassword().equals(password)) {
-                return contact;
+                return true;
             }
         }
-        return null;
+        return false;
     }
 
-    // Method to check if an email already exists (for signup validation)
+    @Override
     public boolean emailExists(String email) {
         for (Contact contact : contacts) {
             if (contact.getEmail().equals(email)) {

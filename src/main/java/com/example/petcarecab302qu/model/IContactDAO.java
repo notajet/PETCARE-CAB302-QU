@@ -7,34 +7,51 @@ import java.util.List;
  * the CRUD operations for the Contact class with the database.
  */
 public interface IContactDAO {
+
     /**
      * Adds a new contact to the database.
      * @param contact The contact to add.
      */
-    public void addContact(com.example.petcarecab302qu.model.Contact contact);
+    void addContact(Contact contact);
+
     /**
      * Updates an existing contact in the database.
      * @param contact The contact to update.
      */
-    public void updateContact(com.example.petcarecab302qu.model.Contact contact);
+    void updateContact(Contact contact);
+
     /**
      * Deletes a contact from the database.
      * @param contact The contact to delete.
      */
-    public void deleteContact(com.example.petcarecab302qu.model.Contact contact);
+    void deleteContact(Contact contact);
+
     /**
-     * Retrieves a contact from the database.
-     * @param id The id of the contact to retrieve.
-     * @return The contact with the given id, or null if not found.
+     * Retrieves a contact from the database by its ID.
+     * @param id The ID of the contact to retrieve.
+     * @return The contact with the given ID, or null if not found.
      */
-    public com.example.petcarecab302qu.model.Contact getContact(int id);
+    Contact getContact(int id);
+
     /**
      * Retrieves all contacts from the database.
      * @return A list of all contacts in the database.
      */
-    public List<com.example.petcarecab302qu.model.Contact> getAllContacts();
+    List<Contact> getAllContacts();
 
-    boolean emailExists(String email);  // Method to check if email exists
+    /**
+     * Checks if a contact with the given email exists in the database.
+     * @param email The email to check.
+     * @return True if a contact with the given email exists, false otherwise.
+     */
+    boolean emailExists(String email);
+
+    /**
+     * Authenticates a user with the given email and password.
+     * @param email The email of the user to authenticate.
+     * @param password The password of the user to authenticate.
+     * @return True if a user with the given email and password exists, false otherwise.
+     * @throws Exception If an error occurs during authentication.
+     */
+    boolean authenticateUser(String email, String password) throws Exception;
 }
-
-
