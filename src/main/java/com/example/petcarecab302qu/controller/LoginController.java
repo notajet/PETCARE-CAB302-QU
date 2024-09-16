@@ -77,7 +77,6 @@ public class LoginController {
         //Clears fields
         Email.clear();
         Password.clear();
-        //Include link to homepage here
     }
 
 
