@@ -132,7 +132,7 @@ public class DietController {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private HBox dietListBox;
+    private VBox dietListBox;
 
 
     private SqliteDietDAO dietDAO;

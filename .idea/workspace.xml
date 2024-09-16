@@ -5,10 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1c7ebeef-307b-4e1c-b72d-ed10fc68e456" name="Changes" comment="Login #5">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/pet.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/contacts.db" beforeDir="false" afterPath="$PROJECT_DIR$/contacts.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/controller/DietController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteDietDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/petcarecab302qu/model/SqliteDietDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/petcarecab302qu/diet-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,12 +66,12 @@
     &quot;assignee&quot;: &quot;3bap&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/notajet/PETCARE-CAB302-QU.git&quot;,
-    &quot;accountId&quot;: &quot;2ed71337-4d93-43d8-ba6f-8465b1d14575&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/notajet/PETCARE-CAB302-QU.git",
+    "accountId": "54f9d560-3396-46c5-b7d7-2c3cc4eec78c"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -111,7 +112,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/test/java" />
+      <recent name="C:\Users\olive\IdeaProjects\PETCARE-CAB302-QU\src\main\java\image" />
+      <recent name="C:\Users\olive\IdeaProjects\PETCARE-CAB302-QU\src\main\java\com\example\petcarecab302qu\image" />
+      <recent name="C:\Users\olive\IdeaProjects\PETCARE-CAB302-QU\src\main\java\com\example\petcarecab302qu" />
+      <recent name="C:\Users\olive\IdeaProjects\PETCARE-CAB302-QU\src\main\java" />
+      <recent name="C:\Users\olive\IdeaProjects\PETCARE-CAB302-QU\src\main\image" />
     </key>
   </component>
   <component name="RunManager">
