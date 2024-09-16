@@ -7,13 +7,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class LoginTest {
-
     private Login loginService;
     private MockContactDAO mockContactDAO;
 
     @BeforeEach
     public void setUp() {
+        // Initialize the mock DAO
         mockContactDAO = new MockContactDAO();
+        // Initialize the Login service with the mock DAO
         loginService = new Login(mockContactDAO);
 
         // Add a sample user for testing

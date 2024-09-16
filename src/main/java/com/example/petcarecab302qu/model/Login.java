@@ -1,9 +1,5 @@
 package com.example.petcarecab302qu.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-
 public class Login {
     private IContactDAO contactDAO;
 
@@ -12,6 +8,7 @@ public class Login {
     }
 
     public String login(String email, String password) {
+
         if (email.isEmpty()) {
             return "Please provide email.";
         }
@@ -20,7 +17,6 @@ public class Login {
         }
 
         try {
-            // Assuming `IContactDAO` has a method `authenticateUser`
             if (contactDAO.authenticateUser(email, password)) {
                 return "Authentication Successful";
             } else {

@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SignupTest {
-
     private Signup signupService;
     private MockContactDAO mockContactDAO;
 
@@ -19,19 +18,14 @@ public class SignupTest {
 
     @Test
     public void testSuccessfulSignup() {
-        String firstName = "John";
-        String lastName = "Doe";
-        String email = "john.doe@example.com";
-        String phone = "0423423423";
-        String password = "password123";
-
-        String result = signupService.signup(firstName, lastName, email, phone, password);
+        String result = signupService.signup("John", "Doe", "john.doe@example.com", "0423423423", "password123");
         assertEquals("Signup successful!", result);
         assertEquals(1, mockContactDAO.getAllContacts().size());
     }
 
     @Test
     public void testSignupWithExistingEmail() {
+        // Add a contact to simulate an existing email
         mockContactDAO.addContact(new Contact("Jane", "Doe", "jane.doe@example.com", "0423423424", "password123"));
 
         String result = signupService.signup("John", "Doe", "jane.doe@example.com", "0423423423", "password123");
