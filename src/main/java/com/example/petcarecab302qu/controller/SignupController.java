@@ -45,7 +45,7 @@ public class SignupController {
 
 
     @FXML
-    public void handleSignUpAction() {
+    public void handleSignUpAction(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -91,6 +91,7 @@ public class SignupController {
         errorMessage.setText("Sign-Up Successful!");
         errorMessage.setStyle("-fx-text-fill: green;");
         errorMessage.setVisible(true);
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 
     @FXML
