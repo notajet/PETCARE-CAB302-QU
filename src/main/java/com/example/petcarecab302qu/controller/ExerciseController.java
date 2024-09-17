@@ -33,22 +33,17 @@ public class ExerciseController {
     private Text errorMessage;
 
     @FXML
-    private ToggleGroup toggleGroup;
-
-
-    @FXML
     public void initialize(){
-        walkRadioButton.setToggleGroup(toggleGroup);
-        runRadioButton.setToggleGroup(toggleGroup);
-        playRadioButton.setToggleGroup(toggleGroup);
-
-
+        ToggleGroup typeOfExercise = new ToggleGroup();
+        walkRadioButton.setToggleGroup(typeOfExercise);
+        runRadioButton.setToggleGroup(typeOfExercise);
+        playRadioButton.setToggleGroup(typeOfExercise);
     }
 
     private String exerciseType;
 
     @FXML
-    public void handleExerciseRadioButton(){
+    public void handleExerciseRadioButton(ActionEvent event){
         if (walkRadioButton.isSelected()){
             walkRadioButton.setSelected(true);
             exerciseType = "walk";
