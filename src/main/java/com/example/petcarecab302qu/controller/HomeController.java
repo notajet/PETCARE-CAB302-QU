@@ -48,7 +48,7 @@ public class HomeController {
     }
 
     public void handleDietPlan(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/dietplan-view.fxml");
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/diet-view.fxml");
 
     }
 
