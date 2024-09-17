@@ -259,7 +259,7 @@ public class DietController {
 
     public void handleBackButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homemain-view.fxml"));
         Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
         stage.setScene(scene);
     }
