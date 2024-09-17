@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SqliteExerciseDAO implements IContactDAO{
+public class SqliteExerciseDAO {
     private Connection connection;
 
     public SqliteExerciseDAO() {
@@ -34,7 +34,7 @@ public class SqliteExerciseDAO implements IContactDAO{
         }
     }
 
-    @Override
+    //@Override
     public void addExercise(Contact contact) {
         try {
             // Correct number of fields in the prepared statement and SQL syntax
