@@ -25,7 +25,8 @@ public class SqliteExerciseDAO {
                     //+ "pet_id INTEGER NOT NULL"
                     + "petname VARCHAR NOT NULL,"
                     + "type VARCHAR NOT NULL,"
-                    + "description VARCHAR NOT NULL,"
+                    + "duration VARCHAR NOT NULL,"
+                    + "notes VARCHAR NOT NULL"
                     //+ "FOREIGN KEY (pet_id) REFERENCES pets(id),"
                     + ")";
 
@@ -36,19 +37,18 @@ public class SqliteExerciseDAO {
     }
 
     //@Override
-    public void addExercise(Contact contact) {
+    public void addExercise(Exercise exercise) {
         try {
             // Correct number of fields in the prepared statement and SQL syntax
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petname, type, description) VALUES (?, ?, ?)");
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setString(3, contact.getPhone());
-            statement.setString(4, contact.getEmail());
-            statement.setString(5, contact.getPassword());  // Add password to the query
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petname, type, duration, notes) VALUES (?, ?, ?, ?)");
+            statement.setString(1, exercise.getEName());
+            statement.setString(2, exercise.gettype());
+            statement.setDouble(3, exercise.getduration());
+            statement.setString(4, exercise.getnotes());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                contact.setId(generatedKeys.getInt(1));
+                exercise.setId(generatedKeys.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
