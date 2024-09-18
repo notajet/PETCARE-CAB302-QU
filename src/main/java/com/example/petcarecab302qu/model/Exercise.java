@@ -7,9 +7,9 @@ public class Exercise {
     private double duration;
     private String notes;
 
-    public Exercise(int id, String petname, String type, double duration, String notes) {
-        this.id = id;
-        this.petname = petname;
+    public Exercise(String type, double duration, String notes) {
+        //this.id = id;
+        //this.petname = petname;
         this.type = type;
         this.duration = duration;
         this.notes = notes;

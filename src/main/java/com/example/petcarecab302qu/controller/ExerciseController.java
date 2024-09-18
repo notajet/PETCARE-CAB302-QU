@@ -1,5 +1,7 @@
 package com.example.petcarecab302qu.controller;
 
+import com.example.petcarecab302qu.model.Exercise;
+import com.example.petcarecab302qu.model.SqliteExerciseDAO;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import com.example.petcarecab302qu.util.SceneLoader;
@@ -32,6 +34,7 @@ public class ExerciseController {
     @FXML
     private Text errorMessage;
 
+    private SqliteExerciseDAO exerciseDAO;
     @FXML
     public void initialize(){
         ToggleGroup typeOfExercise = new ToggleGroup();
@@ -62,6 +65,8 @@ public class ExerciseController {
         int hours = hourSpinner.getValue();
         int minutes = minuteSpinner.getValue();
         int totalDuration = (hours * 60) + minutes;
+        String notes = notesArea.getText();
+
 
         if (exerciseType == null || exerciseType.isEmpty()) {
             errorMessage.setText("Please select an exercise type.");
@@ -69,11 +74,21 @@ public class ExerciseController {
             errorMessage.setVisible(true);
             return;
         }
+
+        //saveExercise(totalDuration, notes);
+        exerciseDAO = new SqliteExerciseDAO();
+        Exercise newExercise = new Exercise(exerciseType, totalDuration, notes);
+        exerciseDAO.addExercise(newExercise);
         // Clear the input fields
         notesArea.clear();
         hourSpinner.getValueFactory().setValue(0);
         minuteSpinner.getValueFactory().setValue(0);
         exerciseType = null; // Reset exercise type
+    }
+
+    public void saveExercise(int totalDuration, String notes){
+        Exercise newExercise = new Exercise(exerciseType, totalDuration, notes);
+        exerciseDAO.addExercise(newExercise);
     }
 
     public void handlePetProfile(ActionEvent event) {

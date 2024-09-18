@@ -23,7 +23,7 @@ public class SqliteExerciseDAO {
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     //+ "pet_id INTEGER NOT NULL"
-                    + "petname VARCHAR NOT NULL,"
+                    //+ "petname VARCHAR NOT NULL,"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
                     + "notes VARCHAR NOT NULL"
@@ -40,11 +40,11 @@ public class SqliteExerciseDAO {
     public void addExercise(Exercise exercise) {
         try {
             // Correct number of fields in the prepared statement and SQL syntax
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petname, type, duration, notes) VALUES (?, ?, ?, ?)");
-            statement.setString(1, exercise.getEName());
-            statement.setString(2, exercise.gettype());
-            statement.setDouble(3, exercise.getduration());
-            statement.setString(4, exercise.getnotes());
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?)");
+            //statement.setString(1, exercise.getEName());
+            statement.setString(1, exercise.gettype());
+            statement.setDouble(2, exercise.getduration());
+            statement.setString(3, exercise.getnotes());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -61,12 +61,12 @@ public class SqliteExerciseDAO {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                String petname = resultSet.getString("petname");
+                //String petname = resultSet.getString("petname");
                 String type = resultSet.getString("type");
                 Double duration = resultSet.getDouble("duration");
                 String notes = resultSet.getString("notes");
                 //String password = resultSet.getString("password");
-                Exercise exercise = new Exercise(id, petname, type, duration, notes);
+                Exercise exercise = new Exercise(type, duration, notes);
                 exercise.setEId(id);
                 return exercise;
             }
