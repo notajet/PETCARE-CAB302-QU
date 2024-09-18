@@ -21,12 +21,12 @@ public class HelloController {
     @FXML
     public void initialize() {
         termsAndConditions.setText("""
-Add your profile at your own discretion. We are not encrypted,
-hence your personal data could be stolen at anytime. Be warned!""");
+                Add your profile at your own discretion. We are not encrypted,
+                hence your personal data could be stolen at anytime. Be warned!""");
     }
 
-    /** A Method that controls the
-     *
+    /**
+     * A Method that controls the TODO
      */
     @FXML
     protected void onAgreeCheckBoxClick() {
@@ -34,20 +34,4 @@ hence your personal data could be stolen at anytime. Be warned!""");
         nextButton.setDisable(!accepted);
     }
 
-    @FXML
-    protected void onNextButtonClick() throws IOException {
-        Stage stage = (Stage) nextButton.getScene().getWindow();
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("userprofile-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
-
-
-    @FXML
-    private void onBackButtonClick(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
-    }
 }
