@@ -17,6 +17,10 @@ public class Exercise {
 
     public int getEId() { return id; }
 
+    public void setEId(int id) {
+        this.id = id;
+    }
+
     public String getEName() { return petname; }
 
     public String gettype() { return type; }

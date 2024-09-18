@@ -48,7 +48,7 @@ public class SqliteExerciseDAO {
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                exercise.setId(generatedKeys.getInt(1));
+                exercise.setEId(generatedKeys.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
