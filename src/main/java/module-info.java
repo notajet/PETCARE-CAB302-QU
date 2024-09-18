@@ -10,4 +10,5 @@ module com.example.petcarecab302qu {
     exports com.example.petcarecab302qu.model;
     exports com.example.petcarecab302qu.controller;
     opens com.example.petcarecab302qu.controller to javafx.fxml;
+    opens com.example.petcarecab302qu.model to javafx.fxml;
 }

@@ -2,27 +2,25 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.HelloApplication;
+import com.example.petcarecab302qu.model.DietPlan;
 import com.example.petcarecab302qu.model.SqliteDietDAO;
+import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
-import javafx.geometry.Insets;
 
 /*
 public class DietController {
@@ -257,12 +255,11 @@ public class DietController {
         }
 
 
+    @FXML
     public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homemain-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
+        SceneLoader.handleBackButton(event);
     }
+    
     // Method to load and display all diet plans in the UI
     private void displayDietPlans() {
         dietListBox.getChildren().clear();  // Clear the UI before loading new plans

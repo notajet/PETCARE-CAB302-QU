@@ -1,7 +1,5 @@
 package com.example.petcarecab302qu.model;
 
-import com.example.petcarecab302qu.controller.DietPlan;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

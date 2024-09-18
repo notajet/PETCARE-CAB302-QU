@@ -20,21 +20,6 @@ public class MockContactDAO implements IContactDAO {
     }
 
     @Override
-    public void updateContact(Contact contact) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId() == contact.getId()) {
-                contacts.set(i, contact);
-                break;
-            }
-        }
-    }
-
-    @Override
-    public void deleteContact(Contact contact) {
-        contacts.remove(contact);
-    }
-
-    @Override
     public Contact getContact(int id) {
         for (Contact contact : contacts) {
             if (contact.getId() == id) {

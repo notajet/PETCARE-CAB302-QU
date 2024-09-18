@@ -23,6 +23,6 @@ public class SceneLoader {
 
 
     public static void handleBackButton(ActionEvent event) throws IOException {
-        loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
+        loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 }

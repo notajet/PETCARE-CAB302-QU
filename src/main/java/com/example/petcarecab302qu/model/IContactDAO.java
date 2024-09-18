@@ -15,18 +15,6 @@ public interface IContactDAO {
     void addContact(Contact contact);
 
     /**
-     * Updates an existing contact in the database.
-     * @param contact The contact to update.
-     */
-    void updateContact(Contact contact);
-
-    /**
-     * Deletes a contact from the database.
-     * @param contact The contact to delete.
-     */
-    void deleteContact(Contact contact);
-
-    /**
      * Retrieves a contact from the database by its ID.
      * @param id The ID of the contact to retrieve.
      * @return The contact with the given ID, or null if not found.

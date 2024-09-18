@@ -9,9 +9,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-
-import java.io.IOException;
-
 public class HomeController {
 
     @FXML
