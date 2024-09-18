@@ -1,5 +1,7 @@
 package com.example.petcarecab302qu.model;
 
+import com.example.petcarecab302qu.util.*;
+
 public class Login {
     private IContactDAO contactDAO;
 
@@ -17,11 +19,15 @@ public class Login {
         }
 
         try {
-            if (contactDAO.authenticateUser(email, password)) {
-                return "Authentication Successful";
-            } else {
-                return "Authentication Unsuccessful";
+
+            String hashedInputPassword = PasswordUtil.hashPassword(password);
+
+            for (Contact contact : contactDAO.getAllContacts()) {
+                if (contact.getEmail().equals(email) && contact.getPassword().equals(hashedInputPassword)) {
+                    return "Authentication Successful";
+                }
             }
+            return "Authentication Unsuccessful";
         } catch (Exception e) {
             e.printStackTrace();
             return "Error occurred during authentication.";

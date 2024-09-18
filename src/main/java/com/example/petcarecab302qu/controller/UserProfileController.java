@@ -1,17 +1,13 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.util.SceneLoader;
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
-import com.example.petcarecab302qu.model.ContactManager;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
+import com.example.petcarecab302qu.model.IContactDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.List;
 
@@ -22,8 +18,6 @@ public class UserProfileController {
 
     @FXML
     private TextField searchTextField;
-
-    private ContactManager contactManager;
 
     @FXML
     private TextField firstNameTextField;
@@ -39,8 +33,12 @@ public class UserProfileController {
     @FXML
     private VBox contactContainer;
 
+    // Use IContactDAO directly
+    private IContactDAO contactDAO;
+
     public UserProfileController() {
-        contactManager = new ContactManager(new SqliteContactDAO());
+        // Initialize contactDAO with SqliteContactDAO
+        this.contactDAO = new SqliteContactDAO();
     }
 
     private void selectContact(Contact contact) {
@@ -74,7 +72,17 @@ public class UserProfileController {
     private void syncContacts() {
         contactsListView.getItems().clear();
         String query = searchTextField.getText();
-        List<Contact> contacts = contactManager.searchContacts(query);
+        List<Contact> contacts = contactDAO.getAllContacts();  // Get all contacts
+
+        // Filter contacts if a search query is present
+        if (query != null && !query.isEmpty()) {
+            contacts = contacts.stream()
+                    .filter(contact -> contact.getFullName().toLowerCase().contains(query.toLowerCase()) ||
+                            contact.getEmail().toLowerCase().contains(query.toLowerCase()) ||
+                            contact.getPhone().contains(query))
+                    .toList();
+        }
+
         boolean hasContact = !contacts.isEmpty();
         if (hasContact) {
             contactsListView.getItems().addAll(contacts);
@@ -115,7 +123,7 @@ public class UserProfileController {
                 selectedContact.setPassword(passwordTextField.getText());
             }
 
-            contactManager.updateContact(selectedContact);
+            contactDAO.updateContact(selectedContact);  // Update the contact directly using contactDAO
             syncContacts();
         }
     }
@@ -124,7 +132,7 @@ public class UserProfileController {
     private void onDelete() {
         Contact selectedContact = contactsListView.getSelectionModel().getSelectedItem();
         if (selectedContact != null) {
-            contactManager.deleteContact(selectedContact);
+            contactDAO.deleteContact(selectedContact);  // Delete the contact directly using contactDAO
             syncContacts();
         }
     }
@@ -138,7 +146,7 @@ public class UserProfileController {
         final String DEFAULT_PASSWORD = "";
 
         Contact newContact = new Contact(DEFAULT_FIRST_NAME, DEFAULT_LAST_NAME, DEFAULT_EMAIL, DEFAULT_PHONE, DEFAULT_PASSWORD);
-        contactManager.addContact(newContact);
+        contactDAO.addContact(newContact);  // Add the contact directly using contactDAO
         syncContacts();
         selectContact(newContact);
         firstNameTextField.requestFocus();

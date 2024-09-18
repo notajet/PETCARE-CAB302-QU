@@ -25,6 +25,9 @@ Add your profile at your own discretion. We are not encrypted,
 hence your personal data could be stolen at anytime. Be warned!""");
     }
 
+    /** A Method that controls the
+     *
+     */
     @FXML
     protected void onAgreeCheckBoxClick() {
         boolean accepted = agreeCheckBox.isSelected();

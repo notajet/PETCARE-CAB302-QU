@@ -1,18 +1,14 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
 import com.example.petcarecab302qu.model.IContactDAO;
-import com.example.petcarecab302qu.util.SceneLoader;
+import com.example.petcarecab302qu.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -45,7 +41,7 @@ public class SignupController {
 
 
     @FXML
-    public void handleSignUpAction() {
+    public void handleSignUpAction(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -79,7 +75,9 @@ public class SignupController {
             return;  // Prevent adding the contact
         }
 
-        Contact newContact = new Contact(firstName, lastName, email, phone, password);
+        String hashedPassword = PasswordUtil.hashPassword(password);
+
+        Contact newContact = new Contact(firstName, lastName, email, phone, hashedPassword);
         contactDAO.addContact(newContact);
 
         // Clear the form after successful sign-up
@@ -91,6 +89,7 @@ public class SignupController {
         errorMessage.setText("Sign-Up Successful!");
         errorMessage.setStyle("-fx-text-fill: green;");
         errorMessage.setVisible(true);
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 
     @FXML

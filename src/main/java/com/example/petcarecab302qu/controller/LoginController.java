@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.SqliteConnection;
+import com.example.petcarecab302qu.util.PasswordUtil;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,6 +14,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.io.IOException;
 
+/** A Class that contains all the methods needed for the login interface to run and be
+ *  controlled by the user's input
+ */
 public class LoginController {
     @FXML
     private TextField Email;
@@ -49,22 +52,34 @@ public class LoginController {
         }
 
         try {
-            String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
+            // Get the hashed password from the database for the provided email
+            String query = "SELECT password FROM contacts WHERE email = ?";
             connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, email);
-            statement.setString(2, password);
             ResultSet resultSet = statement.executeQuery();
+
             if (resultSet.next()) {
-                error.setText("Authentication Successful");
-                SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+                String storedHashedPassword = resultSet.getString("password");
+
+                // Hash the entered password to compare with the stored hashed password
+                String hashedInputPassword = PasswordUtil.hashPassword(password);
+
+                if (storedHashedPassword.equals(hashedInputPassword)) {
+                    error.setText("Authentication Successful");
+                    SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+                } else {
+                    error.setText("Authentication Unsuccessful");
+                }
             } else {
                 error.setText("Authentication Unsuccessful");
             }
+
             error.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         // Clears fields
         Email.clear();
         Password.clear();

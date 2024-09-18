@@ -19,6 +19,10 @@ public class HomeController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
     }
 
+    /**
+     *
+     * @param event
+     */
     @FXML
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");
@@ -62,8 +66,6 @@ public class HomeController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/setting-view.fxml");
 
     }
-
-
 
 }
 
