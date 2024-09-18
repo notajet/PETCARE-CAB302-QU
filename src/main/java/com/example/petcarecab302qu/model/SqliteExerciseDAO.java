@@ -54,4 +54,27 @@ public class SqliteExerciseDAO {
             e.printStackTrace();
         }
     }
+
+    public Exercise getExercise(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String petname = resultSet.getString("petname");
+                String type = resultSet.getString("type");
+                Double duration = resultSet.getDouble("duration");
+                String notes = resultSet.getString("notes");
+                //String password = resultSet.getString("password");
+                Exercise exercise = new Exercise(id, petname, type, duration, notes);
+                exercise.setEId(id);
+                return exercise;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
