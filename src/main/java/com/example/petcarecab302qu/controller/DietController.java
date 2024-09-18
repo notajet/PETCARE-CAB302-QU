@@ -159,32 +159,55 @@ public class DietController {
     // Method to handle adding a new diet plan
     public void handleAddDietPlan(ActionEvent event) {
 
-        VBox dietFormBox = new VBox(10);
-        dietFormBox.setPrefSize(200, 300);
-        dietFormBox.setStyle("-fx-background-color: #e0e0e0; -fx-padding: 10px; -fx-border-radius: 5px; -fx-background-radius: 5px;");
+        VBox dietFormBox = getvBox();
 
         Label nameLabel = new Label("Diet Plan Name:");
+        nameLabel.setStyle("-fx-font-weight: bold;"); // Bold the label text for emphasis
         TextField nameInput = new TextField();
         nameInput.setPromptText("Enter diet plan name");
 
         Label durationLabel = new Label("How long will the diet plan last (in days):");
+        durationLabel.setStyle("-fx-font-weight: bold;");
         TextField durationInput = new TextField();
         durationInput.setPromptText("Enter number of days");
 
         Label breakfastLabel = new Label("Breakfast:");
+        breakfastLabel.setStyle("-fx-font-weight: bold;");
         TextField breakfastInput = new TextField();
         breakfastInput.setPromptText("Enter breakfast details");
 
         Label lunchLabel = new Label("Lunch:");
+        lunchLabel.setStyle("-fx-font-weight: bold;");
         TextField lunchInput = new TextField();
         lunchInput.setPromptText("Enter lunch details");
 
         Label dinnerLabel = new Label("Dinner:");
+        dinnerLabel.setStyle("-fx-font-weight: bold;");
         TextField dinnerInput = new TextField();
         dinnerInput.setPromptText("Enter dinner details");
 
         Button saveButton = new Button("Save Diet Plan");
-        saveButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
+        saveButton.setStyle(
+                "-fx-background-color: #4CAF50; " + // Green button color
+                        "-fx-text-fill: white; " +          // White text on the button
+                        "-fx-font-weight: bold; " +         // Bold the text for emphasis
+                        "-fx-background-radius: 8px; " +    // Rounded button corners
+                        "-fx-padding: 10px 20px;"           // Add more padding to the button
+        );
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setStyle(
+                "-fx-background-color: #F44336; " +  // Red background for cancel button
+                        "-fx-text-fill: white; " +           // White text on the button
+                        "-fx-font-weight: bold; " +          // Bold the text for emphasis
+                        "-fx-background-radius: 8px; " +     // Rounded button corners
+                        "-fx-padding: 10px 20px;"            // Add more padding to the button
+        );
+        cancelButton.setOnAction(e -> {
+            rootPane.getChildren().remove(dietFormBox);
+            reloadPage();// Remove the form from the parent container
+        });
+
+        // Save button functionality (as it was)
         saveButton.setOnAction(e -> {
             String dietName = nameInput.getText();
             String dietDurationStr = durationInput.getText();
@@ -207,13 +230,22 @@ public class DietController {
                 System.out.println("Invalid input for duration: " + dietDurationStr);
             }
         });
+        HBox buttonBox = new HBox(10); // HBox to align buttons horizontally, 10px spacing
+        buttonBox.getChildren().addAll(saveButton, cancelButton);
 
-        dietFormBox.getChildren().addAll(nameLabel, nameInput, durationLabel, durationInput, breakfastLabel, breakfastInput, lunchLabel, lunchInput, dinnerLabel, dinnerInput, saveButton);
-
+        // Add all elements to the VBox (in the same order as the original)
+        dietFormBox.getChildren().addAll(
+                nameLabel, nameInput,
+                durationLabel, durationInput,
+                breakfastLabel, breakfastInput,
+                lunchLabel, lunchInput,
+                dinnerLabel, dinnerInput,
+                buttonBox
+        );
         Button addButton = (Button) event.getSource();
         double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight();
 
-        double verticalOffset = 10.0;
+        double verticalOffset = 110.0;
         AnchorPane.setRightAnchor(dietFormBox, 10.0);
 
         AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);
@@ -221,6 +253,20 @@ public class DietController {
 
         rootPane.getChildren().add(dietFormBox);
 
+    }
+
+    private static VBox getvBox() {
+        VBox dietFormBox = new VBox(5); // More spacing between elements
+        dietFormBox.setPrefSize(250, 100); // Slightly larger size for a spacious layout
+        dietFormBox.setStyle(
+                "-fx-background-color: white; " +  // White background for a clean look
+                        "-fx-padding: 20px; " +            // Increase padding to give elements space
+                        "-fx-border-color: #dcdcdc; " +    // Light border color
+                        "-fx-border-radius: 8px; " +       // Rounded corners
+                        "-fx-background-radius: 8px; " +   // Rounded background corners to match border
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 4);" // Soft drop shadow
+        );
+        return dietFormBox;
     }
 
     // Method to dynamically add a diet plan to the UI
@@ -260,7 +306,7 @@ public class DietController {
     public void handleBackButton(ActionEvent event) throws IOException {
         Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
         FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homemain-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
+        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH + 100, HelloApplication.HEIGHT + 300);
         stage.setScene(scene);
     }
     // Method to load and display all diet plans in the UI
@@ -318,22 +364,53 @@ public class DietController {
         }
     }
     private void showDietPlanDetails(DietPlan dietPlan) {
-        // Create an Alert dialog to display the details
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Diet Plan Details");
-        alert.setHeaderText("Details for: " + dietPlan.getName());
+        // Create a VBox to hold the diet plan details
+        VBox detailsBox = new VBox(10);  // Spacing between elements
+        detailsBox.setPadding(new Insets(20));  // Padding inside the VBox
+        detailsBox.setStyle(
+                "-fx-background-color: white; " +
+                        "-fx-border-color: #dcdcdc; " +
+                        "-fx-border-radius: 8px; " +
+                        "-fx-background-radius: 8px; " +
+                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 4);"
+        );
+        detailsBox.setPrefSize(300, 200);  // Set a preferred size for the box
 
-        // Build the content string to display the diet plan details
-        StringBuilder content = new StringBuilder();
-        content.append("Duration: ").append(dietPlan.getDuration()).append(" days\n");
-        content.append("Breakfast: ").append(dietPlan.getBreakfast()).append("\n");
-        content.append("Lunch: ").append(dietPlan.getLunch()).append("\n");
-        content.append("Dinner: ").append(dietPlan.getDinner());
+        // Add the diet plan details as Labels
+        Label nameLabel = new Label("Details for: " + dietPlan.getName());
+        Label durationLabel = new Label("Duration: " + dietPlan.getDuration() + " days");
+        Label breakfastLabel = new Label("Breakfast: " + dietPlan.getBreakfast());
+        Label lunchLabel = new Label("Lunch: " + dietPlan.getLunch());
+        Label dinnerLabel = new Label("Dinner: " + dietPlan.getDinner());
 
-        alert.setContentText(content.toString());
+        // Style the labels (optional)
+        nameLabel.setStyle("-fx-font-weight: bold; -fx-font-size: 16px;");
+        durationLabel.setStyle("-fx-font-size: 14px;");
+        breakfastLabel.setStyle("-fx-font-size: 14px;");
+        lunchLabel.setStyle("-fx-font-size: 14px;");
+        dinnerLabel.setStyle("-fx-font-size: 14px;");
 
-        // Show the dialog
-        alert.showAndWait();
+        Button closeButton = new Button("Close");
+        closeButton.setStyle("-fx-background-color: #F44336; -fx-text-fill: white; -fx-font-weight: bold;");
+        Button editButton = new Button("Edit");
+        editButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;");
+        // Close Button functionality: remove the details box
+        closeButton.setOnAction(e -> {
+            rootPane.getChildren().remove(detailsBox);
+            reloadPage();
+        });
+
+        // Add all labels to the VBox
+        detailsBox.getChildren().addAll(nameLabel, durationLabel, breakfastLabel, lunchLabel, dinnerLabel,closeButton);
+
+        // Add the detailsBox to the main rootPane (or any parent layout)
+        rootPane.getChildren().add(detailsBox);
+
+        // Optional: Set the position of the VBox (center it or move it to a specific part of the screen)
+        AnchorPane.setTopAnchor(detailsBox, 210.0);  // Position it vertically
+        AnchorPane.setLeftAnchor(detailsBox, 230.0); // Position it horizontally
     }
+
+
 }
 
