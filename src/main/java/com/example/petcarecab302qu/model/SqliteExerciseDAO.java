@@ -22,14 +22,13 @@ public class SqliteExerciseDAO {
             // Ensure space between columns
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "pet_id INTEGER NOT NULL"
-                    + "firstName VARCHAR NOT NULL,"
-                    + "lastName VARCHAR NOT NULL,"
-                    + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL,"
-                    + "password VARCHAR NOT NULL"
+                    //+ "pet_id INTEGER NOT NULL"
+                    + "petname VARCHAR NOT NULL,"
+                    + "type VARCHAR NOT NULL,"
+                    + "description VARCHAR NOT NULL,"
+                    //+ "FOREIGN KEY (pet_id) REFERENCES pets(id),"
                     + ")";
-                    //FOREIGN KEY(ArtistId) REFERENCES Artists(ArtistId);
+
             statement.execute(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -40,7 +39,7 @@ public class SqliteExerciseDAO {
     public void addExercise(Contact contact) {
         try {
             // Correct number of fields in the prepared statement and SQL syntax
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email, password) VALUES (?, ?, ?, ?, ?)");
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petname, type, description) VALUES (?, ?, ?)");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
