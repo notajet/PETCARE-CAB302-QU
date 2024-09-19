@@ -34,7 +34,7 @@ public class SignupController {
     private IContactDAO contactDAO;
 
     /**
-     * Constructs a new SignupController and initializes the contactDAO.
+     * Constructs a new SignupController and initialises the contactDAO.
      */
     public SignupController() {
         this.contactDAO = new SqliteContactDAO();
@@ -98,22 +98,11 @@ public class SignupController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 
-    /**
-     * Handles the back button action to navigate to the previous screen.
-     *
-     * @param event The action event triggered by the back button.
-     * @throws IOException If the scene fails to load.
-     */
     @FXML
     public void handleBackButtonOnHome(ActionEvent event) throws IOException {
         SceneLoader.handleBackOnHome(event);
     }
 
-    /**
-     * Handles the action to navigate to the login screen.
-     *
-     * @param event The action event triggered by the login button.
-     */
     @FXML
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");

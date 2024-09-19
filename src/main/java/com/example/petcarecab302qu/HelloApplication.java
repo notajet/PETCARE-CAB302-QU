@@ -11,7 +11,6 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        // Load the homepage view
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/home-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), WIDTH, HEIGHT);
         stage.setTitle("PETHUB");

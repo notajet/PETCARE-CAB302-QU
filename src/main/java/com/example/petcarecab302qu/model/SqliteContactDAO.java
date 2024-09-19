@@ -7,6 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Implementation of the IContactDAO interface using SQLite as the database.
+ * Provides methods to interact with the contacts database, including adding,
+ * retrieving, and checking for the existence of contacts.
+ */
 public class SqliteContactDAO implements IContactDAO {
 
     private Connection connection;
@@ -16,6 +21,10 @@ public class SqliteContactDAO implements IContactDAO {
         createTable();
     }
 
+    /**
+     * Creates the contacts table in the database if it does not already exist.
+     * The table contains fields for id, first name, last name, phone, email, and password.
+     */
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
@@ -34,7 +43,12 @@ public class SqliteContactDAO implements IContactDAO {
         }
     }
 
-
+    /**
+     * Adds a new contact to the database.
+     * Sets the generated ID for the contact after insertion.
+     *
+     * @param contact The contact to be added.
+     */
     @Override
     public void addContact(Contact contact) {
         try {
@@ -55,29 +69,11 @@ public class SqliteContactDAO implements IContactDAO {
         }
     }
 
-
-    @Override
-    public Contact getContact(int id) {
-        try {
-            PreparedStatement statement = connection.prepareStatement("SELECT * FROM contacts WHERE id = ?");
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            if (resultSet.next()) {
-                String firstName = resultSet.getString("firstName");
-                String lastName = resultSet.getString("lastName");
-                String phone = resultSet.getString("phone");
-                String email = resultSet.getString("email");
-                String password = resultSet.getString("password");
-                Contact contact = new Contact(firstName, lastName, phone, email, password);
-                contact.setId(id);
-                return contact;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
+    /**
+     * Retrieves all contacts from the database.
+     *
+     * @return A list of all contacts stored in the database.
+     */
     @Override
     public List<Contact> getAllContacts() {
         List<Contact> contacts = new ArrayList<>();
@@ -102,6 +98,12 @@ public class SqliteContactDAO implements IContactDAO {
         return contacts;
     }
 
+    /**
+     * Checks if a contact with the specified email exists in the database.
+     *
+     * @param email The email to check for.
+     * @return true if a contact with the given email exists, false otherwise.
+     */
     @Override
     public boolean emailExists(String email) {
         try {
@@ -115,11 +117,6 @@ public class SqliteContactDAO implements IContactDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return false;
-    }
-
-    @Override
-    public boolean authenticateUser(String email, String password) throws Exception {
         return false;
     }
 }

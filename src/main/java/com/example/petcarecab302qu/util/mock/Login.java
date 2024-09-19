@@ -4,13 +4,31 @@ import com.example.petcarecab302qu.model.Contact;
 import com.example.petcarecab302qu.model.IContactDAO;
 import com.example.petcarecab302qu.util.PasswordUtil;
 
+/**
+ * Class for handling user login functionality in the Pet Care application.
+ * Uses the provided IContactDAO implementation to authenticate users based on their email and password.
+ */
 public class Login {
+
     private IContactDAO contactDAO;
 
     public Login(IContactDAO contactDAO) {
         this.contactDAO = contactDAO;
     }
 
+    /**
+     * Authenticates a user based on the provided email and password.
+     * Checks if the provided email and password match any contact in the database.
+     *
+     * @param email The email of the user attempting to log in.
+     * @param password The password of the user attempting to log in.
+     * @return A message indicating the result of the authentication:
+     *         - "Authentication Successful" if the email and password are correct.
+     *         - "Authentication Unsuccessful" if the credentials are incorrect.
+     *         - "Please provide email." if the email is empty.
+     *         - "Please provide password." if the password is empty.
+     *         - "Error occurred during authentication." if an exception occurs during the process.
+     */
     public String login(String email, String password) {
 
         if (email.isEmpty()) {

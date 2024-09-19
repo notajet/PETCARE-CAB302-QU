@@ -12,9 +12,8 @@ public class LoginTest {
 
     @BeforeEach
     public void setUp() {
-        // Initialize the mock DAO
+        // Initialise the mock DAO
         mockContactDAO = new MockContactDAO();
-        // Initialize the Login service with the mock DAO
         loginService = new Login(mockContactDAO);
 
         // Add a sample user for testing
