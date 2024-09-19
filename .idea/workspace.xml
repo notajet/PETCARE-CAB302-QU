@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e4ffed05-ddd8-4b23-b231-992f95500cc4" name="Changes" comment="Exercise Database #5" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="integration" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "notajet"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:notajet/PETCARE-CAB302-QU.git",
+    "accountId": "632b7264-bb64-45fd-9bf2-edcf97bf640f"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2mFGuc5AOpno8JGoIsVrEQguGEK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.HelloApplication.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "run.code.analysis.last.selected.profile": "pProject Default"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task id="LOCAL-00001" summary="Exercise Database">
+      <option name="closed" value="true" />
+      <created>1726532850232</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726532850232</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Exercise Database">
+      <option name="closed" value="true" />
+      <created>1726532971253</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726532971253</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Exercise Database">
+      <option name="closed" value="true" />
+      <created>1726534413592</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1726534413592</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Exercise Database">
+      <option name="closed" value="true" />
+      <created>1726655826788</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1726655826788</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Exercise Database">
+      <option name="closed" value="true" />
+      <created>1726656847721</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1726656847721</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e4ffed05-ddd8-4b23-b231-992f95500cc4" name="Changes" comment="Exercise Database" />
+      <created>1726665134257</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726665134257</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Exercise Database #2">
+      <option name="closed" value="true" />
+      <created>1726665276676</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1726665276676</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Exercise Database #3">
+      <option name="closed" value="true" />
+      <created>1726666013541</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1726666013541</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Exercise Database #4">
+      <option name="closed" value="true" />
+      <created>1726677305982</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1726677305982</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Exercise Database #4">
+      <option name="closed" value="true" />
+      <created>1726712094525</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1726712094525</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Exercise Database #5">
+      <option name="closed" value="true" />
+      <created>1726716876145</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1726716876145</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Exercise Database #5">
+      <option name="closed" value="true" />
+      <created>1726717052335</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1726717052335</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Exercise Database #5">
+      <option name="closed" value="true" />
+      <created>1726717260956</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1726717260956</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Login #5" />
+    <MESSAGE value="Exercise Database" />
+    <MESSAGE value="Exercise Database #2" />
+    <MESSAGE value="Exercise Database #3" />
+    <MESSAGE value="Exercise Database #4" />
+    <MESSAGE value="Exercise Database #5" />
+    <option name="LAST_COMMIT_MESSAGE" value="Exercise Database #5" />
+  </component>
+</project>
