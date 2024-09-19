@@ -4,10 +4,17 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.text.*;
+import javafx.fxml.FXMLLoader;
+import java.io.IOException;
 
 
 public class ExerciseController {
+
+    @FXML
+    private VBox navigationBar;
+
     @FXML
     private ProgressBar progressBar;
 
@@ -34,10 +41,25 @@ public class ExerciseController {
 
     @FXML
     public void initialize(){
+
+        NavigationBar();
+
         ToggleGroup typeOfExercise = new ToggleGroup();
         walkRadioButton.setToggleGroup(typeOfExercise);
         runRadioButton.setToggleGroup(typeOfExercise);
         playRadioButton.setToggleGroup(typeOfExercise);
+    }
+
+    private void NavigationBar(){
+        try {
+            // Load the navigation FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
+            VBox navigation = loader.load();
+            // Add the navigation to the navigation container
+            navigationBar.getChildren().add(navigation);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String exerciseType;
@@ -76,32 +98,10 @@ public class ExerciseController {
         exerciseType = null; // Reset exercise type
     }
 
-    public void handlePetProfile(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/petprofile-view.fxml");
 
-    }
+    /*
+    public handleSaveExerciseButton(){
 
-    public void handleDietPlan(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/diet-view.fxml");
+    }*/
 
-    }
-
-    public void handleExercise(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/exercise-view.fxml");
-
-    }
-
-    public void handleSchedule(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/schedule-view.fxml");
-
-    }
-
-    public void handleSetting(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/setting-view.fxml");
-
-    }
-
-    public void handleHome(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
-    }
 }

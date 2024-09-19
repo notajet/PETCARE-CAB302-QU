@@ -24,6 +24,7 @@ public class HomeController {
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");
     }
+
     @FXML
     public void handleSignUpAction(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
@@ -37,6 +38,10 @@ public class HomeController {
     public void handleExitButtonAction(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
+    }
+
+    public void handleLogOutButton(ActionEvent event){
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
     }
 
     public void handleHome(ActionEvent event) {
