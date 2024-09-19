@@ -12,34 +12,41 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+/**
+ * Controller class for managing the sign-up process in the Pet Care application.
+ * Handles user input, validates the data, and creates a new user account in the database.
+ */
 public class SignupController {
 
     @FXML
     private TextField firstNameField;
-
     @FXML
     private TextField lastNameField;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private TextField phoneField;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Text errorMessage;
-
     @FXML
     private IContactDAO contactDAO;
 
+    /**
+     * Constructs a new SignupController and initializes the contactDAO.
+     */
     public SignupController() {
         this.contactDAO = new SqliteContactDAO();
     }
 
-
+    /**
+     * Handles the sign-up action when the user submits the sign-up form.
+     * Validates input fields, checks if the email already exists, hashes the password,
+     * and adds the new user to the database if all validations pass.
+     *
+     * @param event The action event triggered by the sign-up button.
+     */
     @FXML
     public void handleSignUpAction(ActionEvent event) {
         String firstName = firstNameField.getText();
@@ -72,7 +79,7 @@ public class SignupController {
             errorMessage.setText("Email already exists. Please use a different email.");
             errorMessage.setStyle("-fx-text-fill: red;");
             errorMessage.setVisible(true);
-            return;  // Prevent adding the contact
+            return;
         }
 
         String hashedPassword = PasswordUtil.hashPassword(password);
@@ -80,7 +87,6 @@ public class SignupController {
         Contact newContact = new Contact(firstName, lastName, email, phone, hashedPassword);
         contactDAO.addContact(newContact);
 
-        // Clear the form after successful sign-up
         firstNameField.clear();
         lastNameField.clear();
         emailField.clear();
@@ -92,11 +98,22 @@ public class SignupController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 
+    /**
+     * Handles the back button action to navigate to the previous screen.
+     *
+     * @param event The action event triggered by the back button.
+     * @throws IOException If the scene fails to load.
+     */
     @FXML
-    public void handleBackButton(ActionEvent event) throws IOException {
-        SceneLoader.handleBackButton(event);
+    public void handleBackButtonOnHome(ActionEvent event) throws IOException {
+        SceneLoader.handleBackOnHome(event);
     }
 
+    /**
+     * Handles the action to navigate to the login screen.
+     *
+     * @param event The action event triggered by the login button.
+     */
     @FXML
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");

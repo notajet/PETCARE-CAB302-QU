@@ -14,6 +14,6 @@ public class HomeMainController extends NavigationController {
     }
 
     public void handleLogOutButton(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
     }
 }

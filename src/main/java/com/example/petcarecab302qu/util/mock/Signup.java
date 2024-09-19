@@ -1,5 +1,7 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.util.mock;
 
+import com.example.petcarecab302qu.model.Contact;
+import com.example.petcarecab302qu.model.IContactDAO;
 import com.example.petcarecab302qu.util.PasswordUtil;
 
 public class Signup {

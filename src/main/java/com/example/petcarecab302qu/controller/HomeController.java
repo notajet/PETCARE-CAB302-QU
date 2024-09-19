@@ -14,11 +14,6 @@ import java.io.IOException;
 
 public class HomeController  {
 
-    @FXML
-    public void handleUserProfile(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
-    }
-
     /**
      *
      * @param event

@@ -20,6 +20,9 @@ public class SceneLoader {
             e.printStackTrace();
         }
     }
+    public static void handleBackOnHome(ActionEvent event) throws IOException {
+        loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
+    }
 
 
     public static void handleBackButton(ActionEvent event) throws IOException {
