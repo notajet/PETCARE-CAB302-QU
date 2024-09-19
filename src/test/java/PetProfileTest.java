@@ -44,7 +44,7 @@ public class PetProfileTest {
         assertEquals("Charlie", addedPet.getName());
     }
 
-    /*  Functionality hasn't been implemented yet
+    /*  Functionality hasn't been implemented yet.
     @Test
     public void testUpdatePet() {
         Pet petToUpdate = mockPetDAO.getAllPets().get(0);
