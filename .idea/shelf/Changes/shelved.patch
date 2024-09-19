@@ -1,0 +1,17 @@
+Index: src/main/java/com/example/petcarecab302qu/controller/PetProfileController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.example.petcarecab302qu.controller;\n\npublic class PetProfileController {\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/example/petcarecab302qu/controller/PetProfileController.java b/src/main/java/com/example/petcarecab302qu/controller/PetProfileController.java
+--- a/src/main/java/com/example/petcarecab302qu/controller/PetProfileController.java	(revision 53eea055691be5a90e1a7d9091847df0c1352321)
++++ b/src/main/java/com/example/petcarecab302qu/controller/PetProfileController.java	(date 1726532352843)
+@@ -1,6 +1,0 @@
+-package com.example.petcarecab302qu.controller;
+-
+-public class PetProfileController {
+-
+-
+-}
