@@ -4,8 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class SqlitePetDAO {
+public class SqlitePetDAO implements IPetDAO {
 
     private Connection connection;
 
@@ -33,13 +32,13 @@ public class SqlitePetDAO {
         }
     }
 
-
+    @Override
     public void addPet(Pet pet) {
         String query = "INSERT INTO pets (name, age, gender, breed, weight, height, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?)";
-        try (PreparedStatement pstmt = SqliteConnection.getInstance().prepareStatement(query)) {
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
 
             // Check if the connection is valid before executing
-            if (SqliteConnection.getInstance().isClosed()) {
+            if (connection.isClosed()) {
                 System.out.println("Database connection is closed. Cannot add pet.");
                 return;
             }
@@ -60,14 +59,12 @@ public class SqlitePetDAO {
         }
     }
 
-
-    // Fetch all pets from the database
+    @Override
     public List<Pet> getAllPets() {
         List<Pet> pets = new ArrayList<>();
         String query = "SELECT * FROM pets";
 
-        try (Connection conn = SqliteConnection.getInstance();
-             PreparedStatement stmt = conn.prepareStatement(query);
+        try (PreparedStatement stmt = connection.prepareStatement(query);
              ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
@@ -81,8 +78,6 @@ public class SqlitePetDAO {
                         rs.getDouble("height"),
                         rs.getString("imageUrl")
                 );
-
-
                 pets.add(pet);
             }
 
@@ -91,5 +86,44 @@ public class SqlitePetDAO {
         }
 
         return pets;
+    }
+
+    @Override
+    public void updatePet(Pet pet) {
+        String query = "UPDATE pets SET name = ?, age = ?, gender = ?, breed = ?, weight = ?, height = ?, imageUrl = ? WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            // Set parameters
+            pstmt.setString(1, pet.getName());
+            pstmt.setInt(2, pet.getAge());
+            pstmt.setString(3, pet.getGender());
+            pstmt.setString(4, pet.getBreed());
+            pstmt.setDouble(5, pet.getWeight());
+            pstmt.setDouble(6, pet.getHeight());
+            pstmt.setString(7, pet.getImageUrl());
+            pstmt.setInt(8, pet.getId());
+
+            // Execute update
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error updating pet in database: " + e.getMessage());
+        }
+    }
+
+    @Override
+    public void deletePet(int petId) {
+        String query = "DELETE FROM pets WHERE id = ?";
+        try (PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            // Set parameter and execute
+            pstmt.setInt(1, petId);
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error deleting pet from database: " + e.getMessage());
+        }
     }
 }

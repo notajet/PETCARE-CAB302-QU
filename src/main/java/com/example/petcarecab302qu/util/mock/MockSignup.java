@@ -8,10 +8,10 @@ import com.example.petcarecab302qu.util.PasswordUtil;
  * Class for handling user signup functionality in the Pet Care application.
  * Validates user input, hashes the password, and stores the new contact using the provided IContactDAO implementation.
  */
-public class Signup {
+public class MockSignup {
     private IContactDAO contactDAO;
 
-    public Signup(IContactDAO contactDAO) {
+    public MockSignup(IContactDAO contactDAO) {
         this.contactDAO = contactDAO;
     }
 

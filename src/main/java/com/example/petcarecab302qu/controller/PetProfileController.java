@@ -1,6 +1,7 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.HelloApplication;
+import com.example.petcarecab302qu.model.IPetDAO;
 import com.example.petcarecab302qu.model.SqlitePetDAO;
 import com.example.petcarecab302qu.model.Pet;
 import com.example.petcarecab302qu.util.SceneLoader;
@@ -48,9 +49,19 @@ public class PetProfileController {
     @FXML
     private VBox petsContainer;
 
-    private SqlitePetDAO petDAO;
+    private IPetDAO petDAO;
 
     private boolean isAddPetFormVisible = false;
+
+    // Existing constructor for dependency injection
+    public PetProfileController(IPetDAO petDAO) {
+        this.petDAO = petDAO;
+    }
+
+    // No-argument constructor
+    public PetProfileController() {
+        this.petDAO = new SqlitePetDAO(); // Default to SqlitePetDAO
+    }
 
     @FXML
     public void initialize() {

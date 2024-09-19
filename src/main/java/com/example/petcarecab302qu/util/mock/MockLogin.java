@@ -8,11 +8,11 @@ import com.example.petcarecab302qu.util.PasswordUtil;
  * Class for handling user login functionality in the Pet Care application.
  * Uses the provided IContactDAO implementation to authenticate users based on their email and password.
  */
-public class Login {
+public class MockLogin {
 
     private IContactDAO contactDAO;
 
-    public Login(IContactDAO contactDAO) {
+    public MockLogin(IContactDAO contactDAO) {
         this.contactDAO = contactDAO;
     }
 

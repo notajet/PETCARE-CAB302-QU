@@ -30,4 +30,6 @@ public class Pet {
     public double getWeight() { return weight; }
     public double getHeight() { return height; }
     public String getImageUrl() { return imageUrl; }
+    public void setId(int id) {}
+    public void setName(String buddyUpdated) {}
 }
