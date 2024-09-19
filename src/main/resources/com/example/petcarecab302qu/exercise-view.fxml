@@ -59,9 +59,9 @@
 
                 <HBox spacing="10.0">
 
-                    <RadioButton fx:id="walkRadioButton" onAction="#handleExerciseRadioButton" text="Walk" />
-                    <RadioButton fx:id="runRadioButton" onAction="#handleExerciseRadioButton" text="Run" />
-                    <RadioButton fx:id="playRadioButton" onAction="#handleExerciseRadioButton" text="Play" />
+                    <RadioButton fx:id="walkRadioButton" text="Walk" />
+                    <RadioButton fx:id="runRadioButton" text="Run" />
+                    <RadioButton fx:id="playRadioButton" text="Play" />
 
                 </HBox>
 
@@ -69,13 +69,6 @@
                 <Text text="Duration" style="-fx-font-weight: bold;"/>
 
                 <HBox spacing="10.0">
-                    <Spinner fx:id="hourSpinner" BorderPane.alignment="CENTER" >
-                        <valueFactory>
-                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="1"/>
-                        </valueFactory>
-                    </Spinner>
-                    <Text text="hr"/>
-
                     <Spinner fx:id="minuteSpinner" BorderPane.alignment="CENTER" >
                         <valueFactory>
                             <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="60"/>
