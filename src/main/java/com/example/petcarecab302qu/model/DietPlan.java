@@ -1,4 +1,4 @@
-package com.example.petcarecab302qu.controller;
+package com.example.petcarecab302qu.model;
 
 public class DietPlan {
     private int id;

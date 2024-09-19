@@ -1,6 +1,6 @@
 import com.example.petcarecab302qu.model.Contact;
-import com.example.petcarecab302qu.model.MockContactDAO;
-import com.example.petcarecab302qu.model.Signup;
+import com.example.petcarecab302qu.util.mock.MockContactDAO;
+import com.example.petcarecab302qu.util.mock.Signup;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

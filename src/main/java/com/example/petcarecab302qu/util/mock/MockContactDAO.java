@@ -1,5 +1,7 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.util.mock;
 
+import com.example.petcarecab302qu.model.Contact;
+import com.example.petcarecab302qu.model.IContactDAO;
 import com.example.petcarecab302qu.util.PasswordUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,21 +19,6 @@ public class MockContactDAO implements IContactDAO {
         contact.setId(autoIncrementedId);
         autoIncrementedId++;
         contacts.add(contact);
-    }
-
-    @Override
-    public void updateContact(Contact contact) {
-        for (int i = 0; i < contacts.size(); i++) {
-            if (contacts.get(i).getId() == contact.getId()) {
-                contacts.set(i, contact);
-                break;
-            }
-        }
-    }
-
-    @Override
-    public void deleteContact(Contact contact) {
-        contacts.remove(contact);
     }
 
     @Override

@@ -86,8 +86,8 @@ public class LoginController {
     }
 
     @FXML
-    public void handleBackButton(ActionEvent event) throws IOException {
-        SceneLoader.handleBackButton(event);
+    public void handleBackButtonOnHome(ActionEvent event) throws IOException {
+        SceneLoader.handleBackOnHome(event);
     }
 
     @FXML
