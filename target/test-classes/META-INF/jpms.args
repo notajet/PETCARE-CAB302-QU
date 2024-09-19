@@ -1,4 +1,0 @@
---patch-module
-com.example.petcarecab302qu=_
---add-reads
-com.example.petcarecab302qu=ALL-UNNAMED

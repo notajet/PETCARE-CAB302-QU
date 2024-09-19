@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"com.example.petcarecab302qu","l":"com.example.petcarecab302qu"},{"m":"com.example.petcarecab302qu","l":"com.example.petcarecab302qu.controller"},{"m":"com.example.petcarecab302qu","l":"com.example.petcarecab302qu.model"}];updateSearchResults();
