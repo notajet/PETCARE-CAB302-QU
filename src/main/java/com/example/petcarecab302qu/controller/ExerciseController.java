@@ -10,7 +10,10 @@ import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
 
-public class ExerciseController extends NavigationController {
+public class ExerciseController extends NavigationController{
+
+    @FXML
+    private VBox navigationBar;
 
     @FXML
     private ProgressBar progressBar;
