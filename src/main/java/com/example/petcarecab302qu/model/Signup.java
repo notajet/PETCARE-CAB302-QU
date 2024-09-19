@@ -1,5 +1,7 @@
 package com.example.petcarecab302qu.model;
 
+import com.example.petcarecab302qu.util.PasswordUtil;
+
 public class Signup {
     private IContactDAO contactDAO;
 
@@ -24,7 +26,14 @@ public class Signup {
             return "Email already exists.";
         }
 
-        Contact newContact = new Contact(firstName, lastName, email, phone, password);
+        String hashedPassword;
+        try {
+            hashedPassword = PasswordUtil.hashPassword(password);
+        } catch (RuntimeException e) {
+            return "Error occurred while hashing the password.";
+        }
+
+        Contact newContact = new Contact(firstName, lastName, email, phone, hashedPassword);
         contactDAO.addContact(newContact);
 
         return "Signup successful!";

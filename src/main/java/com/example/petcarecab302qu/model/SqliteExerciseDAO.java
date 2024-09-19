@@ -22,14 +22,14 @@ public class SqliteExerciseDAO {
             // Ensure space between columns
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "pet_id INTEGER NOT NULL"
-                    + "firstName VARCHAR NOT NULL,"
-                    + "lastName VARCHAR NOT NULL,"
-                    + "phone VARCHAR NOT NULL,"
-                    + "email VARCHAR NOT NULL,"
-                    + "password VARCHAR NOT NULL"
+                    //+ "pet_id INTEGER NOT NULL"
+                    + "petname VARCHAR NOT NULL,"
+                    + "type VARCHAR NOT NULL,"
+                    + "duration VARCHAR NOT NULL,"
+                    + "notes VARCHAR NOT NULL"
+                    //+ "FOREIGN KEY (pet_id) REFERENCES pets(id),"
                     + ")";
-                    //FOREIGN KEY(ArtistId) REFERENCES Artists(ArtistId);
+
             statement.execute(query);
         } catch (Exception e) {
             e.printStackTrace();
@@ -37,22 +37,44 @@ public class SqliteExerciseDAO {
     }
 
     //@Override
-    public void addExercise(Contact contact) {
+    public void addExercise(Exercise exercise) {
         try {
             // Correct number of fields in the prepared statement and SQL syntax
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email, password) VALUES (?, ?, ?, ?, ?)");
-            statement.setString(1, contact.getFirstName());
-            statement.setString(2, contact.getLastName());
-            statement.setString(3, contact.getPhone());
-            statement.setString(4, contact.getEmail());
-            statement.setString(5, contact.getPassword());  // Add password to the query
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petname, type, duration, notes) VALUES (?, ?, ?, ?)");
+            statement.setString(1, exercise.getEName());
+            statement.setString(2, exercise.gettype());
+            statement.setDouble(3, exercise.getduration());
+            statement.setString(4, exercise.getnotes());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
-                contact.setId(generatedKeys.getInt(1));
+                exercise.setEId(generatedKeys.getInt(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    public Exercise getExercise(int id) {
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE id = ?");
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            if (resultSet.next()) {
+                String petname = resultSet.getString("petname");
+                String type = resultSet.getString("type");
+                Double duration = resultSet.getDouble("duration");
+                String notes = resultSet.getString("notes");
+                //String password = resultSet.getString("password");
+                Exercise exercise = new Exercise(id, petname, type, duration, notes);
+                exercise.setEId(id);
+                return exercise;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
 }
