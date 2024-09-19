@@ -24,6 +24,7 @@ public class HomeController {
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");
     }
+
     @FXML
     public void handleSignUpAction(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
@@ -39,9 +40,16 @@ public class HomeController {
         stage.close();
     }
 
+    public void handleLogOutButton(ActionEvent event){
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
+    }
+
+    public void handleHome(ActionEvent event) {
+        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/homemain-view.fxml");
+    }
+
     public void handlePetProfile(ActionEvent event) {
         SceneLoader.loadScene(event,"/com/example/petcarecab302qu/petprofile-view.fxml");
-
     }
 
     public void handleDietPlan(ActionEvent event) {
