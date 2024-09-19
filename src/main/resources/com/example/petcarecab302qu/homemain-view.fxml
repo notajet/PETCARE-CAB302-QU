@@ -17,7 +17,7 @@
 
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.HomeController">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.HomeMainController">
     <!-- Header Section at the Top -->
     <top>
         <HBox alignment="CENTER_LEFT" style="-fx-background-color: #ff5347;" spacing="10.0" prefHeight="60.0">
@@ -33,14 +33,7 @@
 
     <!-- Navigation Bar on the Left -->
     <left>
-        <VBox alignment="CENTER_LEFT" spacing="10.0" style="-fx-background-color: #f0f0f0;" prefWidth="150.0">
-            <Button text="Home" onAction="#handleHome" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Pet Profile" onAction="#handlePetProfile" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Diet" onAction="#handleDietPlan" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Exercise" onAction="#handleExercise" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Schedule" onAction="#handleSchedule" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-            <Button text="Settings" prefWidth="160.0" minHeight="60.0" style="-fx-background-color: #1e90ff; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
-        </VBox>
+        <VBox fx:id="navigationBar" />
     </left>
 
     <!-- Main -->

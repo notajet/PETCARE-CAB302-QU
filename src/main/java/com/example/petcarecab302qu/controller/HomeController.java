@@ -7,9 +7,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-public class HomeController {
+import java.io.IOException;
+
+public class HomeController  {
 
     @FXML
     public void handleUserProfile(ActionEvent event) {
@@ -30,7 +33,6 @@ public class HomeController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
     }
 
-
     @FXML
     public Button exitButton;
 
@@ -38,10 +40,6 @@ public class HomeController {
     public void handleExitButtonAction(ActionEvent event) {
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
-    }
-
-    public void handleLogOutButton(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/hello-view.fxml");
     }
 
     public void handleHome(ActionEvent event) {
