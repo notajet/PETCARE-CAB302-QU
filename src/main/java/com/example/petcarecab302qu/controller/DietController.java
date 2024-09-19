@@ -29,7 +29,6 @@ import javafx.geometry.Insets;
 /**
  * Controller class for managing diet plans.
  * It uses {@link SqliteDietDAO} to handle database operations.
- * @Oliver
  */
 public class DietController {
     @FXML
