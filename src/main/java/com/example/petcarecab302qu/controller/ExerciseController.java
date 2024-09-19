@@ -47,17 +47,6 @@ public class ExerciseController extends NavigationController {
         playRadioButton.setToggleGroup(typeOfExercise);
     }
 
-    private void NavigationBar(){
-        try {
-            // Load the navigation FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
-            VBox navigation = loader.load();
-            // Add the navigation to the navigation container
-            navigationBar.getChildren().add(navigation);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
 
     private String exerciseType;
 
