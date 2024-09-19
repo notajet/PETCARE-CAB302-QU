@@ -3,6 +3,7 @@ module com.example.petcarecab302qu {
     requires javafx.fxml;
     requires java.sql;
     requires java.desktop;
+    requires javafx.graphics;
 
 
     opens com.example.petcarecab302qu to javafx.fxml;
