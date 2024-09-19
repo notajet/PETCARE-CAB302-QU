@@ -101,4 +101,7 @@ public class ExerciseController {
 
     }
 
+    public void handleHome(ActionEvent event) {
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+    }
 }

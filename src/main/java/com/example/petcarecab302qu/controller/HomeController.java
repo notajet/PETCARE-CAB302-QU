@@ -42,9 +42,12 @@ public class HomeController {
         stage.close();
     }
 
+    public void handleHome(ActionEvent event) {
+        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/homemain-view.fxml");
+    }
+
     public void handlePetProfile(ActionEvent event) {
         SceneLoader.loadScene(event,"/com/example/petcarecab302qu/petprofile-view.fxml");
-
     }
 
     public void handleDietPlan(ActionEvent event) {
