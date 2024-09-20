@@ -7,13 +7,10 @@ import com.example.petcarecab302qu.model.SqliteDietDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
@@ -58,8 +55,8 @@ public class DietController {
     }
 
     /**
-     * Initializes the UI and loads all diet plans from the database.
-     * This method is called when the UI is initialized.
+     * Initialises the UI and loads all diet plans from the database.
+     * This method is called when the UI is initialised.
      */
     public void initialize() {
         loadAllDietPlans();
@@ -304,8 +301,8 @@ public class DietController {
         rootPane.getChildren().add(detailsBox);
 
 
-        AnchorPane.setTopAnchor(detailsBox, 210.0);  // Position it vertically
-        AnchorPane.setLeftAnchor(detailsBox, 230.0); // Position it horizontally
+        AnchorPane.setTopAnchor(detailsBox, 210.0);
+        AnchorPane.setLeftAnchor(detailsBox, 230.0);
     }
 
 

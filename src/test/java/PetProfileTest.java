@@ -8,6 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.List;
 
+/**
+ * Unit test class for testing the functionality of the PetProfileController and MockPetDAO.
+ * Verifies operations like adding, retrieving, updating, and deleting pet profiles in the Pet Care application.
+ */
 public class PetProfileTest {
     private PetProfileController petProfileController;
     private IPetDAO mockPetDAO;

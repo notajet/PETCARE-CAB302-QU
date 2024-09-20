@@ -6,6 +6,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit test class for testing the signup functionality in the MockSignup service.
+ * Verifies different signup scenarios such as successful signup, existing email,
+ * missing fields, invalid email, and weak password.
+ */
 public class MockSignupTest {
     private MockSignup mockSignupService;
     private MockContactDAO mockContactDAO;
@@ -25,7 +30,6 @@ public class MockSignupTest {
 
     @Test
     public void testSignupWithExistingEmail() {
-        // Add a contact to simulate an existing email
         mockContactDAO.addContact(new Contact("Jane", "Doe", "jane.doe@example.com", "0423423424", "Password123!"));
 
         String result = mockSignupService.signup("John", "Doe", "jane.doe@example.com", "0423423423", "Password123!");

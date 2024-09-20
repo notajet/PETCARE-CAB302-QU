@@ -86,17 +86,14 @@ public class ExerciseController extends NavigationController{
             return;
         }
 
-        //optional
-        String notes = notesArea.getText();
+        String notes = notesArea.getText(); //optional
 
         Exercise logExercise = new Exercise(exerciseType, duration, notes);
         exerciseDAO.addExercise(logExercise);
 
-
-        // Clear the input fields
         notesArea.clear();
         minuteSpinner.getValueFactory().setValue(0);
-        exerciseType = null; // Reset exercise type
+        exerciseType = null;
     }
 
 

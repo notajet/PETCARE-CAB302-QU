@@ -1,5 +1,9 @@
 package com.example.petcarecab302qu.model;
 
+/**
+ * A model class representing a pet in the PETHUB application.
+ * Contains details about the pet including its ID, name, age, gender, breed, weight, height, and an image URL.
+ */
 public class Pet {
     private int id;
     private String name;
@@ -21,7 +25,6 @@ public class Pet {
         this.imageUrl = imageUrl;
     }
 
-    // Getters and setters for all fields
     public int getId() { return id; }
     public String getName() { return name; }
     public int getAge() { return age; }

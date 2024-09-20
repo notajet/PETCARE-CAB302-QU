@@ -6,17 +6,19 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/**
+ * Unit test class for testing the login functionality in the MockLogin service.
+ * Verifies different login scenarios such as successful login, incorrect password, non-existent user,
+ * empty email, and empty password.
+ */
 public class MockLoginTest {
     private MockLogin mockLoginService;
     private MockContactDAO mockContactDAO;
 
     @BeforeEach
     public void setUp() {
-        // Initialise the mock DAO
         mockContactDAO = new MockContactDAO();
         mockLoginService = new MockLogin(mockContactDAO);
-
-        // Add a sample user for testing
         mockContactDAO.addContact(new Contact("John", "Doe", "john.doe@example.com", "0423423423", "password123"));
     }
 

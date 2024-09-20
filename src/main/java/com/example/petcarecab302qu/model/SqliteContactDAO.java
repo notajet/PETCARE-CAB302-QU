@@ -28,7 +28,6 @@ public class SqliteContactDAO implements IContactDAO {
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
-            // Ensure space between columns
             String query = "CREATE TABLE IF NOT EXISTS contacts ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "firstName VARCHAR NOT NULL,"
@@ -52,13 +51,12 @@ public class SqliteContactDAO implements IContactDAO {
     @Override
     public void addContact(Contact contact) {
         try {
-            // Correct number of fields in the prepared statement and SQL syntax
             PreparedStatement statement = connection.prepareStatement("INSERT INTO contacts (firstName, lastName, phone, email, password) VALUES (?, ?, ?, ?, ?)");
             statement.setString(1, contact.getFirstName());
             statement.setString(2, contact.getLastName());
             statement.setString(3, contact.getPhone());
             statement.setString(4, contact.getEmail());
-            statement.setString(5, contact.getPassword());  // Add password to the query
+            statement.setString(5, contact.getPassword());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -112,7 +110,7 @@ public class SqliteContactDAO implements IContactDAO {
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 int count = resultSet.getInt(1);
-                return count > 0;  // If count > 0, email exists
+                return count > 0;
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,5 +1,9 @@
 package com.example.petcarecab302qu.model;
 
+/**
+ * A model class representing an exercise session for a pet.
+ * Contains details about the type of exercise, its duration, and any additional notes.
+ */
 public class Exercise {
     private int id;
     private String petname;

@@ -33,18 +33,15 @@ public class LoginController {
      * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
     @FXML
-    public void handleLogin(ActionEvent event) { // Updated method name
-        // Gets username and password text
+    public void handleLogin(ActionEvent event) {
         String email = Email.getText();
         String password = Password.getText();
 
-        // Checks if the email field is empty
         if (email.isEmpty()) {
             error.setText("Please provide email.");
             error.setVisible(true);
             return;
         }
-        // Checks if the password field is empty
         else if (password.isEmpty()) {
             error.setText("Please provide password.");
             error.setVisible(true);
@@ -52,7 +49,6 @@ public class LoginController {
         }
 
         try {
-            // Get the hashed password from the database for the provided email
             String query = "SELECT password FROM contacts WHERE email = ?";
             connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
@@ -62,7 +58,6 @@ public class LoginController {
             if (resultSet.next()) {
                 String storedHashedPassword = resultSet.getString("password");
 
-                // Hash the entered password to compare with the stored hashed password
                 String hashedInputPassword = PasswordUtil.hashPassword(password);
 
                 if (storedHashedPassword.equals(hashedInputPassword)) {
@@ -79,8 +74,6 @@ public class LoginController {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        // Clears fields
         Email.clear();
         Password.clear();
     }

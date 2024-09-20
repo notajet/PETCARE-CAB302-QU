@@ -4,6 +4,10 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A data access object (DAO) class for managing pet records in an SQLite database.
+ * Provides methods to create the pets table, add, retrieve, update, and delete pet records.
+ */
 public class SqlitePetDAO implements IPetDAO {
 
     private Connection connection;
@@ -13,7 +17,10 @@ public class SqlitePetDAO implements IPetDAO {
         createPetsTable();
     }
 
-    // Method to create the pets table if it doesn't exist
+    /**
+     * Creates the pets table in the database if it does not already exist.
+     * The table contains columns for the pet's ID, name, age, gender, breed, weight, height, and image URL.
+     */
     private void createPetsTable() {
         String createTableSQL = "CREATE TABLE IF NOT EXISTS pets (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -32,18 +39,21 @@ public class SqlitePetDAO implements IPetDAO {
         }
     }
 
+    /**
+     * Adds a new pet to the pets table in the database.
+     *
+     * @param pet The Pet object containing the details of the pet to be added.
+     */
     @Override
     public void addPet(Pet pet) {
         String query = "INSERT INTO pets (name, age, gender, breed, weight, height, imageUrl) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
 
-            // Check if the connection is valid before executing
             if (connection.isClosed()) {
                 System.out.println("Database connection is closed. Cannot add pet.");
                 return;
             }
 
-            // Set parameters and execute the statement
             pstmt.setString(1, pet.getName());
             pstmt.setInt(2, pet.getAge());
             pstmt.setString(3, pet.getGender());
@@ -59,6 +69,11 @@ public class SqlitePetDAO implements IPetDAO {
         }
     }
 
+    /**
+     * Retrieves all pets from the pets table in the database.
+     *
+     * @return A list of Pet objects representing all pets stored in the database.
+     */
     @Override
     public List<Pet> getAllPets() {
         List<Pet> pets = new ArrayList<>();
@@ -88,12 +103,16 @@ public class SqlitePetDAO implements IPetDAO {
         return pets;
     }
 
+    /**
+     * Updates the details of an existing pet in the pets table in the database.
+     *
+     * @param pet The Pet object containing the updated details of the pet.
+     */
     @Override
     public void updatePet(Pet pet) {
         String query = "UPDATE pets SET name = ?, age = ?, gender = ?, breed = ?, weight = ?, height = ?, imageUrl = ? WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
 
-            // Set parameters
             pstmt.setString(1, pet.getName());
             pstmt.setInt(2, pet.getAge());
             pstmt.setString(3, pet.getGender());
@@ -102,8 +121,6 @@ public class SqlitePetDAO implements IPetDAO {
             pstmt.setDouble(6, pet.getHeight());
             pstmt.setString(7, pet.getImageUrl());
             pstmt.setInt(8, pet.getId());
-
-            // Execute update
             pstmt.executeUpdate();
 
         } catch (SQLException e) {
@@ -112,12 +129,16 @@ public class SqlitePetDAO implements IPetDAO {
         }
     }
 
+    /**
+     * Deletes a pet from the pets table in the database based on its ID.
+     *
+     * @param petId The ID of the pet to delete.
+     */
     @Override
     public void deletePet(int petId) {
         String query = "DELETE FROM pets WHERE id = ?";
         try (PreparedStatement pstmt = connection.prepareStatement(query)) {
 
-            // Set parameter and execute
             pstmt.setInt(1, petId);
             pstmt.executeUpdate();
 

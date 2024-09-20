@@ -1,13 +1,14 @@
 package com.example.petcarecab302qu.model;
 
 import java.sql.Connection;
-//import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
 
+/**
+ * A data access object (DAO) class for managing exercise records in the Pet Care application using SQLite.
+ * Provides methods to create the exercise table, add new exercises, and retrieve exercises from the database.
+ */
 public class SqliteExerciseDAO {
     private Connection connection;
 
@@ -16,10 +17,13 @@ public class SqliteExerciseDAO {
         createExerciseTable();
     }
 
+    /**
+     * Creates the exercise table in the database if it does not already exist.
+     * The table contains columns for the exercise ID, type, duration, and notes.
+     */
     private void createExerciseTable() {
         try {
             Statement statement = connection.createStatement();
-            // Ensure space between columns
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     //+ "pet_id INTEGER NOT NULL"
@@ -36,12 +40,16 @@ public class SqliteExerciseDAO {
         }
     }
 
+    /**
+     * Adds a new exercise to the exercise table in the database.
+     * The generated ID for the exercise is set on the provided Exercise object.
+     *
+     * @param exercise The Exercise object containing the details of the new exercise.
+     */
     //@Override
     public void addExercise(Exercise exercise) {
         try {
-            // Correct number of fields in the prepared statement and SQL syntax
             PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?)");
-            //statement.setString(1, exercise.getEName());
             statement.setString(1, exercise.gettype());
             statement.setDouble(2, exercise.getduration());
             statement.setString(3, exercise.getnotes());
@@ -55,17 +63,21 @@ public class SqliteExerciseDAO {
         }
     }
 
+    /**
+     * Retrieves an exercise from the database based on its ID.
+     *
+     * @param id The ID of the exercise to retrieve.
+     * @return The Exercise object if found, or null if the exercise is not found.
+     */
     public Exercise getExercise(int id) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE id = ?");
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
-                //String petname = resultSet.getString("petname");
                 String type = resultSet.getString("type");
                 Double duration = resultSet.getDouble("duration");
                 String notes = resultSet.getString("notes");
-                //String password = resultSet.getString("password");
                 Exercise exercise = new Exercise(type, duration, notes);
                 exercise.setEId(id);
                 return exercise;
@@ -75,6 +87,4 @@ public class SqliteExerciseDAO {
         }
         return null;
     }
-
-
 }

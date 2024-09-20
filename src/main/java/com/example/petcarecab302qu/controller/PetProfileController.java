@@ -1,15 +1,12 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.IPetDAO;
 import com.example.petcarecab302qu.model.SqlitePetDAO;
 import com.example.petcarecab302qu.model.Pet;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,13 +14,15 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class PetProfileController {
+/**
+ * Controller class for managing the pet profile functionality in the Pet Care application.
+ * Handles displaying pet profiles, adding new pets, and navigating through the application.
+ */
+public class PetProfileController extends NavigationController {
 
     @FXML
     private TextField nameField;
@@ -53,37 +52,34 @@ public class PetProfileController {
 
     private boolean isAddPetFormVisible = false;
 
-    // Existing constructor for dependency injection
     public PetProfileController(IPetDAO petDAO) {
         this.petDAO = petDAO;
     }
 
-    // No-argument constructor
     public PetProfileController() {
-        this.petDAO = new SqlitePetDAO(); // Default to SqlitePetDAO
-    }
+        this.petDAO = new SqlitePetDAO();}
 
+    /**
+     * Initialises the pet profile page by loading all pets from the database and displaying them.
+     * Sets up the visual components for each pet profile, including an image, details, and buttons for editing and deleting.
+     */
     @FXML
     public void initialize() {
         petDAO = new SqlitePetDAO();
         List<Pet> pets = petDAO.getAllPets();
-
+        NavigationBar();
         petsContainer.getChildren().clear();
 
-        // Display each pet as a detailed item
         for (Pet pet : pets) {
-            // Create a new HBox for each pet entry
             HBox petItem = new HBox();
             petItem.setSpacing(10);
             petItem.setAlignment(Pos.CENTER_LEFT);
 
-            // Create and add the pet image
             ImageView petImageView = new ImageView();
             petImageView.setFitWidth(100);
             petImageView.setFitHeight(100);
             petImageView.setPreserveRatio(true);
 
-            // Load and set the pet image
             if (pet.getImageUrl() != null && !pet.getImageUrl().isEmpty()) {
                 try {
                     Image image = new Image(pet.getImageUrl());
@@ -92,13 +88,11 @@ public class PetProfileController {
                     petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
                 }
             } else {
-                // Set a default image if imageUrl is not provided
                 petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
             }
 
             petItem.getChildren().add(petImageView);
 
-            // Create a VBox to hold pet details
             VBox petDetails = new VBox();
             petDetails.setSpacing(5);
 
@@ -117,17 +111,20 @@ public class PetProfileController {
             Button deleteButton = new Button("Delete");
 
             // Add functionality for edit and delete buttons ( not yet done)
-//            editButton.setOnAction(e -> handleEditPet(pet));
-//            deleteButton.setOnAction(e -> handleDeletePet(pet));
+            //editButton.setOnAction(e -> handleEditPet(pet));
+            //deleteButton.setOnAction(e -> handleDeletePet(pet));
 
             petItem.getChildren().addAll(editButton, deleteButton);
             petsContainer.getChildren().add(petItem);
         }
     }
 
+    /**
+     * Toggles the visibility of the "Add Pet" form, allowing users to add new pets.
+     * Updates the visibility and layout based on the current state of the form.
+     */
     @FXML
     private void toggleAddPetForm() {
-        // Toggle the visibility of the add pet form and the add pet button
         isAddPetFormVisible = !isAddPetFormVisible;
         if (addPetForm != null && addPetButton != null) {
             addPetForm.setVisible(isAddPetFormVisible);
@@ -141,6 +138,11 @@ public class PetProfileController {
         SceneLoader.handleBackButton(event);
     }
 
+    /**
+     * Saves the information provided in the form to create a new pet profile.
+     * Validates the input fields, parses the values, and adds the new pet to the database.
+     * After saving, the form is cleared and hidden, and the list of pets is refreshed.
+     */
     @FXML
     private void savePet() {
         String name = nameField.getText();
@@ -182,15 +184,12 @@ public class PetProfileController {
             }
         }
 
-        // Create a new Pet object with the user input
         Pet newPet = new Pet(0, name, age, gender, breed, weight, height, imageUrl);
 
-        // Save the pet to the database using addPet method
         petDAO.addPet(newPet);
 
         clearForm();
 
-        // After saving, hide the form and show the "Add Pet" button
         isAddPetFormVisible = false;
         addPetForm.setVisible(false);
         addPetForm.setManaged(false);
@@ -216,5 +215,11 @@ public class PetProfileController {
         weightField.clear();
         heightField.clear();
         imageUrlField.clear();
+    }
+
+    @FXML
+    private void cancelAddPetForm() {
+        clearForm();
+        toggleAddPetForm();
     }
 }

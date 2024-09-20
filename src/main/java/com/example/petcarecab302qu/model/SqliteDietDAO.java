@@ -7,6 +7,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A data access object (DAO) class for managing diet plans in an SQLite database.
+ * Provides methods to create, retrieve, and delete diet plan records from the database.
+ */
 public class SqliteDietDAO {
 
     private Connection connection;
@@ -16,12 +20,13 @@ public class SqliteDietDAO {
         createTable();
     }
 
-    // Create the table with lunch and dinner columns
+    /**
+     * Creates the diet_plans table in the database if it does not already exist.
+     * The table contains columns for the diet plan's ID, name, duration, and meals (breakfast, lunch, dinner).
+     */
     private void createTable() {
         try {
             Statement statement = connection.createStatement();
-
-            // Create the table with the correct schema including breakfast, lunch, and dinner
             String createQuery = "CREATE TABLE IF NOT EXISTS diet_plans ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "name VARCHAR NOT NULL,"
@@ -39,9 +44,12 @@ public class SqliteDietDAO {
     }
 
 
-    // Updated addDietPlan method to save breakfast, lunch, and dinner
-
-
+    /**
+     * Adds a new diet plan to the diet_plans table in the database.
+     * The generated ID for the diet plan is set on the provided DietPlan object.
+     *
+     * @param dietPlan The DietPlan object containing the details of the new diet plan.
+     */
     public void addDietPlan(DietPlan dietPlan) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -58,13 +66,19 @@ public class SqliteDietDAO {
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 int generatedId = generatedKeys.getInt(1);
-                dietPlan.setId(generatedId);  // Set the generated ID back into the DietPlan object
+                dietPlan.setId(generatedId);
                 System.out.println("Diet Plan saved with ID: " + generatedId);
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Retrieves all diet plans from the diet_plans table in the database.
+     *
+     * @return A list of DietPlan objects representing all diet plans stored in the database.
+     */
     public List<DietPlan> getAllDietPlans() {
         List<DietPlan> dietPlans = new ArrayList<>();
         try {
@@ -86,6 +100,12 @@ public class SqliteDietDAO {
         }
         return dietPlans;
     }
+
+    /**
+     * Deletes a diet plan from the diet_plans table in the database based on its ID.
+     *
+     * @param id The ID of the diet plan to delete.
+     */
     public void deleteDietPlan(int id) {
         try {
             PreparedStatement statement = connection.prepareStatement(
@@ -103,6 +123,4 @@ public class SqliteDietDAO {
             e.printStackTrace();
         }
     }
-
-
 }

@@ -1,5 +1,9 @@
 package com.example.petcarecab302qu.model;
 
+/**
+ * A model class representing a diet plan for a pet in the Pet Care application.
+ * Contains details about the diet plan such as its name, duration, and the meals for each day.
+ */
 public class DietPlan {
     private int id;
     private String name;
@@ -16,7 +20,6 @@ public class DietPlan {
         this.dinner = dinner;
     }
 
-    // Getters and setters...
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
     public String getName() { return name; }

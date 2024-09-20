@@ -1,16 +1,14 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
-import java.io.IOException;
+/**
+ * Controller class for handling user interactions in the home screen of the PETHUB application.
+ */
 
 public class HomeController  {
 
