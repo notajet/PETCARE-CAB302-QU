@@ -27,7 +27,7 @@ import javafx.geometry.Insets;
  * Controller class for managing diet plans.
  * It uses {@link SqliteDietDAO} to handle database operations.
  */
-public class DietController {
+public class DietController extends NavigationController  {
     @FXML
     private TextField nameInput;
 
@@ -45,7 +45,7 @@ public class DietController {
     @FXML
     private AnchorPane rootPane;
     @FXML
-    private VBox dietListBox;
+    private HBox dietListBox;
 
 
     private SqliteDietDAO dietDAO;
@@ -61,9 +61,12 @@ public class DietController {
     public void initialize() {
         loadAllDietPlans();
         displayDietPlans();
+        NavigationBar();
+
         rootPane.getChildren().remove(dietListBox);
         rootPane.getChildren().add(dietListBox);
     }
+
 
     /**
      * Loads all diet plans from the database and adds them to the UI.
@@ -144,7 +147,7 @@ public class DietController {
 
         Button addButton = (Button) event.getSource();
         double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight();
-        double verticalOffset = 110.0;
+        double verticalOffset = 120.0;
         AnchorPane.setRightAnchor(dietFormBox, 10.0);
         AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);
         rootPane.getChildren().add(dietFormBox);
@@ -199,12 +202,7 @@ public class DietController {
      * @param event The action event triggered by the UI.
      * @throws IOException If the FXML file cannot be loaded.
      */
-    public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("homemain-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH + 100, HelloApplication.HEIGHT + 300);
-        stage.setScene(scene);
-    }
+
 
     /**
      * Displays all diet plans by clearing the UI and fetching all plans from the database.
@@ -301,7 +299,7 @@ public class DietController {
         rootPane.getChildren().add(detailsBox);
 
 
-        AnchorPane.setTopAnchor(detailsBox, 210.0);
+        AnchorPane.setTopAnchor(detailsBox, 220.0);
         AnchorPane.setLeftAnchor(detailsBox, 230.0);
     }
 
