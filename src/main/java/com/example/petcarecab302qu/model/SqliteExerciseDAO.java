@@ -26,12 +26,9 @@ public class SqliteExerciseDAO {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    //+ "pet_id INTEGER NOT NULL"
-                    //+ "petname VARCHAR NOT NULL,"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
                     + "notes VARCHAR NOT NULL"
-                    //+ "FOREIGN KEY (pet_id) REFERENCES pets(id),"
                     + ")";
 
             statement.execute(query);
