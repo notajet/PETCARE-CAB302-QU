@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<VBox alignment="TOP_CENTER" spacing="10.0" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.example.petcarecab302qu.controller.LoginController"
+      style="-fx-background-color: #f0f0f0; -fx-padding: 20px">
+
+    <Text text = "Login" style="-fx-font-weight: bold;">
+        <font>
+            <Font size = "24"/>
+        </font>
+    </Text>
+    <TextField fx:id="Email" promptText="Email" style="-fx-font-size: 14px;" />
+    <PasswordField fx:id="Password" promptText="Password" style="-fx-font-size: 14px;" />
+    <Button text="Confirm" onAction="#handleLogin" style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;" />
+    <Button text="Back" onAction="#handleBackButtonOnHome" style="-fx-font-size: 14px; -fx-background-color: #ff6347; -fx-text-fill: white;"/>
+    <Text fx:id="error" style="-fx-text-fill: red;" visible="false"/>
+    <Text text = "Don't have an account?" style="-fx-text-fill: black;"/>
+    <Button text="Sign Up" onAction="#handleSignUpAction" style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;"/>
+</VBox>

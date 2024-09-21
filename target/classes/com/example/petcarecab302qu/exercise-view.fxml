@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.shape.Circle?>
+
+
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController">
+    <!-- Header Section at the Top -->
+    <top>
+        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #ff5347;" spacing="10.0" prefHeight="60.0">
+
+            <!-- Header Text -->
+            <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #ff8f50)" strokeWidth="1">
+                <font>
+                    <Font name="Arial Black" size="32.0"/>
+                </font>
+            </Text>
+        </HBox>
+    </top>
+
+    <!-- Navigation Bar on the Left -->
+    <left>
+        <VBox fx:id="navigationBar" />
+    </left>
+
+    <!-- Main -->
+    <center>
+        <HBox spacing="20.0">
+            <!-- Pet Profiles
+            remember to change it to images later when there is existing pet in the profile-->
+            <VBox spacing="10.0">
+                <VBox alignment="CENTER">
+                    <Label text="Pet 1" style="-fx-font-weight: bold;" />
+                    <Circle radius="25.0" fill="lightgray" />
+                </VBox>
+                <VBox alignment="CENTER">
+                    <Label text="Pet 2" style="-fx-font-weight: bold;" />
+                    <Circle radius="25.0" fill="lightgray" />
+                </VBox>
+            </VBox>
+
+            <!-- Log Exercise -->
+            <VBox spacing="20">
+                <!-- Tracker -->
+                <Text text="Weekly Progress Tracker" style="-fx-font-weight: bold;" />
+                <HBox spacing="10.0">
+                    <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
+                    <Label fx:id="progressPercentage" text="0%" />
+                </HBox>
+
+                <!-- Log Types of Exercise-->
+                <Text text="Log New Exercise" style="-fx-font-weight: bold;" />
+
+                <HBox spacing="10.0">
+
+                    <RadioButton fx:id="walkRadioButton" text="Walk" />
+                    <RadioButton fx:id="runRadioButton" text="Run" />
+                    <RadioButton fx:id="playRadioButton" text="Play" />
+
+                </HBox>
+
+                <!-- Duration -->
+                <Text text="Duration" style="-fx-font-weight: bold;"/>
+
+                <HBox spacing="10.0">
+                    <Spinner fx:id="minuteSpinner" BorderPane.alignment="CENTER" >
+                        <valueFactory>
+                            <SpinnerValueFactory.IntegerSpinnerValueFactory initialValue="0" min="0" max="60"/>
+                        </valueFactory>
+                    </Spinner>
+                    <Text text="mins"/>
+                </HBox>
+
+                <!-- Extra Notes -->
+                <Text text="Extra Notes" style="-fx-font-weight: bold;"/>
+                <TextArea fx:id="notesArea" promptText="Add any extra notes here..." prefHeight="100.0"/>
+
+                <!-- Save Button -->
+                <Button text="Save" onAction="#handleSaveExerciseButton" style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
+            </VBox>
+        </HBox>
+    </center>
+
+</BorderPane>
