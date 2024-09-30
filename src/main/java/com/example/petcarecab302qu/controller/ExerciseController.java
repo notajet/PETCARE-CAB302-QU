@@ -47,8 +47,8 @@ public class ExerciseController extends NavigationController{
     @FXML
     private VBox petsContainer;  // The container for auto adding pet profiles
 
-    @FXML
-    private Label petNameLabel;
+    //@FXML
+    //private Label petNameLabel;
 
     @FXML
     private ImageView petImageView;  // Existing ImageView for displaying the selected pet's image
@@ -84,7 +84,7 @@ public class ExerciseController extends NavigationController{
      * Each button will be circular and display the pet's image or a default image.
      */
     private void loadPetProfiles() {
-        pets = petDAO.getAllPets();  // Retrieve all pets from the database
+        pets = petDAO.getAllPets();
 
         // Create a circular button for each pet and add it to the petsContainer
         for (Pet pet : pets) {
@@ -96,7 +96,6 @@ public class ExerciseController extends NavigationController{
             petImageView.setFitWidth(40);
             petImageView.setPreserveRatio(true);
 
-            // Apply circular clipping to the ImageView
             Circle clip = new Circle(20, 20, 20);  // Circle radius to match the size of the ImageView
             petImageView.setClip(clip);
 
@@ -126,11 +125,10 @@ public class ExerciseController extends NavigationController{
                             "-fx-padding: 2px; "                 // Padding within between the button and the image
             );
 
-            // Set the action handler for the button using an anonymous inner class
             petButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    selectPet(pet, petButton);  // Pass the button to update its style
+                    selectPet(pet);
                 }
             });
 
@@ -142,40 +140,28 @@ public class ExerciseController extends NavigationController{
     /**
      * Handles pet selection when a pet button is clicked and highlights the selected pet.
      * @param pet The pet associated with the clicked button.
-     * @param petButton The button associated with the selected pet, to apply style changes.
      */
 
 
-    private void selectPet(Pet pet, Button petButton) {
-        selectedPet = pet;  // Update the selected pet
+    private void selectPet(Pet pet) {
+        selectedPet = pet;
 
-
-        // Load and display the pet's image or default image if none provided
+        // Load and display the pet image or default image if none provided
         if (pet.getImageUrl() != null && !pet.getImageUrl().isEmpty()) {
             try {
                 Image petImage = new Image(pet.getImageUrl());
                 petImageView.setImage(petImage);
             } catch (Exception e) {
-                // If image loading fails, set the default image
+                // If image loading fails
                 petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
             }
         } else {
-            // If no image URL is provided, set the default image
             petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
         }
 
-
-        // Update the label with the selected pet's name
-        petNameLabel.setText(pet.getName());
-
-
-
+        // Update selected pet's name
+        //petNameLabel.setText(pet.getName());
     }
-
-
-
-
-
 
     /**
      * Handles the logging of exercises when save button is pressed.
