@@ -34,7 +34,7 @@
         <HBox spacing="20.0">
             <!-- Pet Selection
             remember to change it to images later when there is existing pet in the profile-->
-            <VBox fx:id="petsContainer" padding="5" style="-fx-padding: 5 0 0 20;">
+            <VBox fx:id="petsContainer" style="-fx-padding: 5 0 0 20;">
                 <!-- Pet buttons will be auto added here -->
             </VBox>
 

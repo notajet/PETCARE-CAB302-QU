@@ -60,8 +60,6 @@ public class ExerciseController extends NavigationController{
     private List<Pet> pets;  // List of pets for the logged-in user
     private Pet selectedPet;  // The currently selected pet
 
-
-
     /**
      * Initializes the navigation bar and configures the toggle group for exercise type
      */
@@ -110,7 +108,6 @@ public class ExerciseController extends NavigationController{
             } else {
                 petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
             }
-
 
             // Add the ImageView to the button
             petButton.setGraphic(petImageView);
