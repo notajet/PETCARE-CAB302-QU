@@ -1,4 +1,5 @@
 # PETCARE-CAB302-QU
+git pull origin main
 
 ## Git Cheat Sheet
 

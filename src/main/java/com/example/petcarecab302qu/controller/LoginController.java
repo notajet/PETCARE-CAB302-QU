@@ -1,25 +1,22 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.SqliteConnection;
-import com.example.petcarecab302qu.model.SqliteContactDAO;
+import com.example.petcarecab302qu.util.PasswordUtil;
+import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import java.sql.Connection;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
-
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.io.IOException;
 
-import static java.lang.System.out;
-
-
+/** A Class that contains all the methods needed for the login interface to run and be
+ *  controlled by the user's input
+ */
 public class LoginController {
     @FXML
     private TextField Email;
@@ -32,72 +29,62 @@ public class LoginController {
 
     private Connection connection;
 
-    //private SqliteContactDAO connection = new SqliteContactDAO();
     /**
      * A method to handle the login process based on the login details, Email and Password, gathered from the GUI
      */
     @FXML
-    public void handlelogin() {
-        //Gets username and password text
+    public void handleLogin(ActionEvent event) {
         String email = Email.getText();
         String password = Password.getText();
 
-        //Checks if the firstname field is empty
-        if (email.isEmpty())
-        {
+        if (email.isEmpty()) {
             error.setText("Please provide email.");
             error.setVisible(true);
             return;
         }
-        //Checks if the password field is empty
-        else if (password.isEmpty())
-        {
+        else if (password.isEmpty()) {
             error.setText("Please provide password.");
             error.setVisible(true);
             return;
         }
 
         try {
-            String query = "SELECT * FROM contacts WHERE email = ? AND password = ?";
+            String query = "SELECT password FROM contacts WHERE email = ?";
             connection = SqliteConnection.getInstance();
             PreparedStatement statement = connection.prepareStatement(query);
-            statement.setString(1,email);
-            statement.setString(2, password);
+            statement.setString(1, email);
             ResultSet resultSet = statement.executeQuery();
+
             if (resultSet.next()) {
-                error.setText("Authentication Successful");
-            }
-            else if (!resultSet.next())
-            {
+                String storedHashedPassword = resultSet.getString("password");
+
+                String hashedInputPassword = PasswordUtil.hashPassword(password);
+
+                if (storedHashedPassword.equals(hashedInputPassword)) {
+                    error.setText("Authentication Successful");
+                    SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+                } else {
+                    error.setText("Authentication Unsuccessful");
+                }
+            } else {
                 error.setText("Authentication Unsuccessful");
             }
+
             error.setVisible(true);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        //Clears fields
         Email.clear();
         Password.clear();
-        //Include link to homepage here
     }
 
-
-    public void handleBackButton(ActionEvent event) throws IOException {
-        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-        FXMLLoader loader = new FXMLLoader(HelloApplication.class.getResource("home-view.fxml"));
-        Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-        stage.setScene(scene);
+    @FXML
+    public void handleBackButtonOnHome(ActionEvent event) throws IOException {
+        SceneLoader.handleBackOnHome(event);
     }
 
+    @FXML
     public void handleSignUpAction(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/signup-view.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-            stage.setScene(scene);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
     }
 }

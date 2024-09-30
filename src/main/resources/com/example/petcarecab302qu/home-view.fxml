@@ -27,7 +27,6 @@
             </Text>
         </HBox>
     </top>
-
     <!-- Main -->
     <center>
         <VBox alignment="CENTER" spacing="20.0">

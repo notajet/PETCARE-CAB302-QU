@@ -1,23 +1,34 @@
 package com.example.petcarecab302qu.model;
 
-
+/**
+ * A model class representing a contact with a first name, last name, email, phone number, and password.
+ * It includes methods for getting and setting these properties.
+ */
 public class Contact {
     private int id;
     private String firstName;
     private String lastName;
     private String email;
     private String phone;
-    private String password;  // New field
+    private String password;
 
+    /**
+     * Constructs a new Contact with the specified first name, last name, email, phone number, and password.
+     *
+     * @param firstName The first name of the contact.
+     * @param lastName The last name of the contact.
+     * @param email The email address of the contact.
+     * @param phone The phone number of the contact.
+     * @param password The password for the contact's account.
+     */
     public Contact(String firstName, String lastName, String email, String phone, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phone = phone;
-        this.password = password;  // Initialize the password
+        this.password = password;
     }
 
-    // Getters and Setters for all fields, including password
     public int getId() {
         return id;
     }

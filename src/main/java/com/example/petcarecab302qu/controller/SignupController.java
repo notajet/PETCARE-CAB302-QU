@@ -1,51 +1,54 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.Contact;
 import com.example.petcarecab302qu.model.SqliteContactDAO;
 import com.example.petcarecab302qu.model.IContactDAO;
-import com.example.petcarecab302qu.util.SceneLoader;
+import com.example.petcarecab302qu.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
+/**
+ * Controller class for managing the sign-up process in the Pet Care application.
+ * Handles user input, validates the data, and creates a new user account in the database.
+ */
 public class SignupController {
 
     @FXML
     private TextField firstNameField;
-
     @FXML
     private TextField lastNameField;
-
     @FXML
     private TextField emailField;
-
     @FXML
     private TextField phoneField;
-
     @FXML
     private PasswordField passwordField;
-
     @FXML
     private Text errorMessage;
-
     @FXML
     private IContactDAO contactDAO;
 
+    /**
+     * Constructs a new SignupController and initialises the contactDAO.
+     */
     public SignupController() {
         this.contactDAO = new SqliteContactDAO();
     }
 
-
+    /**
+     * Handles the sign-up action when the user submits the sign-up form.
+     * Validates input fields, checks if the email already exists, hashes the password,
+     * and adds the new user to the database if all validations pass.
+     *
+     * @param event The action event triggered by the sign-up button.
+     */
     @FXML
-    public void handleSignUpAction() {
+    public void handleSignUpAction(ActionEvent event) {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String email = emailField.getText();
@@ -76,13 +79,14 @@ public class SignupController {
             errorMessage.setText("Email already exists. Please use a different email.");
             errorMessage.setStyle("-fx-text-fill: red;");
             errorMessage.setVisible(true);
-            return;  // Prevent adding the contact
+            return;
         }
 
-        Contact newContact = new Contact(firstName, lastName, email, phone, password);
+        String hashedPassword = PasswordUtil.hashPassword(password);
+
+        Contact newContact = new Contact(firstName, lastName, email, phone, hashedPassword);
         contactDAO.addContact(newContact);
 
-        // Clear the form after successful sign-up
         firstNameField.clear();
         lastNameField.clear();
         emailField.clear();
@@ -91,22 +95,16 @@ public class SignupController {
         errorMessage.setText("Sign-Up Successful!");
         errorMessage.setStyle("-fx-text-fill: green;");
         errorMessage.setVisible(true);
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
     }
 
     @FXML
-    public void handleBackButton(ActionEvent event) throws IOException {
-        SceneLoader.handleBackButton(event);
+    public void handleBackButtonOnHome(ActionEvent event) throws IOException {
+        SceneLoader.handleBackOnHome(event);
     }
 
+    @FXML
     public void handleLogin(ActionEvent event) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/login-view.fxml"));
-            Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-            Scene scene = new Scene(loader.load(), HelloApplication.WIDTH, HelloApplication.HEIGHT);
-            stage.setScene(scene);
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");
     }
 }
