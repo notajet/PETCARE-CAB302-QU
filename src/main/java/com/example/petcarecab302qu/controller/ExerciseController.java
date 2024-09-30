@@ -28,6 +28,8 @@ public class ExerciseController extends NavigationController{
     @FXML
     private RadioButton playRadioButton;
 
+    @FXML
+    private Spinner<Integer> hourSpinner;
 
     @FXML
     private Spinner<Integer> minuteSpinner;

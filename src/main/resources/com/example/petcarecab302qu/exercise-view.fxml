@@ -9,7 +9,7 @@
 <?import javafx.scene.shape.Circle?>
 
 
-
+<?import javafx.scene.image.ImageView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController">
     <!-- Header Section at the Top -->
     <top>
@@ -32,21 +32,15 @@
     <!-- Main -->
     <center>
         <HBox spacing="20.0">
-            <!-- Pet Profiles
+            <!-- Pet Selection
             remember to change it to images later when there is existing pet in the profile-->
-            <VBox spacing="10.0">
-                <VBox alignment="CENTER">
-                    <Label text="Pet 1" style="-fx-font-weight: bold;" />
-                    <Circle radius="25.0" fill="lightgray" />
-                </VBox>
-                <VBox alignment="CENTER">
-                    <Label text="Pet 2" style="-fx-font-weight: bold;" />
-                    <Circle radius="25.0" fill="lightgray" />
-                </VBox>
+            <VBox fx:id="petsContainer" style="-fx-padding: 5 0 0 20;">
+                <!-- Pet buttons will be auto added here -->
             </VBox>
 
+
             <!-- Log Exercise -->
-            <VBox spacing="20">
+            <VBox spacing="20.0">
                 <!-- Tracker -->
                 <Text text="Weekly Progress Tracker" style="-fx-font-weight: bold;" />
                 <HBox spacing="10.0">

@@ -23,6 +23,9 @@ public class NavigationController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
             VBox navigation = loader.load();
+            //navigation.setStyle(
+                            //"-fx-border-width: 2px; "    // Border width
+
             navigationBar.getChildren().add(navigation);
         } catch (IOException e) {
             e.printStackTrace();
