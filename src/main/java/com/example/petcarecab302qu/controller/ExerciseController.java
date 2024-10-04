@@ -6,11 +6,10 @@ import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
+import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
@@ -22,9 +21,6 @@ import java.util.Objects;
  */
 
 public class ExerciseController extends NavigationController{
-
-    @FXML
-    private ProgressBar progressBar;
 
     @FXML
     private RadioButton walkRadioButton;
@@ -45,7 +41,11 @@ public class ExerciseController extends NavigationController{
     private Text errorMessage;
 
     @FXML
+    private Text confirmMessage;
+
+    @FXML
     private VBox petsContainer;  // The container for auto adding pet profiles
+
 
     //@FXML
     //private Label petNameLabel;
@@ -55,13 +55,15 @@ public class ExerciseController extends NavigationController{
 
     private String exerciseType;
 
+    private Button previousSelectedButton;  // To keep track of the previously selected button
+
     private SqliteExerciseDAO exerciseDAO = new SqliteExerciseDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
     private List<Pet> pets;  // List of pets for the logged-in user
     private Pet selectedPet;  // The currently selected pet
 
     /**
-     * Initializes the navigation bar and configures the toggle group for exercise type
+     * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
      */
     @FXML
     public void initialize(){
@@ -78,8 +80,8 @@ public class ExerciseController extends NavigationController{
     }
 
     /**
-     * Loads the pet profiles from the database and creates a button for each pet.
-     * Each button will be circular and display the pet's image or a default image.
+     * Loads the pet profiles from the database and creates a button for each pet
+     * Each button will be in a circle, displaying the pet's image or a default image
      */
     private void loadPetProfiles() {
         pets = petDAO.getAllPets();
@@ -112,20 +114,14 @@ public class ExerciseController extends NavigationController{
             // Add the ImageView to the button
             petButton.setGraphic(petImageView);
 
+            defaultButton(petButton);
 
-            // Style the button to be circular, with a stroke
-            petButton.setStyle(
-                    "-fx-background-radius: 50%; " +     // Circular background
-                            "-fx-border-radius: 50%; " +         // Circular border
-                            "-fx-border-color: black; " +        // Border color
-                            "-fx-border-width: 2px; " +          // Border width
-                            "-fx-padding: 2px; "                 // Padding within between the button and the image
-            );
+
 
             petButton.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    selectPet(pet);
+                    selectPet(pet, petButton);
                 }
             });
 
@@ -135,12 +131,28 @@ public class ExerciseController extends NavigationController{
     }
 
     /**
-     * Handles pet selection when a pet button is clicked and highlights the selected pet.
-     * @param pet The pet associated with the clicked button.
+     * Default styling for pet buttons
+     */
+    private void defaultButton(Button button) {
+        button.setStyle(null);
+        button.setStyle("-fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+    }
+
+    /**
+     * Highlighted styling for the selected pet button
+     */
+    private void highlightButton(Button button) {
+        button.setStyle(null);
+        button.setStyle("-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 5px; -fx-padding: 3px;");
+    }
+
+    /**
+     * Handles pet selection when a pet button is clicked it highlights the selected pet
+     * @param pet selected pet
+     * @param petButton button connected to the selected pet
      */
 
-
-    private void selectPet(Pet pet) {
+    private void selectPet(Pet pet, Button petButton) {
         selectedPet = pet;
 
         // Load and display the pet image or default image if none provided
@@ -156,13 +168,20 @@ public class ExerciseController extends NavigationController{
             petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
         }
 
+        if (previousSelectedButton != null) {
+            defaultButton(previousSelectedButton);
+        }
+
+        highlightButton(petButton);
+        previousSelectedButton = petButton;
+
         // Update selected pet's name
         //petNameLabel.setText(pet.getName());
     }
 
     /**
      * Handles the logging of exercises when save button is pressed.
-     * Validates users input and adds exercise to the database
+     * adds the exercise info to the database
      */
     @FXML
     public void handleSaveExerciseButton(){
@@ -195,6 +214,13 @@ public class ExerciseController extends NavigationController{
         notesArea.clear();
         minuteSpinner.getValueFactory().setValue(0);
         exerciseType = null;
+        errorMessage.setVisible(false); // Hide previous messages
+
+
+        // Display confirmation message
+        confirmMessage.setText("Exercise logged successfully!");
+        confirmMessage.setVisible(true);
+
     }
 
 

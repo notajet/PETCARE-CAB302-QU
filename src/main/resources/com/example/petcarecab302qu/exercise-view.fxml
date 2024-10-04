@@ -38,15 +38,8 @@
                 <!-- Pet buttons will be auto added here -->
             </VBox>
 
-
             <!-- Log Exercise -->
             <VBox spacing="20.0">
-                <!-- Tracker -->
-                <Text text="Weekly Progress Tracker" style="-fx-font-weight: bold;" />
-                <HBox spacing="10.0">
-                    <ProgressBar fx:id="progressBar" prefWidth="200.0" progress="0.0" />
-                    <Label fx:id="progressPercentage" text="0%" />
-                </HBox>
 
                 <!-- Log Types of Exercise-->
                 <Text text="Log New Exercise" style="-fx-font-weight: bold;" />
@@ -77,6 +70,7 @@
 
                 <!-- Save Button -->
                 <Button text="Save" onAction="#handleSaveExerciseButton" style="-fx-background-color: #32cd32; -fx-text-fill: white; -fx-font-family: 'Arial'; -fx-font-size: 16px;"/>
+                <Text fx:id="confirmMessage" style="-fx-fill: green;" visible="false" />
                 <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
             </VBox>
         </HBox>

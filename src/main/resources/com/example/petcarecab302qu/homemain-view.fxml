@@ -39,12 +39,7 @@
     <!-- Main -->
     <center>
         <StackPane>
-            <ImageView fitHeight="500" fitWidth="500" preserveRatio="true">
-                <image>
-                    <!-- pet image background -->
-                    <Image url="https://wallpapers.com/images/hd/pets-background-k5u8w4d5oeef4ed1.jpg"/>
-                </image>
-            </ImageView>
+            <ImageView fx:id="backgroundImage" fitWidth="600" fitHeight="500" preserveRatio="true" />
             <VBox alignment="CENTER" spacing="20.0">
                 <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #1e90ff)" strokeWidth="1">
                     <font>
