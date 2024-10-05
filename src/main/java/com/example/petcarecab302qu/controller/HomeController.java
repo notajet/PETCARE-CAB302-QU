@@ -60,56 +60,6 @@ public class HomeController extends NavigationController{
         stage.close();
     }
 
-    /**
-     *
-     * @param event triggered by home button
-     */
-    public void handleHome(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/mainhome-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by pet profile button
-     */
-    public void handlePetProfile(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/petprofile-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by diet button
-     */
-    public void handleDietPlan(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/diet-view.fxml");
-
-    }
-    /**
-     *
-     * @param event triggered by exercise button
-     */
-
-    public void handleExercise(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/exercise-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by schedule button
-     */
-    public void handleSchedule(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/schedule-view.fxml");
-
-    }
-
-    /**
-     *
-     * @param event triggered by setting button
-     */
-    public void handleSetting(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/setting-view.fxml");
-
-    }
 
 }
 

@@ -24,6 +24,7 @@ public class MainHomeController extends NavigationController{
     public void initialize(){
 
         NavigationBar();
+
         //logo image
         if (logoImage != null) {
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));

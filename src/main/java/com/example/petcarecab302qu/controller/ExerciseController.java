@@ -43,6 +43,12 @@ public class ExerciseController extends NavigationController {
     @FXML
     private VBox petsContainer;  // The container for auto adding pet profiles
 
+    @FXML
+    public ImageView logoImage;
+
+    @FXML
+    private Button exerciseButton;
+
 
     //@FXML
     //private Label petNameLabel;
@@ -64,9 +70,16 @@ public class ExerciseController extends NavigationController {
      */
     @FXML
     public void initialize(){
+
+
         exerciseDAO = new SqliteExerciseDAO();
 
         NavigationBar();
+        //logo image
+        if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
 
         ToggleGroup typeOfExercise = new ToggleGroup();
         walkRadioButton.setToggleGroup(typeOfExercise);
