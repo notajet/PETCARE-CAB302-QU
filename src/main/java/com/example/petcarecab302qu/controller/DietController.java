@@ -1,7 +1,6 @@
 
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.HelloApplication;
 import com.example.petcarecab302qu.model.DietPlan;
 import com.example.petcarecab302qu.model.SqliteDietDAO;
 import javafx.event.ActionEvent;
@@ -17,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 import javafx.geometry.Insets;
@@ -27,7 +25,7 @@ import javafx.geometry.Insets;
  * Controller class for managing diet plans.
  * It uses {@link SqliteDietDAO} to handle database operations.
  */
-public class DietController extends NavigationController  {
+public class DietController extends NavigationController {
     @FXML
     private TextField nameInput;
 

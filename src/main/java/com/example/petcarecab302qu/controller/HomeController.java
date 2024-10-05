@@ -4,13 +4,29 @@ import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Controller class for handling user interactions in the home screen of the PETHUB application.
  */
+public class HomeController extends NavigationController{
 
-public class HomeController  {
+
+    @FXML
+    public ImageView logoImage;
+
+    @FXML
+    public void initialize() {
+        // Initialize the logo image if the ImageView is defined
+        if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
+    }
 
     /**
      *
@@ -49,7 +65,7 @@ public class HomeController  {
      * @param event triggered by home button
      */
     public void handleHome(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/homemain-view.fxml");
+        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/mainhome-view.fxml");
     }
 
     /**
@@ -96,5 +112,4 @@ public class HomeController  {
     }
 
 }
-
 

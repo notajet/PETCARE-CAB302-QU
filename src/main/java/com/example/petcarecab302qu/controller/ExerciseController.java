@@ -4,15 +4,12 @@ import com.example.petcarecab302qu.model.*;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
-import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
-import javafx.fxml.FXMLLoader;
-import java.io.IOException;
+
 import java.util.List;
 import java.util.Objects;
 
@@ -20,7 +17,7 @@ import java.util.Objects;
  * Manages user interface for logging pet exercises
  */
 
-public class ExerciseController extends NavigationController{
+public class ExerciseController extends NavigationController {
 
     @FXML
     private RadioButton walkRadioButton;
