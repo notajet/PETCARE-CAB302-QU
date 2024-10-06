@@ -14,24 +14,24 @@
 
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.MainHomeController">
-    <!-- Header Section at the Top -->
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.MainHomeController" prefWidth="700.0" prefHeight="500.0">
+    <!-- Header  -->
     <top>
-        <VBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 0 0 0 10;" prefHeight="50.0">
-            <ImageView fx:id="logoImage" preserveRatio="true"/>
+        <VBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="60.0">
+            <ImageView fx:id="logoImage" fitHeight="50" fitWidth="150" preserveRatio="true" />
         </VBox>
     </top>
 
-    <!-- Navigation Bar on the Left -->
+    <!-- Navigation Bar  -->
     <left>
-        <VBox fx:id="navigationBar" />
+        <VBox fx:id="navigationBar" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" />
     </left>
 
     <!-- Main -->
     <center>
         <StackPane>
-            <ImageView fx:id="backgroundImage" fitWidth="600" fitHeight="500" preserveRatio="true" />
-            <VBox alignment="CENTER" spacing="20.0">
+            <ImageView fx:id="backgroundImage" fitWidth="610" fitHeight="550" preserveRatio="true" />
+            <VBox alignment="CENTER">
                 <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #1e90ff)" strokeWidth="1">
                     <font>
                         <Font name="Arial Black" size="64.0"/>
