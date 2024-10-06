@@ -31,14 +31,11 @@
     <!-- Main Content in the Center -->
     <center>
         <VBox spacing="20" style="-fx-padding: 30;" alignment="TOP_CENTER">
-            <!-- Calendar and DatePicker -->
+
             <Label text="Calendar" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
             <DatePicker fx:id="datePicker" />
-            <!-- Label to display selected date -->
-            <Label fx:id="selectLabel" text="Selected Day: " textFill="RED" />
-            <!-- Calendar Grid for days of the month -->
             <GridPane fx:id="calendarGrid" hgap="10" vgap="10" alignment="CENTER">
-                <!-- Calendar header row (days of the week) -->
+                <!-- header for days of the week -->
                 <Label text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" />
                 <Label text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" />
                 <Label text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" />
@@ -55,15 +52,14 @@
         </VBox>
     </center>
 
-    <!-- Task Logging Section on the Right -->
+    <!-- Task Logging Section-->
     <right>
         <VBox spacing="20" style="-fx-padding: 20; -fx-background-color: #f9f9f9;" alignment="TOP_CENTER">
 
-            <!-- Log Schedule Form -->
+            <!-- Log Schedule -->
             <VBox fx:id="logSchedule" spacing="10" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: gray;">
                 <Label text="Log Schedule" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
 
-                <!-- Event Type Dropdown -->
                 <HBox spacing="10">
                     <Label text="Event Type:" style="-fx-font-size: 14px;" />
                     <ComboBox fx:id="eventTypeComboBox" style="-fx-font-size: 14px;">
@@ -107,8 +103,8 @@
 
                 <!-- Save and Cancel Buttons -->
                 <HBox spacing="10" alignment="CENTER_RIGHT">
-                    <Button text="Save" onAction="#handleSaveSchedule" style="-fx-background-color: #32cd32; -fx-text-fill: white;" />
-                    <Button text="Cancel" onAction="#handleCancelSchedule" style="-fx-background-color: #ff6347; -fx-text-fill: white;" />
+                    <Button text="Save" onAction="#handleSaveSchedule" style="-fx-background-color: green; -fx-text-fill: white;" />
+                    <Button text="Cancel" onAction="#handleCancelSchedule" style="-fx-background-color: orange; -fx-text-fill: white;" />
                 </HBox>
             </VBox>
         </VBox>
