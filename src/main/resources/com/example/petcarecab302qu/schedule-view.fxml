@@ -31,22 +31,21 @@
     <!-- Main Content in the Center -->
     <center>
         <VBox spacing="20" style="-fx-padding: 30;" alignment="TOP_CENTER">
-
+            <!-- Calendar and DatePicker -->
             <Label text="Calendar" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
-
-            <!-- DatePicker for navigating through months -->
-            <DatePicker fx:id="datePicker"  />
-
-            <!-- Calendar View -->
-            <GridPane fx:id="calendarFormat" hgap="10" vgap="10" alignment="CENTER">
+            <DatePicker fx:id="datePicker" />
+            <!-- Label to display selected date -->
+            <Label fx:id="selectLabel" text="Selected Day: " textFill="RED" />
+            <!-- Calendar Grid for days of the month -->
+            <GridPane fx:id="calendarGrid" hgap="10" vgap="10" alignment="CENTER">
                 <!-- Calendar header row (days of the week) -->
-                <Label text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Wed" GridPane.columnIndex="3" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Thu" GridPane.columnIndex="4" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Fri" GridPane.columnIndex="5" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
-                <Label text="Sat" GridPane.columnIndex="6" GridPane.rowIndex="0" style="-fx-font-weight: bold;" />
+                <Label text="Sun" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <Label text="Mon" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                <Label text="Tue" GridPane.columnIndex="2" GridPane.rowIndex="0" />
+                <Label text="Wed" GridPane.columnIndex="3" GridPane.rowIndex="0" />
+                <Label text="Thu" GridPane.columnIndex="4" GridPane.rowIndex="0" />
+                <Label text="Fri" GridPane.columnIndex="5" GridPane.rowIndex="0" />
+                <Label text="Sat" GridPane.columnIndex="6" GridPane.rowIndex="0" />
             </GridPane>
 
             <!-- Task List for the Selected Day -->
@@ -70,9 +69,9 @@
                     <ComboBox fx:id="eventTypeComboBox" style="-fx-font-size: 14px;">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Eating Time" />
-                                <String fx:value="Walking Time" />
-                                <String fx:value="Taking Medicine" />
+                                <String fx:value="Eating" />
+                                <String fx:value="Walking" />
+                                <String fx:value="Medicine" />
                             </FXCollections>
                         </items>
                     </ComboBox>
