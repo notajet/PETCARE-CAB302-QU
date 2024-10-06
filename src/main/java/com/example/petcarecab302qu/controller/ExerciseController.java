@@ -53,17 +53,13 @@ public class ExerciseController extends NavigationController {
     //@FXML
     //private Label petNameLabel;
 
-    @FXML
-    private ImageView petImageView;  // Existing ImageView for displaying the selected pet's image
 
     private String exerciseType;
 
-    private Button previousSelectedButton;  // To keep track of the previously selected button
 
     private SqliteExerciseDAO exerciseDAO = new SqliteExerciseDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
     private List<Pet> pets;  // List of pets for the logged-in user
-    private Pet selectedPet;  // The currently selected pet
 
     /**
      * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
@@ -126,15 +122,6 @@ public class ExerciseController extends NavigationController {
 
             defaultButton(petButton);
 
-
-
-            petButton.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    selectPet(pet, petButton);
-                }
-            });
-
             // Add the button to the petsContainer
             petsContainer.getChildren().add(petButton);
         }
@@ -146,47 +133,6 @@ public class ExerciseController extends NavigationController {
     private void defaultButton(Button button) {
         button.setStyle(null);
         button.setStyle("-fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
-    }
-
-    /**
-     * Highlighted styling for the selected pet button
-     */
-    private void highlightButton(Button button) {
-        button.setStyle(null);
-        button.setStyle("-fx-background-color: lightblue; -fx-border-color: blue; -fx-border-width: 5px; -fx-padding: 3px;");
-    }
-
-    /**
-     * Handles pet selection when a pet button is clicked it highlights the selected pet
-     * @param pet selected pet
-     * @param petButton button connected to the selected pet
-     */
-
-    private void selectPet(Pet pet, Button petButton) {
-        selectedPet = pet;
-
-        // Load and display the pet image or default image if none provided
-        if (pet.getImageUrl() != null && !pet.getImageUrl().isEmpty()) {
-            try {
-                Image petImage = new Image(pet.getImageUrl());
-                petImageView.setImage(petImage);
-            } catch (Exception e) {
-                // If image loading fails
-                petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
-            }
-        } else {
-            petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
-        }
-
-        if (previousSelectedButton != null) {
-            defaultButton(previousSelectedButton);
-        }
-
-        highlightButton(petButton);
-        previousSelectedButton = petButton;
-
-        // Update selected pet's name
-        //petNameLabel.setText(pet.getName());
     }
 
     /**
@@ -233,35 +179,5 @@ public class ExerciseController extends NavigationController {
 
     }
 
-
-    /*
-        // Reset the style of the previous selected button
-        if (previousSelectedButton != null) {
-            previousSelectedButton.setStyle(
-                    "-fx-background-radius: 50%; " +     // Circular background
-                            "-fx-border-radius: 50%; " +         // Circular border
-                            "-fx-border-color: white; " +        // Reset to black border
-                            "-fx-border-width: 1.5px; " +        // Standard border width
-                            "-fx-padding: 3px; "                 // Standard padding
-            );
-        }
-
-        // Highlight the selected button
-        petButton.setStyle(
-                "-fx-background-radius: 50%; " +             // Circular background
-                        "-fx-border-radius: 50%; " +                 // Circular border
-                        "-fx-border-color: blue; " +                 // Bright blue border to indicate selection
-                        "-fx-border-width: 5px; " +                  // Thicker border for the selected button
-                        "-fx-background-color: lightblue; " +        // Change background color to light blue
-                        "-fx-padding: 3px;"                          // Padding remains
-        );
-
-        */
-
-
-    /*
-    public handleSaveExerciseButton(){
-
-    }*/
 
 }
