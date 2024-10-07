@@ -4,13 +4,29 @@ import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+
+import java.util.Objects;
 
 /**
  * Controller class for handling user interactions in the home screen of the PETHUB application.
  */
+public class HomeController extends NavigationController{
 
-public class HomeController  {
+
+    @FXML
+    public ImageView logoImage;
+
+    @FXML
+    public void initialize() {
+        // Initialize the logo image if the ImageView is defined
+        if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
+    }
 
     /**
      *
@@ -44,57 +60,6 @@ public class HomeController  {
         stage.close();
     }
 
-    /**
-     *
-     * @param event triggered by home button
-     */
-    public void handleHome(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/homemain-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by pet profile button
-     */
-    public void handlePetProfile(ActionEvent event) {
-        SceneLoader.loadScene(event,"/com/example/petcarecab302qu/petprofile-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by diet button
-     */
-    public void handleDietPlan(ActionEvent event) {
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/diet-view.fxml");
-
-    }
-    /**
-     *
-     * @param event triggered by exercise button
-     */
-
-    public void handleExercise(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/exercise-view.fxml");
-    }
-
-    /**
-     *
-     * @param event triggered by schedule button
-     */
-    public void handleSchedule(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/schedule-view.fxml");
-
-    }
-
-    /**
-     *
-     * @param event triggered by setting button
-     */
-    public void handleSetting(ActionEvent event){
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/setting-view.fxml");
-
-    }
 
 }
-
 

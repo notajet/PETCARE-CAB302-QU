@@ -62,7 +62,7 @@ public class LoginController {
 
                 if (storedHashedPassword.equals(hashedInputPassword)) {
                     error.setText("Authentication Successful");
-                    SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+                    SceneLoader.loadScene(event, "/com/example/petcarecab302qu/mainhome-view.fxml");
                 } else {
                     error.setText("Authentication Unsuccessful");
                 }

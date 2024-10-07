@@ -14,18 +14,13 @@
 <?import javafx.scene.layout.HBox?>
 
 
+<?import javafx.scene.image.ImageView?>
 <BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.HomeController">
     <!-- Header Section at the Top -->
     <top>
-        <HBox alignment="CENTER_LEFT" style="-fx-background-color: #ff5347;" spacing="10.0" prefHeight="60.0">
-
-            <!-- Header Text -->
-            <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #ff8f50)" strokeWidth="1">
-                <font>
-                    <Font name="Arial Black" size="32.0"/>
-                </font>
-            </Text>
-        </HBox>
+        <VBox spacing="20.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 0 0 0 10;" prefHeight="50.0">
+            <ImageView fx:id="logoImage" preserveRatio="true"/>
+        </VBox>
     </top>
     <!-- Main -->
     <center>
