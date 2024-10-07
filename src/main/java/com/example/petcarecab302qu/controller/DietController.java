@@ -106,8 +106,18 @@ public class DietController extends NavigationController {
         dinnerInput.setPromptText("Enter dinner details");
 
         Button saveButton = new Button("Save Diet Plan");
+        saveButton.setStyle(
+                "-fx-background-color: #4CAF50; " +
+                        "-fx-text-fill: white; " +
+                        "-fx-font-weight: bold;"
+        );
 
         Button cancelButton = new Button("Cancel");
+        cancelButton.setStyle(
+                "-fx-background-color: #d3d3d3; " +
+                        "-fx-text-fill: black; " +
+                        "-fx-font-weight: bold;"
+        );
         cancelButton.setOnAction(e -> {
             rootPane.getChildren().remove(dietFormBox);
             reloadPage();
@@ -176,8 +186,8 @@ public class DietController extends NavigationController {
      */
     // Method to create an edit form, similar to the add form, but for editing
     public void handleEditDietPlan(DietPlan dietPlan) {
-        VBox dietFormBox = new VBox();
-        dietFormBox.setPadding(new Insets(10));
+        // Use the getvBox method to create a styled VBox
+        VBox dietFormBox = getvBox();  // This will have the same style as the add form
 
         // Create input fields and pre-populate with the existing diet plan data
         Label nameLabel = new Label("Diet Plan Name:");
@@ -195,10 +205,22 @@ public class DietController extends NavigationController {
         Label dinnerLabel = new Label("Dinner:");
         TextField dinnerInput = new TextField(dietPlan.getDinner());
 
-        // Create the Save button
+        // Create Save and Cancel buttons
         Button saveButton = new Button("Save Changes");
+        saveButton.setStyle(
+                "-fx-background-color: #4CAF50; " +
+                        "-fx-text-fill: white; " +
+                        "-fx-font-weight: bold;"
+        );
 
-        // Define the save action for updating the diet plan
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setStyle(
+                "-fx-background-color: #d3d3d3; " +
+                        "-fx-text-fill: black; " +
+                        "-fx-font-weight: bold;"
+        );
+
+        // Save button action to update the diet plan
         saveButton.setOnAction(e -> {
             dietPlan.setName(nameInput.getText());
             dietPlan.setDuration(Integer.parseInt(durationInput.getText()));
@@ -206,17 +228,14 @@ public class DietController extends NavigationController {
             dietPlan.setLunch(lunchInput.getText());
             dietPlan.setDinner(dinnerInput.getText());
 
-            dietDAO.updateDietPlan(dietPlan);  // Save changes to the database
-            reloadPage();  // Reload the UI to reflect changes
+            dietDAO.updateDietPlan(dietPlan);  // Update the database
+            reloadPage();  // Refresh the UI
         });
 
-        // Create the Cancel button
-        Button cancelButton = new Button("Cancel");
-        cancelButton.setOnAction(e -> {
-            rootPane.getChildren().remove(dietFormBox);  // Remove the form when cancelled
-        });
+        // Cancel button action to remove the form
+        cancelButton.setOnAction(e -> rootPane.getChildren().remove(dietFormBox));
 
-        // Add all components to the form
+        // Add the components to the VBox
         dietFormBox.getChildren().addAll(
                 nameLabel, nameInput,
                 durationLabel, durationInput,
@@ -226,9 +245,8 @@ public class DietController extends NavigationController {
                 new HBox(10, saveButton, cancelButton)
         );
 
-
         AnchorPane.setTopAnchor(dietFormBox, 220.0);
-        AnchorPane.setLeftAnchor(dietFormBox, 230.0);
+        AnchorPane.setRightAnchor(dietFormBox, 10.0);
 
         rootPane.getChildren().add(dietFormBox);
         // Place the form in the same space as the "Add" form
