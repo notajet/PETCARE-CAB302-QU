@@ -74,7 +74,7 @@
 
             <!-- Save and Cancel Buttons -->
             <HBox spacing="10" alignment="CENTER_LEFT">
-                <Button fx:id="savePet" text="Save New Pet" onAction="#savePet"
+                <Button fx:id="saveOrUpdateButton" text="Save New Pet" onAction="#savePet"
                         style="-fx-background-color: lightgreen; -fx-font-size: 16px;" />
                 <Button text="Cancel" onAction="#cancelAddPetForm"
                         style="-fx-background-color: lightcoral; -fx-font-size: 16px;" />
