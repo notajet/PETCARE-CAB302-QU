@@ -24,7 +24,7 @@
 
     <!-- Navigation Bar  -->
     <left>
-        <VBox fx:id="navigationBar" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" />
+        <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" />
     </left>
 
     <!-- Main -->
