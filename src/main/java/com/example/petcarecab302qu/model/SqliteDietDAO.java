@@ -1,9 +1,6 @@
 package com.example.petcarecab302qu.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,7 +16,17 @@ public class SqliteDietDAO {
         connection = SqliteConnection.getInstance();
         createTable();
     }
-
+    private Connection ensureConnection() {
+        Connection connection = SqliteConnection.getInstance();
+        try {
+            if (connection == null || connection.isClosed()) {
+                connection = SqliteConnection.getInstance();  // Re-open the connection if it's closed
+            }
+        } catch (SQLException e) {
+            System.err.println("Error ensuring connection: " + e.getMessage());
+        }
+        return connection;
+    }
     /**
      * Creates the diet_plans table in the database if it does not already exist.
      * The table contains columns for the diet plan's ID, name, duration, and meals (breakfast, lunch, dinner).
@@ -81,24 +88,48 @@ public class SqliteDietDAO {
      */
     public List<DietPlan> getAllDietPlans() {
         List<DietPlan> dietPlans = new ArrayList<>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM diet_plans");
-            while (resultSet.next()) {
+        String query = "SELECT * FROM diet_plans";
+
+        try (Connection connection = ensureConnection();
+             Statement stmt = connection.createStatement();
+             ResultSet rs = stmt.executeQuery(query)) {
+
+            while (rs.next()) {
                 DietPlan dietPlan = new DietPlan(
-                        resultSet.getString("name"),
-                        resultSet.getInt("duration"),
-                        resultSet.getString("breakfast"),
-                        resultSet.getString("lunch"),
-                        resultSet.getString("dinner")
+                        rs.getString("name"),
+                        rs.getInt("duration"),
+                        rs.getString("breakfast"),
+                        rs.getString("lunch"),
+                        rs.getString("dinner")
                 );
-                dietPlan.setId(resultSet.getInt("id"));
+                dietPlan.setId(rs.getInt("id"));
                 dietPlans.add(dietPlan);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error fetching diet plans: " + e.getMessage());
         }
+
         return dietPlans;
+    }
+
+    public void updateDietPlan(DietPlan dietPlan) {
+        String updateQuery = "UPDATE diet_plans SET name = ?, duration = ?, breakfast = ?, lunch = ?, dinner = ? WHERE id = ?";
+
+        try (Connection connection = ensureConnection();
+             PreparedStatement stmt = connection.prepareStatement(updateQuery)) {
+
+            stmt.setString(1, dietPlan.getName());
+            stmt.setInt(2, dietPlan.getDuration());
+            stmt.setString(3, dietPlan.getBreakfast());
+            stmt.setString(4, dietPlan.getLunch());
+            stmt.setString(5, dietPlan.getDinner());
+            stmt.setInt(6, dietPlan.getId());
+
+            stmt.executeUpdate();  // Perform the update
+            System.out.println("Diet plan updated successfully.");
+        } catch (SQLException e) {
+            System.err.println("Error updating diet plan: " + e.getMessage());
+        }
     }
 
     /**
