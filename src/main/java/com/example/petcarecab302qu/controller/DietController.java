@@ -11,6 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -18,6 +20,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+
 import javafx.geometry.Insets;
 
 
@@ -28,6 +32,8 @@ import javafx.geometry.Insets;
 public class DietController extends NavigationController {
     @FXML
     private TextField nameInput;
+    @FXML
+    public ImageView logoImage;
 
     @FXML
     private TextField durationInput;
@@ -59,7 +65,10 @@ public class DietController extends NavigationController {
     public void initialize() {
         loadAllDietPlans();
         displayDietPlans();
-        NavigationBar();
+        NavigationBar();if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
 
         rootPane.getChildren().remove(dietListBox);
         rootPane.getChildren().add(dietListBox);
@@ -186,10 +195,10 @@ public class DietController extends NavigationController {
      */
     // Method to create an edit form, similar to the add form, but for editing
     public void handleEditDietPlan(DietPlan dietPlan) {
-        // Use the getvBox method to create a styled VBox
-        VBox dietFormBox = getvBox();  // This will have the same style as the add form
 
-        // Create input fields and pre-populate with the existing diet plan data
+        VBox dietFormBox = getvBox();
+
+
         Label nameLabel = new Label("Diet Plan Name:");
         TextField nameInput = new TextField(dietPlan.getName());
 
@@ -205,7 +214,7 @@ public class DietController extends NavigationController {
         Label dinnerLabel = new Label("Dinner:");
         TextField dinnerInput = new TextField(dietPlan.getDinner());
 
-        // Create Save and Cancel buttons
+
         Button saveButton = new Button("Save Changes");
         saveButton.setStyle(
                 "-fx-background-color: #4CAF50; " +
@@ -220,7 +229,7 @@ public class DietController extends NavigationController {
                         "-fx-font-weight: bold;"
         );
 
-        // Save button action to update the diet plan
+
         saveButton.setOnAction(e -> {
             dietPlan.setName(nameInput.getText());
             dietPlan.setDuration(Integer.parseInt(durationInput.getText()));
@@ -232,10 +241,9 @@ public class DietController extends NavigationController {
             reloadPage();  // Refresh the UI
         });
 
-        // Cancel button action to remove the form
         cancelButton.setOnAction(e -> rootPane.getChildren().remove(dietFormBox));
 
-        // Add the components to the VBox
+
         dietFormBox.getChildren().addAll(
                 nameLabel, nameInput,
                 durationLabel, durationInput,
@@ -249,32 +257,28 @@ public class DietController extends NavigationController {
         AnchorPane.setRightAnchor(dietFormBox, 10.0);
 
         rootPane.getChildren().add(dietFormBox);
-        // Place the form in the same space as the "Add" form
-        // Same Y location as the add form
 
-        // Add the form to the rootPane (or main layout)
 
     }
     private void addDietPlanToUI(DietPlan dietPlan) {
         VBox dietBox = new VBox();
         dietBox.setPadding(new Insets(10));
 
-        // Create UI elements for the diet plan
+
         Label nameLabel = new Label("Name: " + dietPlan.getName());
         Label durationLabel = new Label("Duration: " + dietPlan.getDuration() + " days");
 
-        // Create Edit button
+
         Button editButton = new Button("Edit");
 
-        // When "Edit" is clicked, open a new form with the existing diet plan's data
+
         editButton.setOnAction(e -> {
-            handleEditDietPlan(dietPlan);  // Call the method to display the edit form
+            handleEditDietPlan(dietPlan);
         });
 
-        // Add elements to the VBox
+
         dietBox.getChildren().addAll(nameLabel, durationLabel, editButton);
 
-        // Add this VBox to the dietListBox (or another parent container)
         dietListBox.getChildren().add(dietBox);
     }
 
