@@ -174,76 +174,92 @@ public class DietController extends NavigationController {
      * Each button represents a diet plan and can be clicked to load it for editing.
      * @param dietPlan The diet plan to add to the UI.
      */
+    // Method to create an edit form, similar to the add form, but for editing
+    public void handleEditDietPlan(DietPlan dietPlan) {
+        VBox dietFormBox = new VBox();
+        dietFormBox.setPadding(new Insets(10));
+
+        // Create input fields and pre-populate with the existing diet plan data
+        Label nameLabel = new Label("Diet Plan Name:");
+        TextField nameInput = new TextField(dietPlan.getName());
+
+        Label durationLabel = new Label("How long will the diet plan last (in days):");
+        TextField durationInput = new TextField(String.valueOf(dietPlan.getDuration()));
+
+        Label breakfastLabel = new Label("Breakfast:");
+        TextField breakfastInput = new TextField(dietPlan.getBreakfast());
+
+        Label lunchLabel = new Label("Lunch:");
+        TextField lunchInput = new TextField(dietPlan.getLunch());
+
+        Label dinnerLabel = new Label("Dinner:");
+        TextField dinnerInput = new TextField(dietPlan.getDinner());
+
+        // Create the Save button
+        Button saveButton = new Button("Save Changes");
+
+        // Define the save action for updating the diet plan
+        saveButton.setOnAction(e -> {
+            dietPlan.setName(nameInput.getText());
+            dietPlan.setDuration(Integer.parseInt(durationInput.getText()));
+            dietPlan.setBreakfast(breakfastInput.getText());
+            dietPlan.setLunch(lunchInput.getText());
+            dietPlan.setDinner(dinnerInput.getText());
+
+            dietDAO.updateDietPlan(dietPlan);  // Save changes to the database
+            reloadPage();  // Reload the UI to reflect changes
+        });
+
+        // Create the Cancel button
+        Button cancelButton = new Button("Cancel");
+        cancelButton.setOnAction(e -> {
+            rootPane.getChildren().remove(dietFormBox);  // Remove the form when cancelled
+        });
+
+        // Add all components to the form
+        dietFormBox.getChildren().addAll(
+                nameLabel, nameInput,
+                durationLabel, durationInput,
+                breakfastLabel, breakfastInput,
+                lunchLabel, lunchInput,
+                dinnerLabel, dinnerInput,
+                new HBox(10, saveButton, cancelButton)
+        );
+
+
+        AnchorPane.setTopAnchor(dietFormBox, 220.0);
+        AnchorPane.setLeftAnchor(dietFormBox, 230.0);
+
+        rootPane.getChildren().add(dietFormBox);
+        // Place the form in the same space as the "Add" form
+        // Same Y location as the add form
+
+        // Add the form to the rootPane (or main layout)
+
+    }
     private void addDietPlanToUI(DietPlan dietPlan) {
         VBox dietBox = new VBox();
         dietBox.setPadding(new Insets(10));
 
-        // Add diet details
+        // Create UI elements for the diet plan
         Label nameLabel = new Label("Name: " + dietPlan.getName());
-        Label durationLabel = new Label("Duration: " + dietPlan.getDuration());
-        Label breakfastLabel = new Label("Breakfast: " + dietPlan.getBreakfast());
-        Label lunchLabel = new Label("Lunch: " + dietPlan.getLunch());
-        Label dinnerLabel = new Label("Dinner: " + dietPlan.getDinner());
+        Label durationLabel = new Label("Duration: " + dietPlan.getDuration() + " days");
 
-        // Add Edit Button
+        // Create Edit button
         Button editButton = new Button("Edit");
-        editButton.setOnAction(e -> openEditDietDialog(dietPlan));  // Open Edit Dialog
 
-        // Add to the VBox
-        dietBox.getChildren().addAll(nameLabel, durationLabel, breakfastLabel, lunchLabel, dinnerLabel, editButton);
-
-        // Add the VBox to the diet list box
-        dietListBox.getChildren().add(dietBox);
-    }
-    private void openEditDietDialog(DietPlan dietPlan) {
-        // Create a new Stage for the pop-up dialog
-        Stage editStage = new Stage();
-        editStage.setTitle("Edit Diet Plan");
-
-        VBox editBox = new VBox();
-        editBox.setPadding(new Insets(10));
-
-        // Input fields with current values
-        TextField nameField = new TextField(dietPlan.getName());
-        TextField durationField = new TextField(String.valueOf(dietPlan.getDuration()));
-        TextField breakfastField = new TextField(dietPlan.getBreakfast());
-        TextField lunchField = new TextField(dietPlan.getLunch());
-        TextField dinnerField = new TextField(dietPlan.getDinner());
-
-        Button saveButton = new Button("Save");
-        saveButton.setOnAction(e -> {
-            // Update diet plan in the database
-            dietPlan.setName(nameField.getText());
-            dietPlan.setDuration(Integer.parseInt(durationField.getText()));
-            dietPlan.setBreakfast(breakfastField.getText());
-            dietPlan.setLunch(lunchField.getText());
-            dietPlan.setDinner(dinnerField.getText());
-
-            dietDAO.updateDietPlan(dietPlan);  // Call the DAO to update the database
-
-            // Close the edit dialog after saving
-            editStage.close();
-
-            // Refresh the diet list to reflect changes
-            refreshDietList();
-            reloadPage();
+        // When "Edit" is clicked, open a new form with the existing diet plan's data
+        editButton.setOnAction(e -> {
+            handleEditDietPlan(dietPlan);  // Call the method to display the edit form
         });
 
-        // Add components to the edit box
-        editBox.getChildren().addAll(
-                new Label("Name"), nameField,
-                new Label("Duration"), durationField,
-                new Label("Breakfast"), breakfastField,
-                new Label("Lunch"), lunchField,
-                new Label("Dinner"), dinnerField,
-                saveButton
-        );
+        // Add elements to the VBox
+        dietBox.getChildren().addAll(nameLabel, durationLabel, editButton);
 
-        // Create and display the dialog window
-        Scene scene = new Scene(editBox, 300, 400);
-        editStage.setScene(scene);
-        editStage.show();
+        // Add this VBox to the dietListBox (or another parent container)
+        dietListBox.getChildren().add(dietBox);
     }
+
     private void refreshDietList() {
         dietListBox.getChildren().clear();  // Clear current UI list
         loadAllDietPlans();                 // Reload all diet plans from the DB
@@ -353,7 +369,7 @@ public class DietController extends NavigationController {
             reloadPage();
         });
 
-        editButton.setOnAction(e -> openEditDietDialog(dietPlan));  // Open edit dialog on click
+        editButton.setOnAction(e -> handleEditDietPlan(dietPlan));  // Open edit dialog on click
 
         // Add all components including the Edit button
         detailsBox.getChildren().addAll(nameLabel, durationLabel, breakfastLabel, lunchLabel, dinnerLabel, closeButton, editButton);
