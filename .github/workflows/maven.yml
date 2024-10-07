@@ -34,7 +34,7 @@ jobs:
     - name: Publish Javadoc
       uses: JamesIves/github-pages-deploy-action@v4
       with:
-        folder: docs/javadoc
+        folder: target/docs/javadoc
 
     - name: Build
       run: mvn --batch-mode -DskipTests package
