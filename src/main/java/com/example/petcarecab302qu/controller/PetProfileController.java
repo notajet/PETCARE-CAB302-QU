@@ -3,8 +3,6 @@ package com.example.petcarecab302qu.controller;
 import com.example.petcarecab302qu.model.IPetDAO;
 import com.example.petcarecab302qu.model.SqlitePetDAO;
 import com.example.petcarecab302qu.model.Pet;
-import com.example.petcarecab302qu.util.SceneLoader;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -14,7 +12,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,25 +43,28 @@ public class PetProfileController extends NavigationController {
     private Button addPetButton;
 
     @FXML
+    private Button saveOrUpdateButton;
+
+    @FXML
     private VBox petsContainer;
 
     private IPetDAO petDAO;
-
-    private boolean isAddPetFormVisible = false;
+    private Pet currentPet = null;
 
     public PetProfileController(IPetDAO petDAO) {
         this.petDAO = petDAO;
     }
 
     public PetProfileController() {
-        this.petDAO = new SqlitePetDAO();}
+        this.petDAO = new SqlitePetDAO();
+    }
 
     /**
-     * Initialises the pet profile page by loading all pets from the database and displaying them.
-     * Sets up the visual components for each pet profile, including an image, details, and buttons for editing and deleting.
+     * Initializes the pet profile page by loading all pets from the database and displaying them.
      */
     @FXML
     public void initialize() {
+
         petDAO = new SqlitePetDAO();
         List<Pet> pets = petDAO.getAllPets();
         NavigationBar();
@@ -110,9 +110,8 @@ public class PetProfileController extends NavigationController {
             Button editButton = new Button("Edit");
             Button deleteButton = new Button("Delete");
 
-            // Add functionality for edit and delete buttons ( not yet done)
-            //editButton.setOnAction(e -> handleEditPet(pet));
-            //deleteButton.setOnAction(e -> handleDeletePet(pet));
+            editButton.setOnAction(e -> handleEditPet(pet));
+            deleteButton.setOnAction(e -> handleDeletePet(pet));
 
             petItem.getChildren().addAll(editButton, deleteButton);
             petsContainer.getChildren().add(petItem);
@@ -120,28 +119,21 @@ public class PetProfileController extends NavigationController {
     }
 
     /**
-     * Toggles the visibility of the "Add Pet" form, allowing users to add new pets.
-     * Updates the visibility and layout based on the current state of the form.
+     * Toggles the visibility of the "Add Pet" form, allowing users to add or edit pets.
      */
     @FXML
     private void toggleAddPetForm() {
-        isAddPetFormVisible = !isAddPetFormVisible;
         if (addPetForm != null && addPetButton != null) {
-            addPetForm.setVisible(isAddPetFormVisible);
-            addPetForm.setManaged(isAddPetFormVisible);
-            addPetButton.setVisible(!isAddPetFormVisible);
+            boolean formVisible = addPetForm.isVisible();
+            addPetForm.setVisible(!formVisible);
+            addPetForm.setManaged(!formVisible);
+            addPetButton.setVisible(formVisible);
         }
     }
 
-    @FXML
-    public void handleBackButton(ActionEvent event) throws IOException {
-        SceneLoader.handleBackButton(event);
-    }
 
     /**
-     * Saves the information provided in the form to create a new pet profile.
-     * Validates the input fields, parses the values, and adds the new pet to the database.
-     * After saving, the form is cleared and hidden, and the list of pets is refreshed.
+     * Saves the pet to the database. This method handles both adding new pets and updating existing pets.
      */
     @FXML
     private void savePet() {
@@ -184,29 +176,67 @@ public class PetProfileController extends NavigationController {
             }
         }
 
-        Pet newPet = new Pet(0, name, age, gender, breed, weight, height, imageUrl);
+        if (currentPet == null) {
+            Pet newPet = new Pet(0, name, age, gender, breed, weight, height, imageUrl);
+            petDAO.addPet(newPet);
+        } else {
+            currentPet.setName(name);
+            currentPet.setAge(age);
+            currentPet.setGender(gender);
+            currentPet.setBreed(breed);
+            currentPet.setWeight(weight);
+            currentPet.setHeight(height);
+            currentPet.setImageUrl(imageUrl);
 
-        petDAO.addPet(newPet);
+            petDAO.updatePet(currentPet);
+        }
 
-        clearForm();
+        resetFormAndButton();
+    }
 
-        isAddPetFormVisible = false;
-        addPetForm.setVisible(false);
-        addPetForm.setManaged(false);
-        addPetButton.setVisible(true);
+    /**
+     * Opens the form for editing the selected pet's details and pre-fills the form with the current values.
+     *
+     * @param pet The pet to be edited.
+     */
+    private void handleEditPet(Pet pet) {
+        currentPet = pet;
+        nameField.setText(pet.getName());
+        ageField.setText(String.valueOf(pet.getAge()));
+        genderField.setText(pet.getGender());
+        breedField.setText(pet.getBreed());
+        weightField.setText(String.valueOf(pet.getWeight()));
+        heightField.setText(String.valueOf(pet.getHeight()));
+        imageUrlField.setText(pet.getImageUrl());
 
+        toggleAddPetForm();
+        saveOrUpdateButton.setText("Update Pet");
+    }
+
+    /**
+     * Deletes the selected pet from the database and refreshes the pet list.
+     *
+     * @param pet The pet to be deleted.
+     */
+    private void handleDeletePet(Pet pet) {
+        petDAO.deletePet(pet.getId());
         initialize();
     }
 
-//    private void handleEditPet(Pet pet) {
-//        // Logic for editing a pet
-//    }
+    /**
+     * Resets the form fields and button after a pet has been saved or updated. Also refreshes the list of pets.
+     */
+    private void resetFormAndButton() {
+        clearForm();
+        saveOrUpdateButton.setText("Save New Pet");
+        toggleAddPetForm();
+        currentPet = null;
+        initialize();
+    }
 
-//    private void handleDeletePet(Pet pet) {
-//        petDAO.deletePet(pet.getId());
-//        initialize(); // Refresh the list after deletion
-//    }
-
+    /**
+     * Clears the input fields in the form.
+     */
     private void clearForm() {
         nameField.clear();
         ageField.clear();
@@ -217,6 +247,9 @@ public class PetProfileController extends NavigationController {
         imageUrlField.clear();
     }
 
+    /**
+     * Cancels the action of adding or editing a pet and closes the form.
+     */
     @FXML
     private void cancelAddPetForm() {
         clearForm();

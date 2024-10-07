@@ -95,7 +95,7 @@ public class SignupController {
         errorMessage.setText("Sign-Up Successful!");
         errorMessage.setStyle("-fx-text-fill: green;");
         errorMessage.setVisible(true);
-        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/homemain-view.fxml");
+        SceneLoader.loadScene(event, "/com/example/petcarecab302qu/mainhome-view.fxml");
     }
 
     @FXML
