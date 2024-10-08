@@ -2,6 +2,7 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.model.DietPlan;
+import com.example.petcarecab302qu.model.IDietDAO;
 import com.example.petcarecab302qu.model.SqliteDietDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -46,7 +47,10 @@ public class DietController extends NavigationController {
     private HBox dietListBox;
 
 
-    private SqliteDietDAO dietDAO;
+    private IDietDAO dietDAO;
+    public DietController(IDietDAO dietDAO) {
+        this.dietDAO = dietDAO;
+    }
 
     public DietController() {
         dietDAO = new SqliteDietDAO();
