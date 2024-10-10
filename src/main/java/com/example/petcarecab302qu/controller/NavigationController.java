@@ -29,16 +29,15 @@ public class NavigationController {
      * Loads the navigation bar from the FXML file and adds it to the VBox.
      * This method is responsible for initialising and setting up the navigation bar.
      */
-    protected void NavigationBar(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
-            VBox navigation = loader.load();
-            //navigation.setStyle(
-            //"-fx-border-width: 2px; "    // Border width
-
-            navigationBar.getChildren().add(navigation);
-        } catch (IOException e) {
-            e.printStackTrace();
+    protected void NavigationBar() {
+        if (navigationBar.getChildren().isEmpty()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
+                VBox navigation = loader.load();
+                navigationBar.getChildren().add(navigation); // Only add if navigationBar is empty
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

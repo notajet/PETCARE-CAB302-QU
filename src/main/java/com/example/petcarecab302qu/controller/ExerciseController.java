@@ -1,9 +1,8 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.model.*;
-import javafx.event.EventHandler;
-import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
@@ -13,9 +12,7 @@ import javafx.scene.text.*;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Manages user interface for logging pet exercises
- */
+
 
 public class ExerciseController extends NavigationController {
 
@@ -46,12 +43,10 @@ public class ExerciseController extends NavigationController {
     @FXML
     public ImageView logoImage;
 
-    @FXML
-    private Button exerciseButton;
-
-
     //@FXML
     //private Label petNameLabel;
+
+    private Button selectedPetButton; // Keep track of the selected pet button
 
 
     private String exerciseType;
@@ -67,7 +62,6 @@ public class ExerciseController extends NavigationController {
     @FXML
     public void initialize(){
 
-
         exerciseDAO = new SqliteExerciseDAO();
 
         NavigationBar();
@@ -76,6 +70,7 @@ public class ExerciseController extends NavigationController {
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
             logoImage.setImage(logo);
         }
+
 
         ToggleGroup typeOfExercise = new ToggleGroup();
         walkRadioButton.setToggleGroup(typeOfExercise);
@@ -87,22 +82,21 @@ public class ExerciseController extends NavigationController {
 
     /**
      * Loads the pet profiles from the database and creates a button for each pet
-     * Each button will be in a circle, displaying the pet's image or a default image
      */
     private void loadPetProfiles() {
         pets = petDAO.getAllPets();
 
+        boolean isFirstPet = true;
+
         // Create a circular button for each pet and add it to the petsContainer
         for (Pet pet : pets) {
             Button petButton = new Button();
-
-            // Create the ImageView to display the pet's image
             ImageView petImageView = new ImageView();
             petImageView.setFitHeight(40);
             petImageView.setFitWidth(40);
             petImageView.setPreserveRatio(true);
 
-            Circle clip = new Circle(20, 20, 20);  // Circle radius to match the size of the ImageView
+            Circle clip = new Circle(20, 20, 20);
             petImageView.setClip(clip);
 
             // Load the pet's image or default image if none provided
@@ -116,14 +110,18 @@ public class ExerciseController extends NavigationController {
             } else {
                 petImageView.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/default_pet.png"))));
             }
-
-            // Add the ImageView to the button
+            //popping the image in the pet button
             petButton.setGraphic(petImageView);
-
             defaultButton(petButton);
-
-            // Add the button to the petsContainer
+            petButton.setOnAction(this::selectPet);
             petsContainer.getChildren().add(petButton);
+
+            // Highlight the first pet as default selected
+            if (isFirstPet) {
+                petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+                selectedPetButton = petButton;
+                isFirstPet = false;
+            }
         }
     }
 
@@ -131,9 +129,26 @@ public class ExerciseController extends NavigationController {
      * Default styling for pet buttons
      */
     private void defaultButton(Button button) {
-        button.setStyle(null);
-        button.setStyle("-fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+        button.setStyle("-fx-border-color: purple; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
     }
+
+    /**
+     * Handles the selection of a pet button, changing its border color and resets the previous
+     */
+    @FXML
+    private void selectPet(ActionEvent event) {
+
+        Button petButton = (Button) event.getSource();
+        // Reset the previously selected button
+        if (selectedPetButton != null) {
+            selectedPetButton.setStyle("-fx-border-color: purple; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+        }
+        // Highlight the currently selected button
+        petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+
+        selectedPetButton = petButton;
+    }
+
 
     /**
      * Handles the logging of exercises when save button is pressed.
