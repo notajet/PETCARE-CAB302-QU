@@ -8,7 +8,7 @@ import java.util.List;
  * A data access object (DAO) class for managing diet plans in an SQLite database.
  * Provides methods to create, retrieve, and delete diet plan records from the database.
  */
-public class SqliteDietDAO {
+public class SqliteDietDAO implements IDietDAO {
 
 
         private Connection connection;
@@ -130,16 +130,28 @@ public class SqliteDietDAO {
         /**
          * Deletes a diet plan from the diet_plans table in the database based on its ID.
          */
-        public void deleteDietPlan(int dietPlanId) {
-            String query = "DELETE FROM diet_plans WHERE id = ?";
+        public void deleteDietPlan(int id) {
+            try {
+                PreparedStatement statement = connection.prepareStatement(
+                        "DELETE FROM diet_plans WHERE id = ?"
+                );
+                statement.setInt(1, id);
+                int rowsAffected = statement.executeUpdate();
 
-            try (PreparedStatement stmt = ensureConnection().prepareStatement(query)) {
-                stmt.setInt(1, dietPlanId);
-                stmt.executeUpdate();
-                System.out.println("Diet plan deleted successfully.");
-            } catch (SQLException e) {
-                System.err.println("Error deleting diet plan: " + e.getMessage());
+                if (rowsAffected > 0) {
+                    System.out.println("Diet Plan with ID " + id + " deleted successfully.");
+                } else {
+                    System.out.println("No Diet Plan found with ID " + id);
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
+
+    @Override
+    public DietPlan getDietPlan(int id) {
+        return null;
     }
+}
+
 
