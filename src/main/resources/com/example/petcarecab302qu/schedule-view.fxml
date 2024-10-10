@@ -89,9 +89,9 @@
 
                 <!-- Save and Cancel Buttons -->
                 <HBox spacing="10" alignment="CENTER_RIGHT">
+                    <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
                     <Button text="Save" onAction="#handleSaveSchedule" style="-fx-background-color: green; -fx-text-fill: white;" />
                     <Button text="Cancel" onAction="#handleCancelSchedule" style="-fx-background-color: orange; -fx-text-fill: white;" />
-                    <Text fx:id="errorMessage" style="-fx-text-fill: red;" visible="false"/>
                 </HBox>
             </VBox>
         </VBox>
