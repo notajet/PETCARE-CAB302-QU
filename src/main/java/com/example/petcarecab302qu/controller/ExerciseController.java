@@ -12,9 +12,7 @@ import javafx.scene.text.*;
 import java.util.List;
 import java.util.Objects;
 
-/**
- * Manages user interface for logging pet exercises
- */
+
 
 public class ExerciseController extends NavigationController {
 
@@ -45,10 +43,6 @@ public class ExerciseController extends NavigationController {
     @FXML
     public ImageView logoImage;
 
-    @FXML
-    private Button exerciseButton;
-
-
     //@FXML
     //private Label petNameLabel;
 
@@ -68,7 +62,6 @@ public class ExerciseController extends NavigationController {
     @FXML
     public void initialize(){
 
-
         exerciseDAO = new SqliteExerciseDAO();
 
         NavigationBar();
@@ -77,6 +70,7 @@ public class ExerciseController extends NavigationController {
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
             logoImage.setImage(logo);
         }
+
 
         ToggleGroup typeOfExercise = new ToggleGroup();
         walkRadioButton.setToggleGroup(typeOfExercise);
@@ -91,6 +85,8 @@ public class ExerciseController extends NavigationController {
      */
     private void loadPetProfiles() {
         pets = petDAO.getAllPets();
+
+        boolean isFirstPet = true;
 
         // Create a circular button for each pet and add it to the petsContainer
         for (Pet pet : pets) {
@@ -119,6 +115,13 @@ public class ExerciseController extends NavigationController {
             defaultButton(petButton);
             petButton.setOnAction(this::selectPet);
             petsContainer.getChildren().add(petButton);
+
+            // Highlight the first pet as default selected
+            if (isFirstPet) {
+                petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
+                selectedPetButton = petButton;
+                isFirstPet = false;
+            }
         }
     }
 
