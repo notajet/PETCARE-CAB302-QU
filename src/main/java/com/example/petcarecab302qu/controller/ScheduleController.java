@@ -54,9 +54,11 @@ public class ScheduleController extends NavigationController {
     @FXML
     private GridPane calendar;
 
-    private Button selectedDayButton;
+    private Button selectedDateButton;
 
     private LocalDate currentDate = LocalDate.now();
+
+    public LocalDate selectedDate = null;
 
     @FXML
     private ListView<HBox> todayTaskList;
@@ -111,30 +113,41 @@ public class ScheduleController extends NavigationController {
 
         // create buttons for each day in the month
         for (int day = 1; day <= daysInMonth; day++) {
-            Button dayButton = new Button(String.valueOf(day));
+            Button dateButton = new Button(String.valueOf(day));
 
-            dayButton.setPrefWidth(40);
-            dayButton.setPrefHeight(40);
+            dateButton.setPrefWidth(40);
+            dateButton.setPrefHeight(40);
 
             if (selectedDate.getYear() == today.getYear() &&
                     selectedDate.getMonth() == today.getMonth() &&
                     day == today.getDayOfMonth()) {
-                dayButton.setStyle("-fx-background-color: lightblue; -fx-border-color: red; -fx-border-radius: 50%;");
+                dateButton.setStyle("-fx-border-radius: 50%; -fx-background-color: lightblue; -fx-border-color: red;");
             }
 
-            // Assign method reference to handle the button click event
-            dayButton.setOnAction(this::selectedDate);
+            dateButton.setOnAction(this::selectedClickedOnDate);
 
-            // Add the button to the grid
-            calendar.add(dayButton, col, row);
+            calendar.add(dateButton, col, row);
 
             col++;
-            if (col > 6) {  // Move to next row after Saturday
+            if (col > 6) {
                 col = 0;
                 row++;
             }
         }
     }
+
+    /**
+     * Handles the event action of selected date on calendar
+     * Updates and highlights the selected date
+     * @param event action event triggers when a date is selected
+     */
+    private void selectedClickedOnDate(ActionEvent event) {
+        Button clickedButton = (Button) event.getSource();
+        int day = Integer.parseInt(clickedButton.getText());
+        selectedDate = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), day);
+        highlightSelectDate(clickedButton, selectedDate);
+    }
+
 
     /**
      * Adds day headers from Sunday to Saturday to the first row of the calendar
@@ -151,16 +164,6 @@ public class ScheduleController extends NavigationController {
 
 
 
-    /**
-     * Handles the event action of selected date on calendar
-     * Updates and highlights the selected date
-     * @param event action event triggers when a date is selected
-     */
-    private void selectedDate(ActionEvent event) {
-        Button clickedButton = (Button) event.getSource();
-        LocalDate selectedDate = datePicker.getValue();
-        highlightSelectDate(clickedButton, selectedDate);
-    }
 
 
     /**
@@ -171,21 +174,21 @@ public class ScheduleController extends NavigationController {
     private void highlightSelectDate(Button dateButton, LocalDate selectedDate) {
         LocalDate today = LocalDate.now();
         // Reset
-        if (selectedDayButton != null) {
+        if (selectedDateButton != null) {
             // Keep the highlight for today date
-            if (selectedDayButton.getText().equals(String.valueOf(today.getDayOfMonth())) &&
+            if (selectedDateButton.getText().equals(String.valueOf(today.getDayOfMonth())) &&
                     selectedDate.getYear() == today.getYear() &&
                     selectedDate.getMonth() == today.getMonth()) {
-                selectedDayButton.setStyle("-fx-background-color: lightblue; -fx-border-color: red; -fx-border-radius: 50%;");
+                selectedDateButton.setStyle("-fx-background-color: lightblue; -fx-border-color: red; -fx-border-radius: 50%;");
             } else {
                 // reset to default style
-                selectedDayButton.setStyle("");
+                selectedDateButton.setStyle("");
             }
         }
 
         // Highlight the currently selected day button
         dateButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
-        selectedDayButton = dateButton;
+        selectedDateButton = dateButton;
 
     }
 
@@ -209,7 +212,7 @@ public class ScheduleController extends NavigationController {
             return;
         }
 
-        String loggedScheduleEvent = eventType + " at " + hour + ":" + minute + " " + amPm;
+        String loggedScheduleEvent = selectedDate.toString() + ":" + eventType + " at " + hour + ":" + minute + " " + amPm;
 
         // checkbox to mark the schedule as done
         CheckBox checkBox = new CheckBox();
