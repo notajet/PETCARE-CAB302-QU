@@ -8,6 +8,7 @@ import javafx.scene.image.*;
 import javafx.scene.layout.*;
 import javafx.scene.shape.*;
 import javafx.scene.text.*;
+import java.time.LocalDate;
 
 import java.util.List;
 import java.util.Objects;
@@ -43,6 +44,8 @@ public class ExerciseController extends NavigationController {
     @FXML
     public ImageView logoImage;
 
+    private boolean firstPet = true;
+
     //@FXML
     //private Label petNameLabel;
 
@@ -50,7 +53,6 @@ public class ExerciseController extends NavigationController {
 
 
     private String exerciseType;
-
 
     private SqliteExerciseDAO exerciseDAO = new SqliteExerciseDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
@@ -86,8 +88,6 @@ public class ExerciseController extends NavigationController {
     private void loadPetProfiles() {
         pets = petDAO.getAllPets();
 
-        boolean isFirstPet = true;
-
         // Create a circular button for each pet and add it to the petsContainer
         for (Pet pet : pets) {
             Button petButton = new Button();
@@ -117,10 +117,10 @@ public class ExerciseController extends NavigationController {
             petsContainer.getChildren().add(petButton);
 
             // Highlight the first pet as default selected
-            if (isFirstPet) {
+            if (firstPet) {
                 petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
                 selectedPetButton = petButton;
-                isFirstPet = false;
+                firstPet = false;
             }
         }
     }
@@ -156,6 +156,9 @@ public class ExerciseController extends NavigationController {
      */
     @FXML
     public void handleSaveExerciseButton(){
+
+        LocalDate date = LocalDate.now();
+
         if (walkRadioButton.isSelected()){
             exerciseType = "walk";
         } else if (runRadioButton.isSelected()){
@@ -179,7 +182,10 @@ public class ExerciseController extends NavigationController {
 
         String notes = notesArea.getText(); //optional
 
-        Exercise logExercise = new Exercise(exerciseType, duration, notes);
+        String stringDate = date.toString();
+
+
+        Exercise logExercise = new Exercise(stringDate, exerciseType, duration, notes);
         exerciseDAO.addExercise(logExercise);
 
         notesArea.clear();
