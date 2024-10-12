@@ -10,7 +10,7 @@
 
 
 <?import javafx.scene.image.ImageView?>
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController" prefWidth="700.0" prefHeight="500.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.ExerciseController" prefWidth="700.0" prefHeight="500.0" style="-fx-background-color: #ffebe0">
     <!-- Header Section -->
     <top>
         <VBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="60.0">

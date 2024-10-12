@@ -8,7 +8,10 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.time.LocalDate;
 import java.time.YearMonth;
+import java.util.List;
 import java.util.Objects;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -23,7 +26,6 @@ import javafx.scene.text.Text;
  * Handles calendar display, logging of events, and manages completion of events
  */
 public class ScheduleController extends NavigationController {
-    public VBox petBox;
     private SqliteScheduleDAO scheduleDAO = new SqliteScheduleDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
 
@@ -63,6 +65,10 @@ public class ScheduleController extends NavigationController {
     @FXML
     private Text errorMessage;
 
+    @FXML
+    private VBox petBox;
+
+    private PetSelectionVbox petSelectionVbox;
 
     /**
      * Initializes the navigation bar, logo image, and default stage for AM/PM and DatePicker
@@ -77,11 +83,15 @@ public class ScheduleController extends NavigationController {
             logoImage.setImage(logo);
         }
 
+        petSelectionVbox = new PetSelectionVbox(petBox);
+
         amPmComboBox.getSelectionModel().select("AM");
         datePicker.setValue(currentDate);
 
         loadCalendar(currentDate);
         datePicker.valueProperty().addListener((observable, oldDate, newDate) -> loadCalendar(newDate));
+
+        errorMessage.setVisible(false);
     }
 
     /**
@@ -133,6 +143,7 @@ public class ScheduleController extends NavigationController {
         }
     }
 
+
     /**
      * Handles the event action of selected date on calendar
      * Updates and highlights the selected date
@@ -143,11 +154,13 @@ public class ScheduleController extends NavigationController {
         int day = Integer.parseInt(clickedButton.getText());
         selectedDate = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), day);
         highlightSelectDate(clickedButton, selectedDate);
+
+        // Load the tasks for the newly selected date
+        loadTasksForSelectedDate();
     }
 
-
     /**
-     * Adds day headers from Sunday to Saturday to the first row of the calendar
+     * Adds day headers from Monday to Sunday to the first row of the calendar
      */
     private void addDayHeaders() {
         String[] dayOfWeek = {"Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"};
@@ -159,12 +172,8 @@ public class ScheduleController extends NavigationController {
         }
     }
 
-
-
-
-
     /**
-     * Handles the selection of date button, changing selected dates appearance and keeping the actual current date highlighted 
+     * Handles the selection of date button, changing selected dates appearance and keeping the actual current date highlighted
      * @param dateButton selected date
      * @param selectedDate currently selected date
      */
@@ -189,10 +198,58 @@ public class ScheduleController extends NavigationController {
 
     }
 
+    /**
+     * Creates a HBox containing a checkbox and a label for the task
+     * The checkbox completion state is set based on the task
+     *
+     * @param task task description
+     * @param taskComplete is the task completed
+     * @return A HBox containing the CheckBox and Label for the task
+     */
+    private HBox createTaskBox(String task, boolean taskComplete) {
+        CheckBox checkBox = new CheckBox();
+        checkBox.setSelected(taskComplete);
+        Label taskLabel = new Label(task);
+        HBox hbox = new HBox(10);
+        hbox.getChildren().addAll(checkBox, taskLabel);
+        checkBox.setOnAction(this::handleTaskCheckbox);
+        return hbox;
+    }
+
+    /**
+     * Handles the checkbox action when a task's completion status is toggled
+     * Updates the task completion status in the database based on the checkbox state
+     *
+     * @param event triggers by the checkbox
+     */
+    public void handleTaskCheckbox(ActionEvent event) {
+        CheckBox source = (CheckBox) event.getSource();
+        HBox hbox = (HBox) source.getParent();
+
+        Label taskLabel = (Label) hbox.getChildren().get(1);
+        String taskDescription = taskLabel.getText();
+
+        boolean completed = source.isSelected();
+        scheduleDAO.updateTaskCompletionStatus(selectedDate, taskDescription, completed);
+    }
+
+    private void loadTasksForSelectedDate() {
+        if (selectedDate != null) {
+            todayTaskList.getItems().clear();
+
+            List<String> tasks = scheduleDAO.getSchedules(selectedDate);
+
+            for (String task : tasks) {
+                boolean taskComplete = scheduleDAO.getCompletionStatusForTask(selectedDate, task);
+                HBox taskBox = createTaskBox(task, taskComplete);
+                todayTaskList.getItems().add(taskBox);
+            }
+        }
+    }
 
     /**
      * Handles the save button action
-     * Logs the event, validates inputs and updates schedule list with new event 
+     * Logs the event, validates inputs and updates schedule list with new event
      */
     @FXML
     public void handleSaveSchedule() {
@@ -209,16 +266,12 @@ public class ScheduleController extends NavigationController {
             return;
         }
 
-        String loggedScheduleEvent = selectedDate.toString() + ":" + eventType + " at " + hour + ":" + minute + " " + amPm;
+        String time = hour + ":" + minute + " " + amPm;
+        // Save schedule to the database
+        scheduleDAO.addSchedule(selectedDate, eventType, time);
 
-        // checkbox to mark the schedule as done
-        CheckBox checkBox = new CheckBox();
-        Label scheduleEventLabel = new Label(loggedScheduleEvent);
-
-        // HBox hold the checkbox and the event
-        HBox hbox = new HBox(10);
-        hbox.getChildren().addAll(checkBox, scheduleEventLabel);
-        todayTaskList.getItems().add(hbox);
+        // Reload tasks for the selected date after adding the new one
+        loadTasksForSelectedDate();
 
         // Clear
         eventTypeComboBox.getSelectionModel().clearSelection();
@@ -226,11 +279,10 @@ public class ScheduleController extends NavigationController {
         scheduleMin.clear();
         repeatCheckBox.setSelected(false);
 
-        //NEED TO SAVE TO DATABASE
     }
 
     /**
-     * Handles the cancel button action
+     * Handles the cancel button
      * clears input and resets selections
      */
     @FXML
