@@ -18,8 +18,8 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Creates the exercise table in the database if it does not already exist.
-     * The table contains columns for the exercise ID, type, duration, and notes.
+     * Creates the exercise table in the database if it does not already exist
+     * The table contains columns for the exercise ID, type, duration, and notes
      */
     private void createExerciseTable() {
         try {
@@ -39,10 +39,10 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Adds a new exercise to the exercise table in the database.
-     * The generated ID for the exercise is set on the provided Exercise object.
+     * Adds exercise to the exercise table in the database
+     * The generated ID for the exercise is set on the provided Exercise object
      *
-     * @param exercise The Exercise object containing the details of the new exercise.
+     * @param exercise The Exercise object containing the details of the new exercise
      */
     //@Override
     public void addExercise(Exercise exercise) {
@@ -63,7 +63,7 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Retrieves an exercise from the database based on its ID.
+     * Retrieves an exercise from the database based
      *
      * @param id The ID of the exercise to retrieve.
      * @return The Exercise object if found, or null if the exercise is not found.
