@@ -25,52 +25,62 @@
 
     <!-- Navigation Bar -->
     <left>
-        <VBox fx:id="navigationBar" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" />
+        <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" />
     </left>
 
+    <!-- Main Content -->
     <center>
-        <VBox spacing="20" style="-fx-padding: 10;" alignment="TOP_CENTER">
-            <Label text="Calendar" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+        <HBox spacing="5" style="-fx-padding: 5;">
 
-            <DatePicker fx:id="datePicker" />
-
-            <!-- days of the month -->
-            <GridPane fx:id="calendar" alignment="CENTER" style="-fx-padding: 10;">
-            </GridPane>
-
-            <!-- Task List  -->
-            <VBox  spacing="10" style="-fx-padding: 10; -fx-background-color: #e0e0e0; -fx-border-color: gray;" prefHeight="150">
-                <Label text="Today's Tasks:" style="-fx-font-size: 18px;" />
-                <ListView fx:id="todayTaskList" />
+            <!-- Pet Box on the left side -->
+            <VBox fx:id="petBox" style="-fx-padding:5;" spacing="5">
+                <!-- Pet buttons will be auto added here -->
             </VBox>
-        </VBox>
+
+            <!-- Other Features (Calendar, Task List) on the right side -->
+            <VBox alignment="TOP_CENTER">
+
+                <Label text="Calendar" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
+                <DatePicker fx:id="datePicker" />
+
+                <!-- Days of the month -->
+                <GridPane fx:id="calendar" alignment="CENTER" style="-fx-padding: 5;" />
+
+                <!-- Task List -->
+                <VBox spacing="5" style="-fx-padding: 5; -fx-background-color: #e0e0e0; -fx-border-color: gray;" prefHeight="150">
+                    <Label text="Today's Tasks:" style="-fx-font-size: 18px;" />
+                    <ListView fx:id="todayTaskList" />
+                </VBox>
+            </VBox>
+        </HBox>
     </center>
 
     <!-- Task Logging -->
     <right>
-        <VBox spacing="20" style="-fx-padding: 10; -fx-background-color: #f9f9f9;" alignment="TOP_CENTER">
+        <VBox spacing="5" style="-fx-padding: 5; -fx-background-color: #f9f9f9;" alignment="TOP_CENTER">
             <!-- Log Schedule  -->
-            <VBox spacing="10" style="-fx-padding: 20; -fx-background-color: #ffffff; -fx-border-color: gray;">
+            <VBox spacing="5" style="-fx-padding: 5; -fx-background-color: #ffffff; -fx-border-color: gray;">
                 <Label text="Log Schedule" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
-                <HBox spacing="10">
+                <HBox spacing="5">
                     <Label text="Event Type:" style="-fx-font-size: 14px;" />
                     <ComboBox fx:id="eventTypeComboBox" style="-fx-font-size: 14px;">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
                                 <String fx:value="Eating" />
                                 <String fx:value="Walking" />
-                                <String fx:value="Medicine" />
+                                <String fx:value="Take Medicine" />
+                                <String fx:value="Grooming" />
                             </FXCollections>
                         </items>
                     </ComboBox>
                 </HBox>
 
                 <!-- Time Section -->
-                <HBox spacing="10">
+                <HBox spacing="5">
                     <Label text="Time:" style="-fx-font-size: 14px;" />
-                    <TextField fx:id="scheduleHour" promptText="00" maxWidth="50" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="scheduleHour" promptText="00" maxWidth="35" style="-fx-font-size: 14px;" />
                     <Text text=":" />
-                    <TextField fx:id="scheduleMin" promptText="00" maxWidth="50" style="-fx-font-size: 14px;" />
+                    <TextField fx:id="scheduleMin" promptText="00" maxWidth="35" style="-fx-font-size: 14px;" />
                     <ComboBox fx:id="amPmComboBox" maxWidth="70" style="-fx-font-size: 14px;">
                         <items>
                             <FXCollections fx:factory="observableArrayList">
@@ -82,7 +92,7 @@
                 </HBox>
 
                 <!-- Repeat Section -->
-                <HBox spacing="10">
+                <HBox spacing="5">
                     <Label text="Repeat:" style="-fx-font-size: 14px;" />
                     <CheckBox fx:id="repeatCheckBox" style="-fx-font-size: 14px;" />
                 </HBox>

@@ -20,7 +20,7 @@
 
     <!-- Navigation Bar -->
     <left>
-        <VBox fx:id="navigationBar" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" />
+        <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" />
     </left>
 
     <!-- Main -->
@@ -28,7 +28,7 @@
         <HBox spacing="20.0">
             <!-- Pet Selection
             remember to change it to images later when there is existing pet in the profile-->
-            <VBox fx:id="petsContainer" style="-fx-padding:5;" spacing="5">
+            <VBox fx:id="petBox" style="-fx-padding:5;" spacing="5">
                 <!-- Pet buttons will be auto added here -->
             </VBox>
 
