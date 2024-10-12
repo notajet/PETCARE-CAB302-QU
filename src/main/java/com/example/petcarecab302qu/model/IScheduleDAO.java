@@ -3,6 +3,11 @@ package com.example.petcarecab302qu.model;
 import java.time.LocalDate;
 import java.util.List;
 
+/**
+ * Interface for the Schedules Data Access Object that handles
+ * the CRUD operations for the Schedule class with the database.
+ */
+
 public interface IScheduleDAO {
     void addSchedule(LocalDate date, String eventType, String time);
     List<String> getSchedules(LocalDate date);

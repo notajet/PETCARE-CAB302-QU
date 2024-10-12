@@ -9,7 +9,7 @@ import java.sql.Statement;
  * A data access object (DAO) class for managing exercise records in the Pet Care application using SQLite.
  * Provides methods to create the exercise table, add new exercises, and retrieve exercises from the database.
  */
-public class SqliteExerciseDAO {
+public class SqliteExerciseDAO implements IExerciseDAO {
     private Connection connection;
 
     public SqliteExerciseDAO() {
@@ -63,7 +63,7 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Retrieves an exercise from the database based
+     * Retrieves an exercise from the database based on its ID
      *
      * @param id The ID of the exercise to retrieve.
      * @return The Exercise object if found, or null if the exercise is not found.
