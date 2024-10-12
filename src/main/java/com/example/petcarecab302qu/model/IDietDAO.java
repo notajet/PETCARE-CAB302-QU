@@ -2,6 +2,10 @@ package com.example.petcarecab302qu.model;
 
 import java.util.List;
 
+/**
+ * Interface for the Diet Data Access Object that handles
+ * the CRUD operations for the DietPlan class with the database.
+ */
 public interface IDietDAO {
     void addDietPlan(DietPlan dietPlan);
     List<DietPlan> getAllDietPlans();

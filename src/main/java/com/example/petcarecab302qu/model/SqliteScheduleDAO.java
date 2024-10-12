@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SqliteScheduleDAO {
+public class SqliteScheduleDAO implements IScheduleDAO{
     private Connection connection;
 
     public SqliteScheduleDAO() {
