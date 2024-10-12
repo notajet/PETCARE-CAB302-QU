@@ -15,6 +15,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 /**
@@ -22,6 +23,7 @@ import javafx.scene.text.Text;
  * Handles calendar display, logging of events, and manages completion of events
  */
 public class ScheduleController extends NavigationController {
+    public VBox petBox;
     private SqliteScheduleDAO scheduleDAO = new SqliteScheduleDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
 
