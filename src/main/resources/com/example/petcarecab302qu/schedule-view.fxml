@@ -37,7 +37,6 @@
                 <!-- Pet buttons will be auto added here -->
             </VBox>
 
-            <!-- Other Features (Calendar, Task List) on the right side -->
             <VBox alignment="TOP_CENTER">
 
                 <Label text="Calendar" style="-fx-font-size: 22px; -fx-font-weight: bold;" />
