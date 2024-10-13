@@ -5,7 +5,7 @@ package com.example.petcarecab302qu.model;
  * Contains details about the type of exercise, its duration, and any additional notes.
  */
 public class Exercise {
-    private int id;
+    private int exerciseId;
     private String petname;
     private String type;
     private Integer duration;
@@ -21,10 +21,10 @@ public class Exercise {
         this.notes = notes;
     }
 
-    public int getEId() { return id; }
+    public int getExerciseId() { return exerciseId; }
 
-    public void setEId(int id) {
-        this.id = id;
+    public void setEId(int exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public String getEName() { return petname; }

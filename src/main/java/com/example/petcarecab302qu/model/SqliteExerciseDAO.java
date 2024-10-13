@@ -25,7 +25,7 @@ public class SqliteExerciseDAO {
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "exerciseId INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + "date VARCHAR NOT NULL"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
@@ -65,13 +65,13 @@ public class SqliteExerciseDAO {
     /**
      * Retrieves an exercise from the database based
      *
-     * @param id The ID of the exercise to retrieve.
+     * @param exerciseId The ID of the exercise to retrieve.
      * @return The Exercise object if found, or null if the exercise is not found.
      */
-    public Exercise getExercise(int id) {
+    public Exercise getExercise(int exerciseId) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE id = ?");
-            statement.setInt(1, id);
+            statement.setInt(1, exerciseId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
                 String date = resultSet.getString("date");
@@ -79,7 +79,7 @@ public class SqliteExerciseDAO {
                 Integer duration = resultSet.getInt("duration");
                 String notes = resultSet.getString("notes");
                 Exercise exercise = new Exercise(date, type, duration, notes);
-                exercise.setEId(id);
+                exercise.setEId(exerciseId);
                 return exercise;
             }
         } catch (Exception e) {
