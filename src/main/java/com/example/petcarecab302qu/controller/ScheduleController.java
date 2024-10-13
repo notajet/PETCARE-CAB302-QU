@@ -233,6 +233,11 @@ public class ScheduleController extends NavigationController {
         scheduleDAO.updateTaskCompletionStatus(selectedDate, taskDescription, completed);
     }
 
+    /**
+     * Loads the tasks for the selected date onto the today's task list based on the tasks listed
+     * for the specific date, and provides a checkbox so the user can mark a task as completed or
+     * not
+     */
     private void loadTasksForSelectedDate() {
         if (selectedDate != null) {
             todayTaskList.getItems().clear();
