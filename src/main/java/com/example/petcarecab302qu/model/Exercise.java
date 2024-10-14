@@ -6,34 +6,55 @@ package com.example.petcarecab302qu.model;
  */
 public class Exercise {
     private int exerciseId;
-    private String petname;
+    private String petName;
+    private String date;
     private String type;
     private Integer duration;
     private String notes;
-    private String date;
 
-    public Exercise(String date, String type, Integer duration, String notes) {
+    public Exercise(String petName, String date, String type, Integer duration, String notes) {
         //this.id = id;
-        //this.petname = petname;
+        this.petName = petName;
+        this.exerciseId = exerciseId;
         this.date = date;
         this.type = type;
         this.duration = duration;
         this.notes = notes;
     }
 
+
+
     public int getExerciseId() { return exerciseId; }
 
-    public void setEId(int exerciseId) {
+    public String getPetName() { return petName; }
+
+    public String getDate() {return date; }
+
+    public String getType() { return type; }
+
+    public int getDuration() { return duration; }
+
+    public String getNotes() { return notes; }
+
+
+    public void setExerciseId(int exerciseId) {
         this.exerciseId = exerciseId;
     }
+    public void setPetName(String petName) { this.petName = petName; }
 
-    public String getEName() { return petname; }
+    public void setDate(String date) {
+        this.date = date;
+    }
 
-    public String getdate() {return date; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public String gettype() { return type; }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
-    public Integer getduration() { return duration; }
-
-    public String getnotes() { return notes; }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

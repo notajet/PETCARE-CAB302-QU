@@ -50,6 +50,9 @@ public class ExerciseController extends NavigationController {
 
     private PetSelectionVbox petSelectionVbox;
 
+    @FXML
+    private ListView<String> recentExerciseList;
+
     /**
      * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
      */
@@ -74,7 +77,27 @@ public class ExerciseController extends NavigationController {
         runRadioButton.setToggleGroup(typeOfExercise);
         playRadioButton.setToggleGroup(typeOfExercise);
 
+        loadRecentExercises();
+
     }
+
+    /**
+     * Loads recently logged exercises from the database
+     */
+    private void loadRecentExercises() {
+        // Get the exercises from the database
+        List<Exercise> recentExercises = exerciseDAO.getAllExercises();
+
+
+        for (Exercise exercise : recentExercises) {
+
+            String petName = exercise.getPetName();
+
+            String displayExercise =  petName + ":" + exercise.getType() + " for " + exercise.getDuration() + " minutes on " + exercise.getDate();
+            recentExerciseList.getItems().add(displayExercise);
+        }
+    }
+
 
 
 
@@ -110,22 +133,27 @@ public class ExerciseController extends NavigationController {
 
         String notes = notesArea.getText(); //optional
 
-        String stringDate = date.toString();
+        String dateToString = date.toString();
 
-        //NEED THE PET ID//////
+        String selectedPetName = petSelectionVbox.getSelectedPet().getName();
 
-        Exercise logExercise = new Exercise(stringDate, exerciseType, duration, notes);
+
+        Exercise logExercise = new Exercise(selectedPetName,dateToString, exerciseType, duration, notes);
         exerciseDAO.addExercise(logExercise);
+
+        String displayLoggedExercise = selectedPetName + ":" + exerciseType + " for " + duration + " minutes on " + dateToString;
+
+        recentExerciseList.getItems().add(displayLoggedExercise);
+
+
+        confirmMessage.setText("Exercise logged successfully!");
+        confirmMessage.setVisible(true);
+
 
         notesArea.clear();
         minuteSpinner.getValueFactory().setValue(0);
         exerciseType = null;
         errorMessage.setVisible(false); // Hide previous messages
-
-
-        // Display confirmation message
-        confirmMessage.setText("Exercise logged successfully!");
-        confirmMessage.setVisible(true);
 
     }
 
