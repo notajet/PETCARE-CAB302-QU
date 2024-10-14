@@ -47,8 +47,12 @@ public class ExerciseController extends NavigationController {
     private String exerciseType;
 
     private SqliteExerciseDAO exerciseDAO = new SqliteExerciseDAO();
+    private SqlitePetDAO petDAO = new SqlitePetDAO();
 
     private PetSelectionVbox petSelectionVbox;
+
+    @FXML
+    private ListView<HBox> recentExerciseList;
 
     /**
      * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
@@ -57,6 +61,7 @@ public class ExerciseController extends NavigationController {
     public void initialize(){
 
         exerciseDAO = new SqliteExerciseDAO();
+        petDAO = new SqlitePetDAO();
 
         NavigationBar();
         //logo image
@@ -78,6 +83,7 @@ public class ExerciseController extends NavigationController {
 
 
 
+
     /**
      * Handles the logging of exercises when save button is pressed.
      * adds the exercise info to the database
@@ -86,6 +92,19 @@ public class ExerciseController extends NavigationController {
     public void handleSaveExerciseButton(){
 
         LocalDate date = LocalDate.now();
+
+
+        // Get the currently selected pet from PetSelectionVbox
+        Pet selectedPet = petSelectionVbox.getSelectedPet();
+
+
+        if (selectedPet == null) {
+            errorMessage.setText("Please select a pet.");
+            errorMessage.setVisible(true);
+            return;
+        }
+
+        System.out.println("Selected pet: " + selectedPet.getName());
 
         if (walkRadioButton.isSelected()){
             exerciseType = "walk";
@@ -114,7 +133,7 @@ public class ExerciseController extends NavigationController {
 
         //NEED THE PET ID//////
 
-        Exercise logExercise = new Exercise(stringDate, exerciseType, duration, notes);
+        Exercise logExercise = new Exercise(selectedPet.getName(), stringDate, exerciseType, duration, notes);
         exerciseDAO.addExercise(logExercise);
 
         notesArea.clear();
@@ -127,6 +146,39 @@ public class ExerciseController extends NavigationController {
         confirmMessage.setText("Exercise logged successfully!");
         confirmMessage.setVisible(true);
 
+        // Update the ListView to display the most recent exercise
+        displayMostRecentExercise(selectedPet.getName());
     }
 
+
+    /**
+     * Fetches and displays the most recent exercises for the selected pet in the ListView.
+     *
+     * @param petName The name of the pet.
+     */
+    private void displayMostRecentExercise(String petName) {
+        List<Exercise> exercises = exerciseDAO.getExercisesByPet(petName);
+        recentExerciseList.getItems().clear();
+
+        for (Exercise exercise : exercises) {
+            HBox exerciseBox = createExerciseBox(exercise);
+            recentExerciseList.getItems().add(exerciseBox);  // Add HBox to ListView
+        }
+    }
+
+    /**
+     * Creates an HBox representing a single exercise.
+     *
+     * @param exercise The exercise data
+     * @return An HBox containing the exercise details
+     */
+    private HBox createExerciseBox(Exercise exercise) {
+        Label typeLabel = new Label("Type: " + exercise.getType());
+        Label durationLabel = new Label("Duration: " + exercise.getDuration() + " mins");
+        Label dateLabel = new Label("Date: " + exercise.getDate());
+
+        HBox hbox = new HBox(20);
+        hbox.getChildren().addAll(typeLabel, durationLabel, dateLabel);
+        return hbox;
+    }
 }

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A data access object (DAO) class for managing exercise records in the Pet Care application using SQLite.
@@ -25,7 +27,8 @@ public class SqliteExerciseDAO implements IExerciseDAO {
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "exerciseId INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "petName VARCHAR NOT NULL,"
                     + "date VARCHAR NOT NULL"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
@@ -47,11 +50,12 @@ public class SqliteExerciseDAO implements IExerciseDAO {
     //@Override
     public void addExercise(Exercise exercise) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?, ?)");
-            statement.setString(1, exercise.getdate());
-            statement.setString(2, exercise.gettype());
-            statement.setInt(3, exercise.getduration());
-            statement.setString(4, exercise.getnotes());
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (petName, date, type, duration, notes) VALUES (?, ?, ?, ?, ?)");
+            statement.setString(1, exercise.getPetName());
+            statement.setString(2, exercise.getDate());
+            statement.setString(3, exercise.getType());
+            statement.setInt(4, exercise.getDuration());
+            statement.setString(5, exercise.getNotes());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -87,4 +91,33 @@ public class SqliteExerciseDAO implements IExerciseDAO {
         }
         return null;
     }
+
+    /**
+     * Retrieves all exercises for a specific pet.
+     *
+     * @param petName The name of the pet to retrieve exercises for.
+     * @return A list of Exercise objects for the specified pet.
+     */
+    public List<Exercise> getExercisesByPet(String petName) {
+        List<Exercise> exercises = new ArrayList<>();
+        try {
+            PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE petName = ? ORDER BY exerciseId DESC");
+            statement.setString(1, petName); // Filter by pet name
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                String date = resultSet.getString("date");
+                String type = resultSet.getString("type");
+                int duration = resultSet.getInt("duration");
+                String notes = resultSet.getString("notes");
+                Exercise exercise = new Exercise(petName, date, type, duration, notes);
+                exercise.setExerciseId(resultSet.getInt("exerciseId"));
+                exercises.add(exercise);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return exercises;
+    }
+
 }

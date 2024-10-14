@@ -16,7 +16,7 @@ public class PetSelectionVbox {
 
     private VBox petBox;
     private List<Pet> pets;
-    //private Pet selectedPet; // Currently selected pet
+    private Pet selectedPet; // Currently selected pet
     private Button selectedPetButton; // Currently selected pet button
     private boolean firstPet = true;
 
@@ -57,6 +57,7 @@ public class PetSelectionVbox {
             }
             //popping the image in the pet button
             petButton.setGraphic(petImageView);
+            petButton.setUserData(pet);
             defaultButton(petButton);
             petButton.setOnAction(this::selectPet);
             petBox.getChildren().add(petButton);
@@ -65,6 +66,7 @@ public class PetSelectionVbox {
             if (firstPet) {
                 petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
                 selectedPetButton = petButton;
+                selectedPet = pet;
                 firstPet = false;
             }
         }
@@ -92,5 +94,15 @@ public class PetSelectionVbox {
         petButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
 
         selectedPetButton = petButton;
+        selectedPet = (Pet) petButton.getUserData();
+    }
+
+    /**
+     * Returns the currently selected pet.
+     *
+     * @return The selected pet.
+     */
+    public Pet getSelectedPet() {
+        return selectedPet;
     }
 }
