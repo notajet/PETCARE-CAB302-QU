@@ -9,7 +9,7 @@ import java.sql.Statement;
  * A data access object (DAO) class for managing exercise records in the Pet Care application using SQLite.
  * Provides methods to create the exercise table, add new exercises, and retrieve exercises from the database.
  */
-public class SqliteExerciseDAO {
+public class SqliteExerciseDAO implements IExerciseDAO {
     private Connection connection;
 
     public SqliteExerciseDAO() {
@@ -18,14 +18,15 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Creates the exercise table in the database if it does not already exist.
-     * The table contains columns for the exercise ID, type, duration, and notes.
+     * Creates the exercise table in the database if it does not already exist
+     * The table contains columns for the exercise ID, type, duration, and notes
      */
     private void createExerciseTable() {
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
                     + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "date VARCHAR NOT NULL"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
                     + "notes VARCHAR NOT NULL"
@@ -38,18 +39,19 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Adds a new exercise to the exercise table in the database.
-     * The generated ID for the exercise is set on the provided Exercise object.
+     * Adds exercise to the exercise table in the database
+     * The generated ID for the exercise is set on the provided Exercise object
      *
-     * @param exercise The Exercise object containing the details of the new exercise.
+     * @param exercise The Exercise object containing the details of the new exercise
      */
     //@Override
     public void addExercise(Exercise exercise) {
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?)");
-            statement.setString(1, exercise.gettype());
-            statement.setDouble(2, exercise.getduration());
-            statement.setString(3, exercise.getnotes());
+            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?, ?)");
+            statement.setString(1, exercise.getdate());
+            statement.setString(2, exercise.gettype());
+            statement.setInt(3, exercise.getduration());
+            statement.setString(4, exercise.getnotes());
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -61,7 +63,7 @@ public class SqliteExerciseDAO {
     }
 
     /**
-     * Retrieves an exercise from the database based on its ID.
+     * Retrieves an exercise from the database based on its ID
      *
      * @param id The ID of the exercise to retrieve.
      * @return The Exercise object if found, or null if the exercise is not found.
@@ -72,10 +74,11 @@ public class SqliteExerciseDAO {
             statement.setInt(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                String date = resultSet.getString("date");
                 String type = resultSet.getString("type");
-                Double duration = resultSet.getDouble("duration");
+                Integer duration = resultSet.getInt("duration");
                 String notes = resultSet.getString("notes");
-                Exercise exercise = new Exercise(type, duration, notes);
+                Exercise exercise = new Exercise(date, type, duration, notes);
                 exercise.setEId(id);
                 return exercise;
             }

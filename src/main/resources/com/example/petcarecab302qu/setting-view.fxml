@@ -12,7 +12,7 @@
 <?import java.lang.String?>
 
 
-<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.SettingController" prefWidth="700.0" prefHeight="500.0">
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.SettingController" prefWidth="700.0" prefHeight="500.0" style="-fx-background-color: #ffebe0">
 
     <!-- Header  -->
     <top>
@@ -23,7 +23,7 @@
 
     <!-- Navigation Bar  -->
     <left>
-        <VBox fx:id="navigationBar" style="-fx-background-color: #f0f0f0; -fx-padding: 10;" />
+        <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" />
     </left>
 
     <!-- Main Settings  -->

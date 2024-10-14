@@ -8,12 +8,14 @@ public class Exercise {
     private int id;
     private String petname;
     private String type;
-    private double duration;
+    private Integer duration;
     private String notes;
+    private String date;
 
-    public Exercise(String type, double duration, String notes) {
+    public Exercise(String date, String type, Integer duration, String notes) {
         //this.id = id;
         //this.petname = petname;
+        this.date = date;
         this.type = type;
         this.duration = duration;
         this.notes = notes;
@@ -27,9 +29,11 @@ public class Exercise {
 
     public String getEName() { return petname; }
 
+    public String getdate() {return date; }
+
     public String gettype() { return type; }
 
-    public double getduration() { return duration; }
+    public Integer getduration() { return duration; }
 
     public String getnotes() { return notes; }
 }
