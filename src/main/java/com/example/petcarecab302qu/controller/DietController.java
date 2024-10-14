@@ -16,9 +16,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
+
 import javafx.geometry.Insets;
 
 
@@ -46,6 +50,11 @@ public class DietController extends NavigationController {
     @FXML
     private HBox dietListBox;
 
+    @FXML
+    private ImageView backgroundImage;
+
+    @FXML
+    public ImageView logoImage;
 
     private IDietDAO dietDAO;
     public DietController(IDietDAO dietDAO) {
@@ -67,6 +76,12 @@ public class DietController extends NavigationController {
 
         rootPane.getChildren().remove(dietListBox);
         rootPane.getChildren().add(dietListBox);
+
+        if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
+
     }
 
 

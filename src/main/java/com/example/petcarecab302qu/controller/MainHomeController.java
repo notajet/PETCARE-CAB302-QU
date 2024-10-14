@@ -38,6 +38,4 @@ public class MainHomeController extends NavigationController{
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
     }
 
-
-
 }

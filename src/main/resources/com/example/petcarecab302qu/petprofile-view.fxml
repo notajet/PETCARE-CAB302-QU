@@ -13,7 +13,7 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetProfileController" style="-fx-background-color: #ffebe0;">
 
-    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0">
         <ImageView fx:id="logoImage" fitHeight="40" fitWidth="120" preserveRatio="true" />
         <Label text="Pet Profile" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 40;"/>
         <Pane HBox.hgrow="ALWAYS"/>
@@ -22,10 +22,8 @@
             AnchorPane.rightAnchor="40" layoutY="10"
             style="-fx-background-color: lightgreen; -fx-font-size: 18px;" />
 
-    <VBox fx:id="navigationBar" layoutX="10" layoutY="60" prefWidth="150" spacing="10"
-          style="-fx-background-color: #ffebe0;">
-    </VBox>
-
+    <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" AnchorPane.leftAnchor="0.0"
+          AnchorPane.topAnchor="60.0" AnchorPane.bottomAnchor="0.0"/>
 
     <ScrollPane layoutX="170" layoutY="60" prefWidth="580" prefHeight="500" style="-fx-background-color: #ffebe0;">
         <VBox fx:id="petsContainer" spacing="15">
