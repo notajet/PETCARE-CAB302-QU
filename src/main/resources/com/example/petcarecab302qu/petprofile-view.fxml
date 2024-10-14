@@ -13,11 +13,13 @@
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetProfileController" style="-fx-background-color: #ffebe0;">
 
-    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0">
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
         <ImageView fx:id="logoImage" fitHeight="40" fitWidth="120" preserveRatio="true" />
         <Label text="Pet Profile" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 40;"/>
         <Pane HBox.hgrow="ALWAYS"/>
     </HBox>
+
     <Button fx:id="addPetButton" text="Add Pet" onAction="#toggleAddPetForm"
             AnchorPane.rightAnchor="40" layoutY="10"
             style="-fx-background-color: lightgreen; -fx-font-size: 18px;" />
