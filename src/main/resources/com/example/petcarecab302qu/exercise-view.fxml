@@ -69,9 +69,9 @@
             </VBox>
 
             <!-- ListView for displaying the most recent exercises -->
-            <VBox spacing="20" style="-fx-padding: 10; -fx-background-color: #ffe4c6; -fx-border-color: black;" prefHeight="50">
-                <Label text="Most Recent Exercise" style="-fx-font-size: 18px;" />
-                <ListView fx:id="recentExerciseList" />
+            <VBox spacing="20" style="-fx-padding: 10; -fx-background-color: #ffe4c6; -fx-border-color: black;" prefWidth="350">
+                <Label text="Recent Exercise" style="-fx-font-size: 18px;"/>
+                <ListView fx:id="recentExerciseList"/>
             </VBox>
         </HBox>
     </center>
