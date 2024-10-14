@@ -51,6 +51,22 @@ public class MockPetDAO implements IPetDAO {
         }
     }
 
+    /**
+     * Retrieves a pet by its ID from the in-memory list.
+     *
+     * @param petId The ID of the pet to retrieve.
+     * @return The Pet object if found, or null if not found.
+     */
+    @Override
+    public Pet getPet(int petId) {
+        for (Pet pet : pets) {
+            if (pet.getId() == petId) {
+                return pet;
+            }
+        }
+        return null;
+    }
+
     @Override
     public void deletePet(int petId) {
         pets.removeIf(pet -> pet.getId() == petId);

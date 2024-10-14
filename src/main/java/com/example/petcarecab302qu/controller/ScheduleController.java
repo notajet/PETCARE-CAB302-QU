@@ -57,7 +57,7 @@ public class ScheduleController extends NavigationController {
 
     private LocalDate currentDate = LocalDate.now();
 
-    public LocalDate selectedDate = null;
+    public LocalDate selectedDate;
 
     @FXML
     private ListView<HBox> todayTaskList;
@@ -179,6 +179,7 @@ public class ScheduleController extends NavigationController {
      */
     private void highlightSelectDate(Button dateButton, LocalDate selectedDate) {
         LocalDate today = LocalDate.now();
+
         // Reset
         if (selectedDateButton != null) {
             // Keep the highlight for today date

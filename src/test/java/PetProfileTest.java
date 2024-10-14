@@ -48,7 +48,6 @@ public class PetProfileTest {
         assertEquals("Charlie", addedPet.getName());
     }
 
-    /*  Functionality hasn't been implemented yet.
     @Test
     public void testUpdatePet() {
         Pet petToUpdate = mockPetDAO.getAllPets().get(0);
@@ -60,7 +59,6 @@ public class PetProfileTest {
         assertEquals("Buddy Updated", updatedPet.getName());
     }
 
-    // Functionality hasn't been implemented yet
     @Test
     public void testDeletePet() {
         Pet petToDelete = mockPetDAO.getAllPets().get(0);
@@ -70,8 +68,6 @@ public class PetProfileTest {
         assertEquals(1, pets.size());
         assertNull(mockPetDAO.getPet(petToDelete.getId()));
     }
-    */
-
 }
 
 

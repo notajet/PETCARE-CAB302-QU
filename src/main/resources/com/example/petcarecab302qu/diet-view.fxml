@@ -10,7 +10,7 @@
 
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="rootPane" fx:controller="com.example.petcarecab302qu.controller.DietController"
-            style="-fx-background-color: white;" prefWidth="800" prefHeight="570">
+            style="-fx-background-color: #ffebe0;" prefWidth="800" prefHeight="570">
 
     <!-- Navigation bar on the left -->
     <VBox fx:id="navigationBar" alignment="BOTTOM_LEFT" layoutX="10" layoutY="60" prefWidth="150" spacing="10"

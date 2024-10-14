@@ -10,5 +10,6 @@ public interface IPetDAO {
     void addPet(Pet pet);
     List<Pet> getAllPets();
     void updatePet(Pet pet);
+    Pet getPet(int petId);
     void deletePet(int petId);
 }

@@ -22,6 +22,10 @@ import java.util.Objects;
 public class PetProfileController extends NavigationController {
 
     @FXML
+    public ImageView logoImage;
+    public VBox header;
+
+    @FXML
     private TextField nameField;
     @FXML
     private TextField ageField;
@@ -64,6 +68,10 @@ public class PetProfileController extends NavigationController {
      */
     @FXML
     public void initialize() {
+        if (logoImage != null) {
+            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
+            logoImage.setImage(logo);
+        }
 
         petDAO = new SqlitePetDAO();
         List<Pet> pets = petDAO.getAllPets();
@@ -108,7 +116,10 @@ public class PetProfileController extends NavigationController {
             petItem.getChildren().add(petDetails);
 
             Button editButton = new Button("Edit");
+            editButton.setStyle("-fx-background-color: orange; -fx-text-fill: black;");
+
             Button deleteButton = new Button("Delete");
+            deleteButton.setStyle("-fx-background-color: #f08080; -fx-text-fill: black;");
 
             editButton.setOnAction(e -> handleEditPet(pet));
             deleteButton.setOnAction(e -> handleDeletePet(pet));
