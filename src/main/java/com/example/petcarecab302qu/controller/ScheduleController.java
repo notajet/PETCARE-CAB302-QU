@@ -57,7 +57,7 @@ public class ScheduleController extends NavigationController {
 
     private LocalDate currentDate = LocalDate.now();
 
-    public LocalDate selectedDate;
+    public LocalDate selectedDate = null;
 
     @FXML
     private ListView<HBox> todayTaskList;
