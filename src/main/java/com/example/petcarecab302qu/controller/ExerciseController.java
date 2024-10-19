@@ -46,20 +46,27 @@ public class ExerciseController extends NavigationController {
 
     private String exerciseType;
 
-    private SqliteExerciseDAO exerciseDAO = new SqliteExerciseDAO();
+    private IExerciseDAO exerciseDAO;
 
     private PetSelectionVbox petSelectionVbox;
 
     @FXML
-    private ListView<String> recentExerciseList;
+    public ListView<String> recentExerciseList;
+
+    public ExerciseController() {
+        this.exerciseDAO = new SqliteExerciseDAO(); // Use the default implementation
+    }
+
+    // Constructor for testing or dependency injection
+    public ExerciseController(IExerciseDAO exerciseDAO) {
+        this.exerciseDAO = exerciseDAO;
+    }
 
     /**
      * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
      */
     @FXML
     public void initialize(){
-
-        exerciseDAO = new SqliteExerciseDAO();
 
         NavigationBar();
         //logo image
@@ -84,7 +91,7 @@ public class ExerciseController extends NavigationController {
     /**
      * Loads recently logged exercises from the database
      */
-    private void loadRecentExercises() {
+    public void loadRecentExercises() {
         // Get the exercises from the database
         List<Exercise> recentExercises = exerciseDAO.getAllExercises();
 
