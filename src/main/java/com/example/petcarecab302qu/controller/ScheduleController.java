@@ -87,6 +87,8 @@ public class ScheduleController extends NavigationController {
 
         amPmComboBox.getSelectionModel().select("AM");
         datePicker.setValue(currentDate);
+        ///set's the selectedate to be the current day by default
+        selectedDate = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), currentDate.getDayOfMonth());
 
         loadCalendar(currentDate);
         datePicker.valueProperty().addListener((observable, oldDate, newDate) -> loadCalendar(newDate));
