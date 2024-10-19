@@ -26,7 +26,6 @@ import javafx.scene.text.Text;
  * Handles calendar display, logging of events, and manages completion of events
  */
 public class ScheduleController extends NavigationController {
-    private SqliteScheduleDAO scheduleDAO = new SqliteScheduleDAO();
     private SqlitePetDAO petDAO = new SqlitePetDAO();
 
     @FXML
@@ -70,6 +69,15 @@ public class ScheduleController extends NavigationController {
 
     private PetSelectionVbox petSelectionVbox;
 
+    private IScheduleDAO scheduleDAO;
+
+    public ScheduleController() {
+        this.scheduleDAO = new SqliteScheduleDAO();
+    }
+
+    public ScheduleController(IScheduleDAO scheduleDAO) {
+        this.scheduleDAO = scheduleDAO;
+    }
     /**
      * Initializes the navigation bar, logo image, and default stage for AM/PM and DatePicker
      * Loads the current dates month calendar and any changes in DatePicker
