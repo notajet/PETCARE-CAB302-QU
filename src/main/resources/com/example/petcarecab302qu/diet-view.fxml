@@ -7,6 +7,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+
 
 
 <?import javafx.scene.layout.Pane?>
@@ -19,6 +21,11 @@
         <ImageView fx:id="logoImage" fitHeight="40" fitWidth="120" preserveRatio="true" />
         <Pane HBox.hgrow="ALWAYS"/>
     </HBox>
+
+        <VBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="60.0">
+            <ImageView fx:id="logoImage" fitHeight="50" fitWidth="150" preserveRatio="true" />
+        </VBox>
+
 
     <!-- Navigation bar on the left -->
     <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 15;" AnchorPane.leftAnchor="0.0"
@@ -33,12 +40,8 @@
                 style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;" />
 
         <!-- Image section and diet list -->
-        <HBox spacing="10" alignment="CENTER"
-              style="-fx-background-image: url('https://wallpapers.com/images/high/pets-background-p7lfw4p8b57x0fpe.jpg');
-             -fx-background-size: 80% 80%; /* Shrinks the image to 80% of the HBox */
-             -fx-background-position: center center; /* Centers the image within the HBox */
-             -fx-background-repeat: no-repeat; /* Prevents the image from repeating */
-             -fx-padding: 50px; -fx-border-color: transparent;">
+        <HBox fx:id="rootHBox" spacing="10" alignment="CENTER"
+              style="-fx-padding: 50px; -fx-border-color: transparent;">
 
             <HBox fx:id="dietListBox" spacing="10"
                   AnchorPane.leftAnchor="190.0" AnchorPane.bottomAnchor="10.0"
