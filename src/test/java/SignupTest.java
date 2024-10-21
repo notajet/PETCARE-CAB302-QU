@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Verifies different signup scenarios such as successful signup, existing email,
  * missing fields, invalid email, and weak password.
  */
-public class MockSignupTest {
+public class SignupTest {
     private MockSignup mockSignupService;
     private MockContactDAO mockContactDAO;
 

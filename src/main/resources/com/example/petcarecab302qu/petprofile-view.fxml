@@ -5,23 +5,29 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetProfileController">
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.petcarecab302qu.controller.PetProfileController" style="-fx-background-color: #ffebe0;">
 
-    <!-- Navigation Bar -->
-    <VBox fx:id="navigationBar" layoutX="10" layoutY="60" prefWidth="150" spacing="10"
-          style="-fx-background-color: lightgrey;">
-    </VBox>
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0"
+          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <ImageView fx:id="logoImage" fitHeight="40" fitWidth="120" preserveRatio="true" />
+        <Label text="Pet Profile" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-padding: 0 0 0 40;"/>
+        <Pane HBox.hgrow="ALWAYS"/>
+    </HBox>
 
     <Button fx:id="addPetButton" text="Add Pet" onAction="#toggleAddPetForm"
-            layoutX="650" layoutY="10"
+            AnchorPane.rightAnchor="40" layoutY="10"
             style="-fx-background-color: lightgreen; -fx-font-size: 18px;" />
 
-    <!-- Container for Pet List -->
-    <ScrollPane layoutX="170" layoutY="60" prefWidth="580" prefHeight="500">
+    <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 10;" AnchorPane.leftAnchor="0.0"
+          AnchorPane.topAnchor="60.0" AnchorPane.bottomAnchor="0.0"/>
+
+    <ScrollPane layoutX="170" layoutY="60" prefWidth="580" prefHeight="500" style="-fx-background-color: #ffebe0;">
         <VBox fx:id="petsContainer" spacing="15">
             <padding>
                 <Insets top="10.0" right="10.0" bottom="10.0" left="10.0" />
@@ -29,13 +35,13 @@
         </VBox>
     </ScrollPane>
 
-    <!-- Add Pet Form with background, proper styling, and cancel button -->
+
     <VBox fx:id="addPetForm" visible="false" managed="false" spacing="15" fillWidth="true"
           prefWidth="400" prefHeight="350"
           style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-padding: 15;"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" layoutX="400" layoutY="100">
 
-        <!-- Centering the form -->
+
         <VBox alignment="CENTER" spacing="15">
             <HBox spacing="10.0" alignment="CENTER_LEFT">
                 <Label text="Name:" minWidth="100" />
@@ -67,12 +73,13 @@
                 <TextField fx:id="heightField" promptText="Enter pet height" maxWidth="200" />
             </HBox>
 
+
             <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <Label text="Image URL:" minWidth="100" />
-                <TextField fx:id="imageUrlField" promptText="Enter image URL" maxWidth="200" />
+                <Label text="Image:" minWidth="100" />
+                <TextField fx:id="imageUrlField" promptText="Provide image location" maxWidth="200" />
             </HBox>
 
-            <!-- Save and Cancel Buttons -->
+
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Button fx:id="saveOrUpdateButton" text="Save New Pet" onAction="#savePet"
                         style="-fx-background-color: lightgreen; -fx-font-size: 16px;" />

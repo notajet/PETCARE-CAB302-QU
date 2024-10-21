@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  * Verifies different login scenarios such as successful login, incorrect password, non-existent user,
  * empty email, and empty password.
  */
-public class MockLoginTest {
+public class LoginTest {
     private MockLogin mockLoginService;
     private MockContactDAO mockContactDAO;
 

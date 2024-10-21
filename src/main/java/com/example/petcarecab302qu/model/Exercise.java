@@ -5,35 +5,56 @@ package com.example.petcarecab302qu.model;
  * Contains details about the type of exercise, its duration, and any additional notes.
  */
 public class Exercise {
-    private int id;
-    private String petname;
+    private int exerciseId;
+    private String petName;
+    private String date;
     private String type;
     private Integer duration;
     private String notes;
-    private String date;
 
-    public Exercise(String date, String type, Integer duration, String notes) {
+    public Exercise(String petName, String date, String type, Integer duration, String notes) {
         //this.id = id;
-        //this.petname = petname;
+        this.petName = petName;
+        this.exerciseId = exerciseId;
         this.date = date;
         this.type = type;
         this.duration = duration;
         this.notes = notes;
     }
 
-    public int getEId() { return id; }
 
-    public void setEId(int id) {
-        this.id = id;
+
+    public int getExerciseId() { return exerciseId; }
+
+    public String getPetName() { return petName; }
+
+    public String getDate() {return date; }
+
+    public String getType() { return type; }
+
+    public int getDuration() { return duration; }
+
+    public String getNotes() { return notes; }
+
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
+    }
+    public void setPetName(String petName) { this.petName = petName; }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
-    public String getEName() { return petname; }
+    public void setType(String type) {
+        this.type = type;
+    }
 
-    public String getdate() {return date; }
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
 
-    public String gettype() { return type; }
-
-    public Integer getduration() { return duration; }
-
-    public String getnotes() { return notes; }
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
 }

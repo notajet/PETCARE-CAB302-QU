@@ -20,4 +20,7 @@ public class Schedule {
     public String getEventType() {return eventType; }
     public String getTime() { return time; }
     public Boolean getComplete() {return complete; }
+    public void setComplete(boolean complete) {
+        this.complete = complete;
+    }
 }

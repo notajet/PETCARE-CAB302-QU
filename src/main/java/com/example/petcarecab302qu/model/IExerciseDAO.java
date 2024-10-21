@@ -9,4 +9,5 @@ import java.util.List;
 public interface IExerciseDAO {
     void addExercise(Exercise exercise);
     Exercise getExercise(int id);
+    List<Exercise> getAllExercises();
 }

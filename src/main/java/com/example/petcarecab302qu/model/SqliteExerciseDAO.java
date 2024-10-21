@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A data access object (DAO) class for managing exercise records in the Pet Care application using SQLite.
@@ -19,17 +21,18 @@ public class SqliteExerciseDAO implements IExerciseDAO {
 
     /**
      * Creates the exercise table in the database if it does not already exist
-     * The table contains columns for the exercise ID, type, duration, and notes
+     * The table contains columns for the exercise ID, date, type, duration, and notes
      */
     private void createExerciseTable() {
         try {
             Statement statement = connection.createStatement();
             String query = "CREATE TABLE IF NOT EXISTS exercise ("
-                    + "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-                    + "date VARCHAR NOT NULL"
+                    + "exerciseId INTEGER PRIMARY KEY AUTOINCREMENT,"
+                    + "petName TEXT NOT NULL,"
+                    + "date TEXT NOT NULL,"
                     + "type VARCHAR NOT NULL,"
                     + "duration VARCHAR NOT NULL,"
-                    + "notes VARCHAR NOT NULL"
+                    + "notes TEXT NULL"
                     + ")";
 
             statement.execute(query);
@@ -44,47 +47,73 @@ public class SqliteExerciseDAO implements IExerciseDAO {
      *
      * @param exercise The Exercise object containing the details of the new exercise
      */
-    //@Override
     public void addExercise(Exercise exercise) {
+        String query = "INSERT INTO exercise (petName, date, type, duration, notes) VALUES (?, ?, ?, ?, ?)";
         try {
-            PreparedStatement statement = connection.prepareStatement("INSERT INTO exercise (type, duration, notes) VALUES (?, ?, ?, ?)");
-            statement.setString(1, exercise.getdate());
-            statement.setString(2, exercise.gettype());
-            statement.setInt(3, exercise.getduration());
-            statement.setString(4, exercise.getnotes());
-            statement.executeUpdate();
-            ResultSet generatedKeys = statement.getGeneratedKeys();
-            if (generatedKeys.next()) {
-                exercise.setEId(generatedKeys.getInt(1));
+            PreparedStatement statement = connection.prepareStatement(query);
+            if (connection.isClosed()) {
+                System.out.println("Database connection is closed. Cannot add exercise.");
+                return;
             }
+            statement.setString(1, exercise.getPetName());
+            statement.setString(2, exercise.getDate());
+            statement.setString(3, exercise.getType());
+            statement.setInt(4, exercise.getDuration());
+            statement.setString(5, exercise.getNotes());
+            statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
+            System.out.println("Error adding exercise to database: " + e.getMessage());
         }
     }
 
     /**
      * Retrieves an exercise from the database based on its ID
      *
-     * @param id The ID of the exercise to retrieve.
-     * @return The Exercise object if found, or null if the exercise is not found.
+     * @param exerciseId The ID of the exercise to retrieve
+     * @return The Exercise object if found, or null if the exercise is not found
      */
-    public Exercise getExercise(int id) {
+    public Exercise getExercise(int exerciseId) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM exercise WHERE id = ?");
-            statement.setInt(1, id);
+            statement.setInt(1, exerciseId);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
+                String petName = resultSet.getString("petName");
                 String date = resultSet.getString("date");
                 String type = resultSet.getString("type");
                 Integer duration = resultSet.getInt("duration");
                 String notes = resultSet.getString("notes");
-                Exercise exercise = new Exercise(date, type, duration, notes);
-                exercise.setEId(id);
+                Exercise exercise = new Exercise(petName,date, type, duration, notes);
+                exercise.setExerciseId(exerciseId);
                 return exercise;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
+    }
+
+    /**
+     * Retrieves all exercise from the database
+     * @return a list of exercise
+     */
+    public List<Exercise> getAllExercises() {
+        List<Exercise> exercises = new ArrayList<>();
+        String query = "SELECT * FROM exercise";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                String petName = resultSet.getString("petName");
+                String date = resultSet.getString("date");
+                String type = resultSet.getString("type");
+                int duration = resultSet.getInt("duration");
+                String notes = resultSet.getString("notes");
+                exercises.add(new Exercise(petName, date, type, duration, notes));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return exercises;
     }
 }

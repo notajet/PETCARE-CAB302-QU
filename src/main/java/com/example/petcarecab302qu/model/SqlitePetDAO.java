@@ -129,6 +129,11 @@ public class SqlitePetDAO implements IPetDAO {
         }
     }
 
+    @Override
+    public Pet getPet(int petId) {
+        return null;
+    }
+
     /**
      * Deletes a pet from the pets table in the database based on its ID.
      *

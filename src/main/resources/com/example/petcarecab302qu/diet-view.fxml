@@ -11,8 +11,16 @@
 
 
 
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml" fx:id="rootPane" fx:controller="com.example.petcarecab302qu.controller.DietController"
-            style="-fx-background-color: white;" prefWidth="800" prefHeight="570">
+            style="-fx-background-color: #ffebe0;" prefWidth="800" prefHeight="570">
+
+    <HBox alignment="CENTER_LEFT" spacing="10" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="50.0" AnchorPane.topAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+        <ImageView fx:id="logoImage" fitHeight="40" fitWidth="120" preserveRatio="true" />
+        <Pane HBox.hgrow="ALWAYS"/>
+    </HBox>
 
         <VBox spacing="10.0" alignment="CENTER_LEFT" style="-fx-background-color: #ffc3ac; -fx-padding: 10;" prefHeight="60.0">
             <ImageView fx:id="logoImage" fitHeight="50" fitWidth="150" preserveRatio="true" />
@@ -20,10 +28,8 @@
 
 
     <!-- Navigation bar on the left -->
-    <VBox fx:id="navigationBar" alignment="BOTTOM_LEFT" layoutX="10" layoutY="60" prefWidth="150" spacing="10"
-          style="-fx-background-color: lightgrey;">
-        <!-- Add buttons or items inside navigation bar here -->
-    </VBox>
+    <VBox fx:id="navigationBar" style="-fx-background-color: #c6d3ff; -fx-padding: 15;" AnchorPane.leftAnchor="0.0"
+          AnchorPane.topAnchor="60.0" AnchorPane.bottomAnchor="0.0"/>
 
     <!-- Main content with title and Add Diet Plan button -->
     <VBox alignment="TOP_CENTER" spacing="20.0"
@@ -42,7 +48,7 @@
              -fx-padding: 50px; -fx-border-color: transparent;">
 
             <HBox fx:id="dietListBox" spacing="10"
-                  AnchorPane.leftAnchor="10.0" AnchorPane.bottomAnchor="10.0"
+                  AnchorPane.leftAnchor="190.0" AnchorPane.bottomAnchor="10.0"
                   style="-fx-background-color: rgba(255, 255, 255, 0.9); -fx-padding: 10px; -fx-border-color: transparent;">
                 <!-- Add saved diet plan buttons programmatically here -->
             </HBox>
