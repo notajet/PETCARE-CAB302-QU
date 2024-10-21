@@ -18,8 +18,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+
 
 import java.io.IOException;
 import java.util.List;
@@ -108,6 +107,51 @@ public class DietController extends NavigationController {
      */
     public void handleAddDietPlan(ActionEvent event) {
 
+        Result result = getResult();
+        result.cancelButton().setOnAction(e -> {
+            rootPane.getChildren().remove(result.dietFormBox());
+            reloadPage();
+        });
+
+        result.saveButton().setOnAction(e -> {
+            String dietName = nameInput.getText();
+            String dietDurationStr = durationInput.getText();
+            String breakfast = breakfastInput.getText();
+            String lunch = lunchInput.getText();
+            String dinner = dinnerInput.getText();
+
+            try {
+                int dietDuration = Integer.parseInt(dietDurationStr);
+                DietPlan newDietPlan = new DietPlan(dietName, dietDuration, breakfast, lunch, dinner);
+                dietDAO.addDietPlan(newDietPlan);
+                addDietPlanToUI(newDietPlan);
+                reloadPage();
+            } catch (NumberFormatException ex) {
+                System.out.println("Invalid input for duration: " + dietDurationStr);
+            }
+        });
+
+        HBox buttonBox = new HBox(10);
+        buttonBox.getChildren().addAll(result.saveButton(), result.cancelButton());
+
+        result.dietFormBox().getChildren().addAll(
+                result.nameLabel(), nameInput,
+                result.durationLabel(), durationInput,
+                result.breakfastLabel(), breakfastInput,
+                result.lunchLabel(), lunchInput,
+                result.dinnerLabel(), dinnerInput,
+                buttonBox
+        );
+
+        Button addButton = (Button) event.getSource();
+        double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight();
+        double verticalOffset = 120.0;
+        AnchorPane.setRightAnchor(result.dietFormBox(), 10.0);
+        AnchorPane.setTopAnchor(result.dietFormBox(), buttonLayoutY + verticalOffset);
+        rootPane.getChildren().add(result.dietFormBox());
+    }
+
+    private Result getResult() {
         VBox dietFormBox = getvBox();
 
         Label nameLabel = new Label("Diet Plan Name:");
@@ -143,47 +187,11 @@ public class DietController extends NavigationController {
                         "-fx-text-fill: black; " +
                         "-fx-font-weight: bold;"
         );
-        cancelButton.setOnAction(e -> {
-            rootPane.getChildren().remove(dietFormBox);
-            reloadPage();
-        });
+        Result result = new Result(dietFormBox, nameLabel, durationLabel, breakfastLabel, lunchLabel, dinnerLabel, saveButton, cancelButton);
+        return result;
+    }
 
-        saveButton.setOnAction(e -> {
-            String dietName = nameInput.getText();
-            String dietDurationStr = durationInput.getText();
-            String breakfast = breakfastInput.getText();
-            String lunch = lunchInput.getText();
-            String dinner = dinnerInput.getText();
-
-            try {
-                int dietDuration = Integer.parseInt(dietDurationStr);
-                DietPlan newDietPlan = new DietPlan(dietName, dietDuration, breakfast, lunch, dinner);
-                dietDAO.addDietPlan(newDietPlan);
-                addDietPlanToUI(newDietPlan);
-                reloadPage();
-            } catch (NumberFormatException ex) {
-                System.out.println("Invalid input for duration: " + dietDurationStr);
-            }
-        });
-
-        HBox buttonBox = new HBox(10);
-        buttonBox.getChildren().addAll(saveButton, cancelButton);
-
-        dietFormBox.getChildren().addAll(
-                nameLabel, nameInput,
-                durationLabel, durationInput,
-                breakfastLabel, breakfastInput,
-                lunchLabel, lunchInput,
-                dinnerLabel, dinnerInput,
-                buttonBox
-        );
-
-        Button addButton = (Button) event.getSource();
-        double buttonLayoutY = addButton.getLayoutY() + addButton.getHeight();
-        double verticalOffset = 120.0;
-        AnchorPane.setRightAnchor(dietFormBox, 10.0);
-        AnchorPane.setTopAnchor(dietFormBox, buttonLayoutY + verticalOffset);
-        rootPane.getChildren().add(dietFormBox);
+    private record Result(VBox dietFormBox, Label nameLabel, Label durationLabel, Label breakfastLabel, Label lunchLabel, Label dinnerLabel, Button saveButton, Button cancelButton) {
     }
 
     /**
@@ -212,6 +220,41 @@ public class DietController extends NavigationController {
     // Method to create an edit form, similar to the add form, but for editing
     public void handleEditDietPlan(DietPlan dietPlan) {
 
+        editing result = getEditing(dietPlan);
+
+
+        result.saveButton().setOnAction(e -> {
+            dietPlan.setName(result.nameInput().getText());
+            dietPlan.setDuration(Integer.parseInt(result.durationInput().getText()));
+            dietPlan.setBreakfast(result.breakfastInput().getText());
+            dietPlan.setLunch(result.lunchInput().getText());
+            dietPlan.setDinner(result.dinnerInput().getText());
+
+            dietDAO.updateDietPlan(dietPlan);  // Update the database
+            reloadPage();  // Refresh the UI
+        });
+
+        result.cancelButton().setOnAction(e -> rootPane.getChildren().remove(result.dietFormBox()));
+
+
+        result.dietFormBox().getChildren().addAll(
+                result.nameLabel(), result.nameInput(),
+                result.durationLabel(), result.durationInput(),
+                result.breakfastLabel(), result.breakfastInput(),
+                result.lunchLabel(), result.lunchInput(),
+                result.dinnerLabel(), result.dinnerInput(),
+                new HBox(10, result.saveButton(), result.cancelButton())
+        );
+
+        AnchorPane.setTopAnchor(result.dietFormBox(), 220.0);
+        AnchorPane.setRightAnchor(result.dietFormBox(), 10.0);
+
+        rootPane.getChildren().add(result.dietFormBox());
+
+
+    }
+
+    private static editing getEditing(DietPlan dietPlan) {
         VBox dietFormBox = getvBox();
 
 
@@ -244,38 +287,13 @@ public class DietController extends NavigationController {
                         "-fx-text-fill: black; " +
                         "-fx-font-weight: bold;"
         );
-
-
-        saveButton.setOnAction(e -> {
-            dietPlan.setName(nameInput.getText());
-            dietPlan.setDuration(Integer.parseInt(durationInput.getText()));
-            dietPlan.setBreakfast(breakfastInput.getText());
-            dietPlan.setLunch(lunchInput.getText());
-            dietPlan.setDinner(dinnerInput.getText());
-
-            dietDAO.updateDietPlan(dietPlan);  // Update the database
-            reloadPage();  // Refresh the UI
-        });
-
-        cancelButton.setOnAction(e -> rootPane.getChildren().remove(dietFormBox));
-
-
-        dietFormBox.getChildren().addAll(
-                nameLabel, nameInput,
-                durationLabel, durationInput,
-                breakfastLabel, breakfastInput,
-                lunchLabel, lunchInput,
-                dinnerLabel, dinnerInput,
-                new HBox(10, saveButton, cancelButton)
-        );
-
-        AnchorPane.setTopAnchor(dietFormBox, 220.0);
-        AnchorPane.setRightAnchor(dietFormBox, 10.0);
-
-        rootPane.getChildren().add(dietFormBox);
-
-
+        editing result = new editing(dietFormBox, nameLabel, nameInput, durationLabel, durationInput, breakfastLabel, breakfastInput, lunchLabel, lunchInput, dinnerLabel, dinnerInput, saveButton, cancelButton);
+        return result;
     }
+
+    private record editing(VBox dietFormBox, Label nameLabel, TextField nameInput, Label durationLabel, TextField durationInput, Label breakfastLabel, TextField breakfastInput, Label lunchLabel, TextField lunchInput, Label dinnerLabel, TextField dinnerInput, Button saveButton, Button cancelButton) {
+    }
+
     private void addDietPlanToUI(DietPlan dietPlan) {
         VBox dietBox = new VBox();
         dietBox.setPadding(new Insets(10));
@@ -375,13 +393,7 @@ public class DietController extends NavigationController {
     private void showDietPlanDetails(DietPlan dietPlan) {
         VBox detailsBox = new VBox(10);
         detailsBox.setPadding(new Insets(20));
-        detailsBox.setStyle(
-                "-fx-background-color: white; " +
-                        "-fx-border-color: #dcdcdc; " +
-                        "-fx-border-radius: 8px; " +
-                        "-fx-background-radius: 8px; " +
-                        "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 4);"
-        );
+        detailsBox.setStyle("-fx-background-color: white; " + "-fx-border-color: #dcdcdc; " + "-fx-border-radius: 8px; " + "-fx-background-radius: 8px; " + "-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 10, 0.5, 0, 4);");
         detailsBox.setPrefSize(300, 200);
 
         Label nameLabel = new Label("Details for: " + dietPlan.getName());
