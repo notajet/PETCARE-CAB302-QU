@@ -40,12 +40,8 @@
                 style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;" />
 
         <!-- Image section and diet list -->
-        <HBox spacing="10" alignment="CENTER"
-              style="-fx-background-image: url('https://wallpapers.com/images/high/pets-background-p7lfw4p8b57x0fpe.jpg');
-             -fx-background-size: 80% 80%; /* Shrinks the image to 80% of the HBox */
-             -fx-background-position: center center; /* Centers the image within the HBox */
-             -fx-background-repeat: no-repeat; /* Prevents the image from repeating */
-             -fx-padding: 50px; -fx-border-color: transparent;">
+        <HBox fx:id="rootHBox" spacing="10" alignment="CENTER"
+              style="-fx-padding: 50px; -fx-border-color: transparent;">
 
             <HBox fx:id="dietListBox" spacing="10"
                   AnchorPane.leftAnchor="190.0" AnchorPane.bottomAnchor="10.0"
