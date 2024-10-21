@@ -106,6 +106,16 @@ public class ExerciseController extends NavigationController {
     }
 
 
+    private String getSelectedExerciseType() {
+        if (walkRadioButton.isSelected()) {
+            return "walk";
+        } else if (runRadioButton.isSelected()) {
+            return "run";
+        } else if (playRadioButton.isSelected()) {
+            return "play";
+        }
+        return null;
+    }
 
 
     /**
@@ -117,13 +127,7 @@ public class ExerciseController extends NavigationController {
 
         LocalDate date = LocalDate.now();
 
-        if (walkRadioButton.isSelected()){
-            exerciseType = "walk";
-        } else if (runRadioButton.isSelected()){
-            exerciseType = "run";
-        }else if (playRadioButton.isSelected()){
-            exerciseType = "play";
-        }
+        exerciseType = getSelectedExerciseType();
 
         if (exerciseType == null){
             errorMessage.setText("Please select an exercise.");
@@ -152,16 +156,18 @@ public class ExerciseController extends NavigationController {
 
         recentExerciseList.getItems().add(displayLoggedExercise);
 
-
         confirmMessage.setText("Exercise logged successfully!");
         confirmMessage.setVisible(true);
-
-
-        notesArea.clear();
-        minuteSpinner.getValueFactory().setValue(0);
-        exerciseType = null;
-        errorMessage.setVisible(false); // Hide previous messages
+        resets();
 
     }
 
+
+    private void resets() {
+        walkRadioButton.setSelected(false);
+        runRadioButton.setSelected(false);
+        playRadioButton.setSelected(false);
+        minuteSpinner.getValueFactory().setValue(0);
+        notesArea.clear();
+    }
 }
