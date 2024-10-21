@@ -57,8 +57,7 @@ public class DietController extends NavigationController {
     @FXML
     private ImageView backgroundImage;
 
-    @FXML
-    public ImageView logoImage;
+
 
     private IDietDAO dietDAO;
     public DietController(IDietDAO dietDAO) {
