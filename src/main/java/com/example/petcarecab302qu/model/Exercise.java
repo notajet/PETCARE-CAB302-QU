@@ -50,9 +50,7 @@ public class Exercise {
         this.type = type;
     }
 
-    public void setDuration(int duration) {
-        this.duration = duration;
-    }
+    public void setDuration(int duration) {this.duration = duration; }
 
     public void setNotes(String notes) {
         this.notes = notes;

@@ -92,7 +92,6 @@ public class ExerciseController extends NavigationController {
      * Loads recently logged exercises from the database
      */
     public void loadRecentExercises() {
-        // Get the exercises from the database
         List<Exercise> recentExercises = exerciseDAO.getAllExercises();
 
 

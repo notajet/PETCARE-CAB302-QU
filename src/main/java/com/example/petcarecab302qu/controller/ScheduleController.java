@@ -111,7 +111,7 @@ public class ScheduleController extends NavigationController {
      * @param selectedDate the selected date on how the calendar will be loaded
      */
     private void loadCalendar(LocalDate selectedDate) {
-        calendar.getChildren().clear();  // Clear previous buttons
+        calendar.getChildren().clear();  // Clear prev button
 
         //headers for the days of the week
         addDayHeaders();
@@ -190,7 +190,6 @@ public class ScheduleController extends NavigationController {
     private void highlightSelectDate(Button dateButton, LocalDate selectedDate) {
         LocalDate today = LocalDate.now();
 
-        // Reset
         if (selectedDateButton != null) {
             // Keep the highlight for today date
             if (selectedDateButton.getText().equals(String.valueOf(today.getDayOfMonth())) &&
@@ -210,12 +209,12 @@ public class ScheduleController extends NavigationController {
     }
 
     /**
-     * Creates a HBox containing a checkbox and a label for the task
+     * Creates a HBox for the task
      * The checkbox completion state is set based on the task
      *
      * @param task task description
      * @param taskComplete is the task completed
-     * @return A HBox containing the CheckBox and Label for the task
+     * @return A HBox containing the checkbox and label for the task
      */
     private HBox createTaskBox(String task, boolean taskComplete) {
         CheckBox checkBox = new CheckBox();
@@ -283,10 +282,7 @@ public class ScheduleController extends NavigationController {
         }
 
         String time = hour + ":" + minute + " " + amPm;
-        // Save schedule to the database
         scheduleDAO.addSchedule(selectedDate, eventType, time);
-
-        // Reload tasks for the selected date after adding the new one
         loadTasksForSelectedDate();
 
         // Clear

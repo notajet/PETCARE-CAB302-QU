@@ -36,11 +36,11 @@ public class SqliteScheduleDAO implements IScheduleDAO{
     }
 
     /**
-     * Adds a new schedule to the schedules table in the database.
+     * Adds a new task to the schedule table in the database
      *
-     * @param date The date of the schedule.
-     * @param eventType The type of the event.
-     * @param time The time of the event.
+     * @param date The date of the schedule
+     * @param eventType The type of the event
+     * @param time The time of the event
      */
     public void addSchedule(LocalDate date, String eventType, String time) {
         String query = "INSERT INTO schedules (date, eventType, time, complete) VALUES (?, ?, ?, ?)";
@@ -58,8 +58,7 @@ public class SqliteScheduleDAO implements IScheduleDAO{
             statement.executeUpdate();
 
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error adding schedule to database: " + e.getMessage());
+            System.err.println("Error adding schedule:" + e.getMessage());
         }
     }
 
@@ -85,7 +84,7 @@ public class SqliteScheduleDAO implements IScheduleDAO{
             }
 
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error getting schedules:" + e.getMessage());
         }
 
         return schedules;
@@ -106,8 +105,7 @@ public class SqliteScheduleDAO implements IScheduleDAO{
             statement.setString(3, task);
             statement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
-            System.out.println("Error updating task completion: " + e.getMessage());
+            System.err.println("Error updating completion status:" + e.getMessage());
         }
     }
 
@@ -128,9 +126,12 @@ public class SqliteScheduleDAO implements IScheduleDAO{
                 return resultSet.getString("complete").equals("YES");
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.err.println("Error getting completion status:" + e.getMessage());
         }
         return false;
     }
+
+
+
 
 }

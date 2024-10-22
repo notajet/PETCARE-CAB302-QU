@@ -38,7 +38,7 @@ public class SettingController extends NavigationController{
     private CheckBox syncCheckBox;
 
     /**
-     * Initializes the settings page, loads the navigation bar, header, and sets the default checkbox and combo box
+     * Initializes the setting page, loads the navigation bar and header and sets the default checkbox and combo box (language)
      */
     @FXML
     public void initialize() {

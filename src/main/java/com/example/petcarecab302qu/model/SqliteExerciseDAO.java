@@ -1,9 +1,6 @@
 package com.example.petcarecab302qu.model;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,8 +33,8 @@ public class SqliteExerciseDAO implements IExerciseDAO {
                     + ")";
 
             statement.execute(query);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error creating exercise table:" + e.getMessage());
         }
     }
 
@@ -61,9 +58,8 @@ public class SqliteExerciseDAO implements IExerciseDAO {
             statement.setInt(4, exercise.getDuration());
             statement.setString(5, exercise.getNotes());
             statement.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Error adding exercise to database: " + e.getMessage());
+        } catch (SQLException e) {
+            System.err.println("Error adding exercise to database:" + e.getMessage());
         }
     }
 
@@ -88,8 +84,8 @@ public class SqliteExerciseDAO implements IExerciseDAO {
                 exercise.setExerciseId(exerciseId);
                 return exercise;
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error getting exercise:" + e.getMessage());
         }
         return null;
     }
@@ -111,8 +107,8 @@ public class SqliteExerciseDAO implements IExerciseDAO {
                 String notes = resultSet.getString("notes");
                 exercises.add(new Exercise(petName, date, type, duration, notes));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (SQLException e) {
+            System.err.println("Error getting exercise: " + e.getMessage());
         }
         return exercises;
     }

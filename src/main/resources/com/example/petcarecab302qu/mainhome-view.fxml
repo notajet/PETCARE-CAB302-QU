@@ -28,7 +28,7 @@
         <StackPane>
             <ImageView fx:id="backgroundImage" fitWidth="630" fitHeight="500" />
             <VBox alignment="CENTER">
-                <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #1e90ff)" strokeWidth="1">
+                <Text text="PETHUB" style="-fx-font-weight: bold;" fill="linear-gradient(from 0% 0% to 100% 100%, #ff7f50, #1e90ff)">
                     <font>
                         <Font name="Arial Black" size="64.0"/>
                     </font>
