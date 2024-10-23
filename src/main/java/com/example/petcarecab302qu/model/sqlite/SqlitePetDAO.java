@@ -1,4 +1,8 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.sqlite;
+
+import com.example.petcarecab302qu.model.SqliteConnection;
+import com.example.petcarecab302qu.model.entities.Pet;
+import com.example.petcarecab302qu.model.interfaces.IPetDAO;
 
 import java.sql.*;
 import java.util.ArrayList;

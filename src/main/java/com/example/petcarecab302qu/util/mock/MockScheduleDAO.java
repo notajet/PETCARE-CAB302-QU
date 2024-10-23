@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.util.mock;
 
-import com.example.petcarecab302qu.model.IScheduleDAO;
-import com.example.petcarecab302qu.model.Schedule;
+import com.example.petcarecab302qu.model.interfaces.IScheduleDAO;
+import com.example.petcarecab302qu.model.entities.Schedule;
 
 import java.time.LocalDate;
 import java.util.ArrayList;

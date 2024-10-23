@@ -1,4 +1,4 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.entities;
 
 public class Schedule {
     private String date;

@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.util.mock;
 
-import com.example.petcarecab302qu.model.Contact;
-import com.example.petcarecab302qu.model.IContactDAO;
+import com.example.petcarecab302qu.model.entities.Contact;
+import com.example.petcarecab302qu.model.interfaces.IContactDAO;
 import com.example.petcarecab302qu.util.PasswordUtil;
 import java.util.ArrayList;
 import java.util.List;

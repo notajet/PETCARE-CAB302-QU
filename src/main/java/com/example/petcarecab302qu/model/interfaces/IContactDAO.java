@@ -1,4 +1,6 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.interfaces;
+
+import com.example.petcarecab302qu.model.entities.Contact;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.model.DietPlan;
-import com.example.petcarecab302qu.model.IDietDAO;
-import com.example.petcarecab302qu.model.SqliteDietDAO;
+import com.example.petcarecab302qu.model.entities.DietPlan;
+import com.example.petcarecab302qu.model.interfaces.IDietDAO;
+import com.example.petcarecab302qu.model.sqlite.SqliteDietDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

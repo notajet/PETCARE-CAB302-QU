@@ -1,6 +1,8 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.model.*;
+import com.example.petcarecab302qu.model.entities.Exercise;
+import com.example.petcarecab302qu.model.interfaces.IExerciseDAO;
+import com.example.petcarecab302qu.model.sqlite.SqliteExerciseDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;

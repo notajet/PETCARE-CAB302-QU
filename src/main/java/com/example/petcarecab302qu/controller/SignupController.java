@@ -1,8 +1,8 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.model.Contact;
-import com.example.petcarecab302qu.model.SqliteContactDAO;
-import com.example.petcarecab302qu.model.IContactDAO;
+import com.example.petcarecab302qu.model.entities.Contact;
+import com.example.petcarecab302qu.model.sqlite.SqliteContactDAO;
+import com.example.petcarecab302qu.model.interfaces.IContactDAO;
 import com.example.petcarecab302qu.util.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

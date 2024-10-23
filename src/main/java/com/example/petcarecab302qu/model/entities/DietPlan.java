@@ -1,4 +1,4 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.entities;
 
 /**
  * A model class representing a diet plan for a pet in the Pet Care application.

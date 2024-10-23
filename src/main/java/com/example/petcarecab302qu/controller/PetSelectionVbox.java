@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.model.Pet;
-import com.example.petcarecab302qu.model.SqlitePetDAO;
+import com.example.petcarecab302qu.model.entities.Pet;
+import com.example.petcarecab302qu.model.sqlite.SqlitePetDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;

@@ -1,7 +1,7 @@
 import com.example.petcarecab302qu.controller.DietController;
 import com.example.petcarecab302qu.util.mock.MockDietDAO;
-import com.example.petcarecab302qu.model.DietPlan;
-import com.example.petcarecab302qu.model.IDietDAO;
+import com.example.petcarecab302qu.model.entities.DietPlan;
+import com.example.petcarecab302qu.model.interfaces.IDietDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

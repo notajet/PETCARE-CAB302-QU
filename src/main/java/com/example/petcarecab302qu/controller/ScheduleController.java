@@ -1,6 +1,8 @@
 package com.example.petcarecab302qu.controller;
 
-import com.example.petcarecab302qu.model.*;
+import com.example.petcarecab302qu.model.interfaces.IScheduleDAO;
+import com.example.petcarecab302qu.model.sqlite.SqlitePetDAO;
+import com.example.petcarecab302qu.model.sqlite.SqliteScheduleDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;

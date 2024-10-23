@@ -1,4 +1,3 @@
-import com.example.petcarecab302qu.model.Schedule;
 import com.example.petcarecab302qu.util.mock.MockScheduleDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

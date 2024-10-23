@@ -1,7 +1,7 @@
 import com.example.petcarecab302qu.controller.PetProfileController;
 import com.example.petcarecab302qu.util.mock.MockPetDAO;
-import com.example.petcarecab302qu.model.Pet;
-import com.example.petcarecab302qu.model.IPetDAO;
+import com.example.petcarecab302qu.model.entities.Pet;
+import com.example.petcarecab302qu.model.interfaces.IPetDAO;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

@@ -1,4 +1,4 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.interfaces;
 
 import java.time.LocalDate;
 import java.util.List;

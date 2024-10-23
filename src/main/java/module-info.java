@@ -15,4 +15,10 @@ module com.example.petcarecab302qu {
     opens com.example.petcarecab302qu.util to javafx.fxml;
     exports com.example.petcarecab302qu.util.mock;
     opens com.example.petcarecab302qu.util.mock to javafx.fxml;
+    exports com.example.petcarecab302qu.model.interfaces;
+    opens com.example.petcarecab302qu.model.interfaces to javafx.fxml;
+    opens com.example.petcarecab302qu.model.entities to javafx.fxml;
+    exports com.example.petcarecab302qu.model.entities;
+    exports com.example.petcarecab302qu.model.sqlite;
+    opens com.example.petcarecab302qu.model.sqlite to javafx.fxml;
 }

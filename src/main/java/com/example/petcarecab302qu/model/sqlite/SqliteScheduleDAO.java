@@ -1,4 +1,7 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.sqlite;
+
+import com.example.petcarecab302qu.model.SqliteConnection;
+import com.example.petcarecab302qu.model.interfaces.IScheduleDAO;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -6,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class SqliteScheduleDAO implements IScheduleDAO{
+public class SqliteScheduleDAO implements IScheduleDAO {
     private Connection connection;
 
     public SqliteScheduleDAO() {

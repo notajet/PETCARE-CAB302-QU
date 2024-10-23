@@ -1,6 +1,6 @@
 import com.example.petcarecab302qu.util.mock.MockExerciseDAO;
-import com.example.petcarecab302qu.model.IExerciseDAO;
-import com.example.petcarecab302qu.model.Exercise;
+import com.example.petcarecab302qu.model.interfaces.IExerciseDAO;
+import com.example.petcarecab302qu.model.entities.Exercise;
 import com.example.petcarecab302qu.controller.ExerciseController;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

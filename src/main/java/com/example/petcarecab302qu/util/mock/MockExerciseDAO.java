@@ -1,7 +1,7 @@
 package com.example.petcarecab302qu.util.mock;
 
-import com.example.petcarecab302qu.model.Exercise;
-import com.example.petcarecab302qu.model.IExerciseDAO;
+import com.example.petcarecab302qu.model.entities.Exercise;
+import com.example.petcarecab302qu.model.interfaces.IExerciseDAO;
 
 import java.util.ArrayList;
 import java.util.List;

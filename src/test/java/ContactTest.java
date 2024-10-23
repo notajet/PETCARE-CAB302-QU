@@ -1,4 +1,4 @@
-import com.example.petcarecab302qu.model.Contact;
+import com.example.petcarecab302qu.model.entities.Contact;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

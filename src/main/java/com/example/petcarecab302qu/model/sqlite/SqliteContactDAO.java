@@ -1,4 +1,8 @@
-package com.example.petcarecab302qu.model;
+package com.example.petcarecab302qu.model.sqlite;
+
+import com.example.petcarecab302qu.model.SqliteConnection;
+import com.example.petcarecab302qu.model.entities.Contact;
+import com.example.petcarecab302qu.model.interfaces.IContactDAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
