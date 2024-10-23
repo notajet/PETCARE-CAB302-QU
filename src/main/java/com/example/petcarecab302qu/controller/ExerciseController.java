@@ -140,7 +140,6 @@ public class ExerciseController extends NavigationController {
 
     }
 
-
     private void resets() {
         walkRadioButton.setSelected(false);
         runRadioButton.setSelected(false);

@@ -372,11 +372,8 @@ public class DietController extends NavigationController {
         });
 
         editButton.setOnAction(e -> handleEditDietPlan(dietPlan));
-
         detailsBox.getChildren().addAll(nameLabel, durationLabel, breakfastLabel, lunchLabel, dinnerLabel, closeButton, editButton);
-
         rootPane.getChildren().add(detailsBox);
-
         AnchorPane.setTopAnchor(detailsBox, 220.0);
         AnchorPane.setLeftAnchor(detailsBox, 230.0);
         }

@@ -6,7 +6,6 @@ public class Schedule {
     private String time;
     private Boolean complete;
 
-
     public Schedule(String date, String eventType, String time, Boolean complete){
         this.date = date;
         this.eventType = eventType;
