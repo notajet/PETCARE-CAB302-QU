@@ -2,5 +2,8 @@ module:com.example.petcarecab302qu
 com.example.petcarecab302qu
 com.example.petcarecab302qu.controller
 com.example.petcarecab302qu.model
+com.example.petcarecab302qu.model.entities
+com.example.petcarecab302qu.model.interfaces
+com.example.petcarecab302qu.model.sqlite
 com.example.petcarecab302qu.util
 com.example.petcarecab302qu.util.mock
