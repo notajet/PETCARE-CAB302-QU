@@ -16,6 +16,7 @@
             <Font size = "24"/>
         </font>
     </Text>
+
     <TextField fx:id="Email" promptText="Email" style="-fx-font-size: 14px;" />
     <PasswordField fx:id="Password" promptText="Password" style="-fx-font-size: 14px;" />
     <Button text="Confirm" onAction="#handleLogin" style="-fx-font-size: 14px; -fx-background-color: #1e90ff; -fx-text-fill: white;" />
