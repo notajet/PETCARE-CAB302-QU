@@ -1,8 +1,6 @@
 package com.example.petcarecab302qu.model;
 
 public class Schedule {
-    private int id;
-    private String petname;
     private String date;
     private String eventType;
     private String time;
@@ -17,9 +15,13 @@ public class Schedule {
     }
 
     public String getDate() {return date; }
+
     public String getEventType() {return eventType; }
+
     public String getTime() { return time; }
+
     public Boolean getComplete() {return complete; }
+
     public void setComplete(boolean complete) {
         this.complete = complete;
     }

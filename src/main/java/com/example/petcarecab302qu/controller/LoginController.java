@@ -22,8 +22,7 @@ public class LoginController {
     private TextField Email;
     @FXML
     private PasswordField Password;
-    @FXML
-    private Button Confirm;
+
     @FXML
     private Text error;
 

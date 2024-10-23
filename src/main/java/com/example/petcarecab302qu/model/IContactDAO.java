@@ -7,10 +7,7 @@ import java.util.List;
  * the CRUD operations for the Contact class with the database.
  */
 public interface IContactDAO {
-
     void addContact(Contact contact);
-
     List<Contact> getAllContacts();
-
     boolean emailExists(String email);
 }

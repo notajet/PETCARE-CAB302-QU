@@ -26,12 +26,19 @@ public class Pet {
     }
 
     public int getId() { return id; }
+
     public String getName() { return name; }
+
     public int getAge() { return age; }
+
     public String getGender() { return gender; }
+
     public String getBreed() { return breed; }
+
     public double getWeight() { return weight; }
+
     public double getHeight() { return height; }
+
     public String getImageUrl() { return imageUrl; }
 
     public void setId(int id) {

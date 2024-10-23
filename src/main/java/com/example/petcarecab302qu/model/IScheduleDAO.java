@@ -13,5 +13,4 @@ public interface IScheduleDAO {
     List<String> getSchedules(LocalDate date);
     void updateTaskCompletionStatus(LocalDate date, String task, boolean complete);
     boolean getCompletionStatusForTask(LocalDate date, String task);
-
 }

@@ -10,7 +10,6 @@ import java.util.List;
  */
 public class SqliteDietDAO implements IDietDAO {
 
-
         private Connection connection;
 
         public SqliteDietDAO() {

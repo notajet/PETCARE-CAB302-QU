@@ -1,19 +1,14 @@
 package com.example.petcarecab302qu.controller;
 
 import com.example.petcarecab302qu.model.*;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.*;
 import javafx.scene.text.*;
 import java.time.LocalDate;
-
 import java.util.List;
 import java.util.Objects;
-
-
 
 public class ExerciseController extends NavigationController {
 
@@ -54,10 +49,9 @@ public class ExerciseController extends NavigationController {
     public ListView<String> recentExerciseList;
 
     public ExerciseController() {
-        this.exerciseDAO = new SqliteExerciseDAO(); // Use the default implementation
+        this.exerciseDAO = new SqliteExerciseDAO();
     }
 
-    // Constructor for testing or dependency injection
     public ExerciseController(IExerciseDAO exerciseDAO) {
         this.exerciseDAO = exerciseDAO;
     }
@@ -69,23 +63,18 @@ public class ExerciseController extends NavigationController {
     public void initialize(){
 
         NavigationBar();
-        //logo image
+
         if (logoImage != null) {
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
             logoImage.setImage(logo);
         }
 
-        // Create the pet selection box and add it to the view
         petSelectionVbox = new PetSelectionVbox(petBox);
-
-
         ToggleGroup typeOfExercise = new ToggleGroup();
         walkRadioButton.setToggleGroup(typeOfExercise);
         runRadioButton.setToggleGroup(typeOfExercise);
         playRadioButton.setToggleGroup(typeOfExercise);
-
         loadRecentExercises();
-
     }
 
     /**
@@ -93,12 +82,8 @@ public class ExerciseController extends NavigationController {
      */
     public void loadRecentExercises() {
         List<Exercise> recentExercises = exerciseDAO.getAllExercises();
-
-
         for (Exercise exercise : recentExercises) {
-
             String petName = exercise.getPetName();
-
             String displayExercise =  petName + ":" + exercise.getType() + " for " + exercise.getDuration() + " minutes on " + exercise.getDate();
             recentExerciseList.getItems().add(displayExercise);
         }
@@ -115,7 +100,6 @@ public class ExerciseController extends NavigationController {
         }
         return null;
     }
-
 
     /**
      * Handles the logging of exercises when save button is pressed.
@@ -142,17 +126,12 @@ public class ExerciseController extends NavigationController {
         }
 
         String notes = notesArea.getText(); //optional
-
         String dateToString = date.toString();
-
         String selectedPetName = petSelectionVbox.getSelectedPet().getName();
-
 
         Exercise logExercise = new Exercise(selectedPetName,dateToString, exerciseType, duration, notes);
         exerciseDAO.addExercise(logExercise);
-
         String displayLoggedExercise = selectedPetName + ":" + exerciseType + " for " + duration + " minutes on " + dateToString;
-
         recentExerciseList.getItems().add(displayLoggedExercise);
 
         confirmMessage.setText("Exercise logged successfully!");

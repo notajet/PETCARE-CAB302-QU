@@ -99,7 +99,6 @@ public class SqlitePetDAO implements IPetDAO {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return pets;
     }
 

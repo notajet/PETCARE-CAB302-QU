@@ -21,15 +21,26 @@ public class DietPlan {
     }
 
     public int getId() { return id; }
+    
     public void setId(int id) { this.id = id; }
+
     public String getName() { return name; }
+
     public void setName(String name) { this.name = name; }
+
     public int getDuration() { return duration; }
+
     public void setDuration(int duration) { this.duration = duration; }
+
     public String getBreakfast() { return breakfast; }
+
     public void setBreakfast(String breakfast) { this.breakfast = breakfast; }
+
     public String getLunch() { return lunch; }
+
     public void setLunch(String lunch) { this.lunch = lunch; }
+
     public String getDinner() { return dinner; }
+
     public void setDinner(String dinner) { this.dinner = dinner; }
 }

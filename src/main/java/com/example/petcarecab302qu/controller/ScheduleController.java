@@ -95,7 +95,6 @@ public class ScheduleController extends NavigationController {
 
         amPmComboBox.getSelectionModel().select("AM");
         datePicker.setValue(currentDate);
-        ///set's the selectedate to be the current day by default
         selectedDate = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), currentDate.getDayOfMonth());
 
         loadCalendar(currentDate);
@@ -111,24 +110,20 @@ public class ScheduleController extends NavigationController {
      * @param selectedDate the selected date on how the calendar will be loaded
      */
     private void loadCalendar(LocalDate selectedDate) {
-        calendar.getChildren().clear();  // Clear prev button
+        calendar.getChildren().clear();
 
-        //headers for the days of the week
         addDayHeaders();
 
         YearMonth yearMonth = YearMonth.of(selectedDate.getYear(), selectedDate.getMonth());
         LocalDate firstOfMonth = yearMonth.atDay(1);
         int daysInMonth = yearMonth.lengthOfMonth();
-        //monday as first day of the week
         int dayOfWeekOffset = (firstOfMonth.getDayOfWeek().getValue() - 1) % 7;
 
         int row = 1;
         int col = dayOfWeekOffset;
 
-        // highlights todays date
         LocalDate today = LocalDate.now();
 
-        // create buttons for each day in the month
         for (int day = 1; day <= daysInMonth; day++) {
             Button dateButton = new Button(String.valueOf(day));
 
@@ -153,7 +148,6 @@ public class ScheduleController extends NavigationController {
         }
     }
 
-
     /**
      * Handles the event action of selected date on calendar
      * Updates and highlights the selected date
@@ -165,7 +159,6 @@ public class ScheduleController extends NavigationController {
         selectedDate = LocalDate.of(currentDate.getYear(), currentDate.getMonth(), day);
         highlightSelectDate(clickedButton, selectedDate);
 
-        // Load the tasks for the newly selected date
         loadTasksForSelectedDate();
     }
 
@@ -197,7 +190,6 @@ public class ScheduleController extends NavigationController {
                     selectedDate.getMonth() == today.getMonth()) {
                 selectedDateButton.setStyle("-fx-background-color: lightblue; -fx-border-color: red; -fx-border-radius: 50%;");
             } else {
-                // reset to default style
                 selectedDateButton.setStyle("");
             }
         }
@@ -205,7 +197,6 @@ public class ScheduleController extends NavigationController {
         // Highlight the currently selected day button
         dateButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
         selectedDateButton = dateButton;
-
     }
 
     /**
@@ -274,7 +265,6 @@ public class ScheduleController extends NavigationController {
         String minute = scheduleMin.getText();
         String amPm = amPmComboBox.getSelectionModel().getSelectedItem();
 
-        // ensure fields are not empty ( repeat checkbox is optional)
         if (eventType == null || hour.isEmpty() || minute.isEmpty()) {
             errorMessage.setText("Please fill in all fields.");
             errorMessage.setVisible(true);
@@ -285,12 +275,10 @@ public class ScheduleController extends NavigationController {
         scheduleDAO.addSchedule(selectedDate, eventType, time);
         loadTasksForSelectedDate();
 
-        // Clear
         eventTypeComboBox.getSelectionModel().clearSelection();
         scheduleHour.clear();
         scheduleMin.clear();
         repeatCheckBox.setSelected(false);
-
     }
 
     /**

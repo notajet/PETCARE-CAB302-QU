@@ -13,8 +13,7 @@ import java.util.Objects;
 /**
  * Controller class for handling user interactions in the home screen of the PETHUB application.
  */
-public class HomeController extends NavigationController{
-
+public class HomeController extends NavigationController {
 
     @FXML
     public ImageView logoImage;
@@ -59,7 +58,5 @@ public class HomeController extends NavigationController{
         Stage stage = (Stage) exitButton.getScene().getWindow();
         stage.close();
     }
-
-
 }
 

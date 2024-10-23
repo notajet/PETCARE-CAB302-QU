@@ -1,19 +1,10 @@
 package com.example.petcarecab302qu.controller;
-
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.io.IOException;
-
-/**
- * Controller class for managing the navigation bar in the PETHUB application.
- * Loads the navigation bar from an FXML file and adds it to the view.
- */
 
 /**
  * Controller class for managing the navigation bar in the PETHUB application.
@@ -23,7 +14,6 @@ public class NavigationController {
 
     @FXML
     protected VBox navigationBar;
-
 
     /**
      * Loads the navigation bar from the FXML file and adds it to the VBox.
@@ -40,8 +30,6 @@ public class NavigationController {
             }
         }
     }
-
-
 
     /**
      *
@@ -65,8 +53,8 @@ public class NavigationController {
      */
     public void handleDietPlan(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/diet-view.fxml");
-
     }
+
     /**
      *
      * @param event triggered by exercise button
@@ -74,7 +62,6 @@ public class NavigationController {
 
     public void handleExercise(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/exercise-view.fxml");
-
     }
 
     /**
@@ -83,7 +70,6 @@ public class NavigationController {
      */
     public void handleSchedule(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/schedule-view.fxml");
-
     }
 
     /**
@@ -92,9 +78,5 @@ public class NavigationController {
      */
     public void handleSetting(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/setting-view.fxml");
-
     }
-
-
-
 }

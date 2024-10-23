@@ -32,7 +32,6 @@ public class SqliteScheduleDAO implements IScheduleDAO{
         } catch (SQLException e) {
             System.out.println("Error creating schedules table: " + e.getMessage());
         }
-
     }
 
     /**
@@ -80,13 +79,11 @@ public class SqliteScheduleDAO implements IScheduleDAO{
                 String eventType = resultSet.getString("eventType");
                 String time = resultSet.getString("time");
                 schedules.add(eventType + " at " + time);
-
             }
 
         } catch (SQLException e) {
             System.err.println("Error getting schedules:" + e.getMessage());
         }
-
         return schedules;
     }
 
@@ -130,8 +127,4 @@ public class SqliteScheduleDAO implements IScheduleDAO{
         }
         return false;
     }
-
-
-
-
 }

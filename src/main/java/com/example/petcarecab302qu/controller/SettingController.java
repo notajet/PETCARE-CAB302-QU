@@ -13,8 +13,7 @@ import java.util.Objects;
 /**
  * Controller class for managing the Setting's functionality in the Pet Care application.
  */
-public class SettingController extends NavigationController{
-
+public class SettingController extends NavigationController {
 
     @FXML
     private ImageView logoImage;
@@ -62,7 +61,6 @@ public class SettingController extends NavigationController{
             logoImage.setImage(logo);
         }
     }
-
 
     public void handleLogOutButton(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");

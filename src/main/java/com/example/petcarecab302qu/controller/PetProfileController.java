@@ -142,7 +142,6 @@ public class PetProfileController extends NavigationController {
         }
     }
 
-
     /**
      * Saves the pet to the database. This method handles both adding new pets and updating existing pets.
      */

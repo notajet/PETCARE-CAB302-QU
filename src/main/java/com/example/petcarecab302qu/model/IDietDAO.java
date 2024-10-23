@@ -11,5 +11,5 @@ public interface IDietDAO {
     List<DietPlan> getAllDietPlans();
     void updateDietPlan(DietPlan dietPlan);
     void deleteDietPlan(int dietPlanId);
-    DietPlan getDietPlan(int id); // for retrieving a single plan
+    DietPlan getDietPlan(int id);
 }

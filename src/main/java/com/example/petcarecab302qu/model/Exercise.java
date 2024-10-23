@@ -22,8 +22,6 @@ public class Exercise {
         this.notes = notes;
     }
 
-
-
     public int getExerciseId() { return exerciseId; }
 
     public String getPetName() { return petName; }
@@ -40,7 +38,6 @@ public class Exercise {
     public void setExerciseId(int exerciseId) {
         this.exerciseId = exerciseId;
     }
-    public void setPetName(String petName) { this.petName = petName; }
 
     public void setDate(String date) {
         this.date = date;
@@ -49,8 +46,6 @@ public class Exercise {
     public void setType(String type) {
         this.type = type;
     }
-
-    public void setDuration(int duration) {this.duration = duration; }
 
     public void setNotes(String notes) {
         this.notes = notes;
