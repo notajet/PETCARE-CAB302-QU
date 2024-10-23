@@ -80,7 +80,7 @@ public class ExerciseController extends NavigationController {
     }
 
     /**
-     * Loads recently logged exercises from the database
+     * Loads recently exercises from the database
      */
     public void loadRecentExercises() {
         List<Exercise> recentExercises = exerciseDAO.getAllExercises();
@@ -91,7 +91,9 @@ public class ExerciseController extends NavigationController {
         }
     }
 
-
+    /**
+     * Gets selected radio button for exercise type
+     */
     private String getSelectedExerciseType() {
         if (walkRadioButton.isSelected()) {
             return "walk";
@@ -104,7 +106,7 @@ public class ExerciseController extends NavigationController {
     }
 
     /**
-     * Handles the logging of exercises when save button is pressed.
+     * Handles the logging of exercises when save button is pressed
      * adds the exercise info to the database
      */
     @FXML

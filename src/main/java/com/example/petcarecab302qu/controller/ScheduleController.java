@@ -202,41 +202,6 @@ public class ScheduleController extends NavigationController {
     }
 
     /**
-     * Creates a HBox for the task
-     * The checkbox completion state is set based on the task
-     *
-     * @param task task description
-     * @param taskComplete is the task completed
-     * @return A HBox containing the checkbox and label for the task
-     */
-    private HBox createTaskBox(String task, boolean taskComplete) {
-        CheckBox checkBox = new CheckBox();
-        checkBox.setSelected(taskComplete);
-        Label taskLabel = new Label(task);
-        HBox hbox = new HBox(10);
-        hbox.getChildren().addAll(checkBox, taskLabel);
-        checkBox.setOnAction(this::handleTaskCheckbox);
-        return hbox;
-    }
-
-    /**
-     * Handles the checkbox action when a task's completion status is toggled
-     * Updates the task completion status in the database based on the checkbox state
-     *
-     * @param event triggers by the checkbox
-     */
-    public void handleTaskCheckbox(ActionEvent event) {
-        CheckBox source = (CheckBox) event.getSource();
-        HBox hbox = (HBox) source.getParent();
-
-        Label taskLabel = (Label) hbox.getChildren().get(1);
-        String taskDescription = taskLabel.getText();
-
-        boolean completed = source.isSelected();
-        scheduleDAO.updateTaskCompletionStatus(selectedDate, taskDescription, completed);
-    }
-
-    /**
      * Loads the tasks for the selected date onto the today's task list based on the tasks listed
      * for the specific date, and provides a checkbox so the user can mark a task as completed or
      * not
@@ -254,6 +219,41 @@ public class ScheduleController extends NavigationController {
             }
         }
     }
+
+    /**
+     * Creates a HBox for the task
+     * The checkbox completion state is set based on the task
+     *
+     * @param task task description
+     * @param taskComplete is the task completed
+     * @return A HBox containing the checkbox and label for the task
+     */
+    private HBox createTaskBox(String task, boolean taskComplete) {
+        CheckBox checkBox = new CheckBox();
+        checkBox.setSelected(taskComplete);
+        Label taskLabel = new Label(task);
+        HBox hbox = new HBox(10);
+        hbox.getChildren().addAll(checkBox, taskLabel);
+        checkBox.setOnAction(this::handleTaskCheckbox);
+        return hbox;
+    }
+    /**
+     * Handles the checkbox action when a task's completion status is toggled
+     * Updates the task completion status in the database based on the checkbox state
+     *
+     * @param event triggers by the checkbox
+     */
+    public void handleTaskCheckbox(ActionEvent event) {
+        CheckBox source = (CheckBox) event.getSource();
+        HBox hbox = (HBox) source.getParent();
+
+        Label taskLabel = (Label) hbox.getChildren().get(1);
+        String taskDescription = taskLabel.getText();
+
+        boolean completed = source.isSelected();
+        scheduleDAO.updateTaskCompletionStatus(selectedDate, taskDescription, completed);
+    }
+
 
     /**
      * Handles the save button action

@@ -32,11 +32,6 @@
             </HBox>
 
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label text="Background Music:" style="-fx-font-size: 16px;" />
-                <CheckBox fx:id="enableMusic" text="Enable Music" style="-fx-font-size: 14px;" />
-            </HBox>
-
-            <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label text="Language:" style="-fx-font-size: 16px;" />
                 <ComboBox fx:id="languageSelection" style="-fx-font-size: 14px;">
                     <items>
