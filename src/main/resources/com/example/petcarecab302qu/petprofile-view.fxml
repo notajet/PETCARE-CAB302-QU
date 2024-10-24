@@ -40,14 +40,17 @@
           style="-fx-background-color: white; -fx-border-color: grey; -fx-border-radius: 10; -fx-padding: 15;"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0" AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" layoutX="400" layoutY="100">
 
+        <!-- Legend for required fields -->
+        <Label text="Fields marked with * are required" style="-fx-font-weight: bold; -fx-font-size: 12px;" />
+
         <VBox alignment="CENTER" spacing="15">
             <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <Label text="Name:" minWidth="100" />
+                <Label text="Name:*" minWidth="100" style="-fx-text-fill: red;" />
                 <TextField fx:id="nameField" promptText="Enter pet name" maxWidth="200" />
             </HBox>
 
             <HBox spacing="10.0" alignment="CENTER_LEFT">
-                <Label text="Age:" minWidth="100" />
+                <Label text="Age:*" minWidth="100" style="-fx-text-fill: red;" />
                 <TextField fx:id="ageField" promptText="Enter pet age" maxWidth="200" />
             </HBox>
 
@@ -76,7 +79,6 @@
                 <Label text="Image:" minWidth="100" />
                 <TextField fx:id="imageUrlField" promptText="Provide image location" maxWidth="200" />
             </HBox>
-
 
             <HBox spacing="10" alignment="CENTER_LEFT">
                 <Button fx:id="saveOrUpdateButton" text="Save New Pet" onAction="#savePet"
