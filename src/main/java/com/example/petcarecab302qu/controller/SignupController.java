@@ -98,11 +98,21 @@ public class SignupController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/mainhome-view.fxml");
     }
 
+    /**
+     * Handles the back action when the user clicks the back button on the sign-in page, taking
+     * them back to the home page
+     * @param event
+     * @throws IOException
+     */
     @FXML
     public void handleBackButtonOnHome(ActionEvent event) throws IOException {
         SceneLoader.handleBackOnHome(event);
     }
 
+    /**
+     * Handles the login button action on the sign-in page, taking the user to the login page
+     * @param event
+     */
     @FXML
     public void handleLogin(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/login-view.fxml");
