@@ -138,7 +138,12 @@ public class DietController extends NavigationController {
         AnchorPane.setTopAnchor(result.dietFormBox(), buttonLayoutY + verticalOffset);
         rootPane.getChildren().add(result.dietFormBox());
     }
-
+    /**
+     * Generates and returns form components for creating a new diet plan.
+     *
+     * @return A Result object containing form components such as labels, text fields,
+     *         and buttons for adding a diet plan.
+     */
     private Result getResult() {
         VBox dietFormBox = getvBox();
 
@@ -235,6 +240,13 @@ public class DietController extends NavigationController {
         rootPane.getChildren().add(result.dietFormBox());
     }
 
+    /**
+     * Generates and returns form components pre-filled with diet plan details for editing.
+     *
+     * @param dietPlan The diet plan to be edited, providing initial values for the form fields.
+     * @return An editing object containing pre-populated form components such as labels, text fields,
+     *         and buttons for editing a diet plan.
+     */
     private static editing getEditing(DietPlan dietPlan) {
         VBox dietFormBox = getvBox();
 
@@ -274,6 +286,13 @@ public class DietController extends NavigationController {
                            TextField breakfastInput, Label lunchLabel, TextField lunchInput, Label dinnerLabel, TextField dinnerInput, Button saveButton, Button cancelButton) {
     }
 
+    /**
+     * Adds a diet plan button to the UI dynamically.
+     * Each button represents a diet plan and displays its details,
+     * allowing the user to edit or view the plan.
+     *
+     * @param dietPlan The diet plan to add to the UI.
+     */
     private void addDietPlanToUI(DietPlan dietPlan) {
         VBox dietBox = new VBox();
         dietBox.setPadding(new Insets(10));
@@ -340,7 +359,9 @@ public class DietController extends NavigationController {
 
     /**
      * Displays the details of a selected diet plan in a new view box.
-     * @param dietPlan The diet plan whose details are displayed.
+     * Allows the user to view and edit the diet plan details.
+     *
+     * @param dietPlan The diet plan whose details are displayed in the popup view box.
      */
     private void showDietPlanDetails(DietPlan dietPlan) {
         VBox detailsBox = new VBox(10);
