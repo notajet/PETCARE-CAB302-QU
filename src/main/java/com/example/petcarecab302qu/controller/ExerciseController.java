@@ -13,6 +13,14 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Controller class for managing exercise-related operations in the Pet Care application.
+ * This class allows users to log exercises for their pets, including selecting exercise type,
+ * setting the duration, adding notes, and saving the exercise to the database.
+ *
+ * The ExerciseController interacts with {@link SqliteExerciseDAO} to handle database operations.
+ * It also uses {@link PetSelectionVbox} for selecting pets to associate exercises with.
+ */
 public class ExerciseController extends NavigationController {
 
     @FXML
