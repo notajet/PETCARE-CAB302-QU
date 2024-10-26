@@ -12,6 +12,11 @@ public class MockLogin {
 
     private IContactDAO contactDAO;
 
+    /**
+     * Constructs a new MockLogin instance with the specified contact DAO.
+     *
+     * @param contactDAO the contact DAO to be used in mock login functionality
+     */
     public MockLogin(IContactDAO contactDAO) {
         this.contactDAO = contactDAO;
     }

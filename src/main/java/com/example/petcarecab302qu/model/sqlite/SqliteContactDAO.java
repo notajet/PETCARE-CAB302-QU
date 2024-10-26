@@ -20,6 +20,10 @@ public class SqliteContactDAO implements IContactDAO {
 
     private Connection connection;
 
+    /**
+     * Constructs a SqliteContactDAO and initializes the database connection.
+     * Creates the 'contacts' table if it does not already exist.
+     */
     public SqliteContactDAO() {
         connection = SqliteConnection.getInstance();
         createTable();

@@ -16,6 +16,15 @@ public class MockPetDAO implements IPetDAO {
     private List<Pet> pets;
     private int nextId = 1;
 
+    @Override
+    public void deletePet(int petId) {
+        pets.removeIf(pet -> pet.getId() == petId);
+    }
+
+    /**
+     * Constructs a new MockPetDAO instance with an empty list of pets.
+     * This mock DAO is designed to handle pet data in a testing context.
+     */
     public MockPetDAO() {
         this.pets = new ArrayList<>();
     }
@@ -65,10 +74,5 @@ public class MockPetDAO implements IPetDAO {
             }
         }
         return null;
-    }
-
-    @Override
-    public void deletePet(int petId) {
-        pets.removeIf(pet -> pet.getId() == petId);
     }
 }

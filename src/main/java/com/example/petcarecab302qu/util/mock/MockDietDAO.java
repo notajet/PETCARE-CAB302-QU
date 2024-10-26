@@ -16,6 +16,10 @@ public class MockDietDAO implements IDietDAO {
     private List<DietPlan> dietPlans;
     private int nextId = 1;
 
+    /**
+     * Constructs a new MockDietDAO instance with an empty list of diet plans.
+     * This mock DAO is designed to manage diet plans for testing purposes.
+     */
     public MockDietDAO() {
         this.dietPlans = new ArrayList<>();
     }
@@ -51,6 +55,12 @@ public class MockDietDAO implements IDietDAO {
         }
     }
 
+    /**
+     * Retrieves a diet plan by its unique ID.
+     *
+     * @param id the ID of the diet plan to retrieve
+     * @return the diet plan with the specified ID, or null if not found
+     */
     @Override
     public DietPlan getDietPlan(int id) {
         for (DietPlan dietPlan : dietPlans) {
@@ -61,6 +71,11 @@ public class MockDietDAO implements IDietDAO {
         return null;
     }
 
+    /**
+     * Deletes a diet plan by its unique ID.
+     *
+     * @param dietPlanId the ID of the diet plan to delete
+     */
     @Override
     public void deleteDietPlan(int dietPlanId) {
         dietPlans.removeIf(dietPlan -> dietPlan.getId() == dietPlanId);

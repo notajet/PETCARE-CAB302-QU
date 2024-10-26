@@ -5,7 +5,6 @@ import com.example.petcarecab302qu.util.PasswordUtil;
 import com.example.petcarecab302qu.util.SceneLoader;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -14,7 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.io.IOException;
 
-/** A Class that contains all the methods needed for the login interface to run and be
+/** Controller class that contains all the methods needed for the login interface to run and be
  *  controlled by the user's input
  */
 public class LoginController {

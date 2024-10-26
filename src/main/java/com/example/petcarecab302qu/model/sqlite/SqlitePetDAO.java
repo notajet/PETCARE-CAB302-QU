@@ -3,7 +3,6 @@ package com.example.petcarecab302qu.model.sqlite;
 import com.example.petcarecab302qu.model.SqliteConnection;
 import com.example.petcarecab302qu.model.entities.Pet;
 import com.example.petcarecab302qu.model.interfaces.IPetDAO;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +15,10 @@ public class SqlitePetDAO implements IPetDAO {
 
     private Connection connection;
 
+    /**
+     * Constructs a SqlitePetDAO and initializes the database connection.
+     * Creates the 'pets' table if it does not already exist.
+     */
     public SqlitePetDAO() {
         connection = SqliteConnection.getInstance();
         createPetsTable();

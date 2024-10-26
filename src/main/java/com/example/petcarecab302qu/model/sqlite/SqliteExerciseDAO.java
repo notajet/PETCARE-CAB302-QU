@@ -15,6 +15,10 @@ import java.util.List;
 public class SqliteExerciseDAO implements IExerciseDAO {
     private Connection connection;
 
+    /**
+     * Constructs a SqliteExerciseDAO and initializes the database connection.
+     * Creates the 'exercise' table if it does not already exist.
+     */
     public SqliteExerciseDAO() {
         connection = SqliteConnection.getInstance();
         createExerciseTable();

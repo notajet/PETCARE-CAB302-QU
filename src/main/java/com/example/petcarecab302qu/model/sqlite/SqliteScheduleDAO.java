@@ -16,6 +16,10 @@ import java.util.List;
 public class SqliteScheduleDAO implements IScheduleDAO {
     private Connection connection;
 
+    /**
+     * Constructs a SqliteScheduleDAO and initializes the database connection.
+     * Creates the 'schedule' table if it does not already exist.
+     */
     public SqliteScheduleDAO() {
         connection = SqliteConnection.getInstance();
         createScheduleTable();

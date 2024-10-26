@@ -11,6 +11,11 @@ import com.example.petcarecab302qu.util.PasswordUtil;
 public class MockSignup {
     private IContactDAO contactDAO;
 
+    /**
+     * Constructs a new MockSignup instance with the specified contact DAO.
+     *
+     * @param contactDAO the contact DAO to be used in mock signup functionality
+     */
     public MockSignup(IContactDAO contactDAO) {
         this.contactDAO = contactDAO;
     }

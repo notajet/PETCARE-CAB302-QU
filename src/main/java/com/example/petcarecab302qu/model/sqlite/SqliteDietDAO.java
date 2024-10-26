@@ -16,6 +16,10 @@ public class SqliteDietDAO implements IDietDAO {
 
     private Connection connection;
 
+    /**
+     * Constructs a SqliteDietDAO and initializes the database connection.
+     * Creates the 'diet' table if it does not already exist.
+     */
     public SqliteDietDAO() {
         connection = SqliteConnection.getInstance();
         createTable();

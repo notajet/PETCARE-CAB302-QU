@@ -16,15 +16,32 @@ public class MockScheduleDAO implements IScheduleDAO {
 
     private List<Schedule> schedules;
 
+    /**
+     * Constructs a new MockScheduleDAO instance with an empty list of schedules.
+     * This mock DAO is intended to manage schedules for testing scenarios.
+     */
     public MockScheduleDAO() {
         this.schedules = new ArrayList<>();
     }
 
+    /**
+     * Adds a new schedule entry with the specified date, event type, and time.
+     *
+     * @param date      the date of the event
+     * @param eventType the type of event to be added
+     * @param time      the time of the event
+     */
     @Override
     public void addSchedule(LocalDate date, String eventType, String time) {
         schedules.add(new Schedule(date.toString(), eventType.trim(), time.trim(), false));
     }
 
+    /**
+     * Retrieves a list of schedules for the specified date.
+     *
+     * @param date the date for which schedules are retrieved
+     * @return a list of strings representing the schedules for the specified date
+     */
     @Override
     public List<String> getSchedules(LocalDate date) {
         List<String> scheduleList = new ArrayList<>();
@@ -36,6 +53,13 @@ public class MockScheduleDAO implements IScheduleDAO {
         return scheduleList;
     }
 
+    /**
+     * Updates the completion status of a specified task on a specific date.
+     *
+     * @param date     the date of the task
+     * @param task     the description of the task (event type and time)
+     * @param complete true if the task is completed, false otherwise
+     */
     @Override
     public void updateTaskCompletionStatus(LocalDate date, String task, boolean complete) {
         for (Schedule schedule : schedules) {
@@ -50,6 +74,13 @@ public class MockScheduleDAO implements IScheduleDAO {
         }
     }
 
+    /**
+     * Checks the completion status of a specified task on a specific date.
+     *
+     * @param date the date of the task
+     * @param task the description of the task (event type and time)
+     * @return true if the task is completed, false if not or if the task is not found
+     */
     @Override
     public boolean getCompletionStatusForTask(LocalDate date, String task) {
         for (Schedule schedule : schedules) {
