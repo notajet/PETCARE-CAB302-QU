@@ -49,10 +49,21 @@ public class DietController extends NavigationController {
     private HBox dietListBox;
 
     private final IDietDAO dietDAO;
+
+    /**
+     * Constructs a DietController with a specified {@link IDietDAO} instance.
+     * This constructor allows dependency injection of a custom data access object.
+     *
+     * @param dietDAO The data access object for handling diet plan data.
+     */
     public DietController(IDietDAO dietDAO) {
         this.dietDAO = dietDAO;
     }
 
+    /**
+     * Constructs a DietController with the default {@link SqliteDietDAO} instance.
+     * This default constructor initializes the controller with an SQLite-based data access object.
+     */
     public DietController() {
         dietDAO = new SqliteDietDAO();
     }
@@ -71,11 +82,6 @@ public class DietController extends NavigationController {
 
         rootPane.getChildren().remove(dietListBox);
         rootPane.getChildren().add(dietListBox);
-
-        if (logoImage != null) {
-            Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
-            logoImage.setImage(logo);
-        }
     }
 
     /**

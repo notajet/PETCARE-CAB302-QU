@@ -55,10 +55,18 @@ public class PetProfileController extends NavigationController {
     private IPetDAO petDAO;
     private Pet currentPet = null;
 
+    /**
+     * Constructs a PetProfileController with a specified data access object for pets.
+     *
+     * @param petDAO The data access object (DAO) used to manage pet data.
+     */
     public PetProfileController(IPetDAO petDAO) {
         this.petDAO = petDAO;
     }
 
+    /**
+     * Constructs a PetProfileController with a default SQLite-based data access object for pets.
+     */
     public PetProfileController() {
         this.petDAO = new SqlitePetDAO();
     }

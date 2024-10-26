@@ -74,13 +74,22 @@ public class ScheduleController extends NavigationController {
 
     private IScheduleDAO scheduleDAO;
 
+    /**
+     * Constructs a ScheduleController with a default SQLite-based data access object for schedules.
+     */
     public ScheduleController() {
         this.scheduleDAO = new SqliteScheduleDAO();
     }
 
+    /**
+     * Constructs a ScheduleController with a specified data access object for schedules.
+     *
+     * @param scheduleDAO The data access object (DAO) used to manage schedule data.
+     */
     public ScheduleController(IScheduleDAO scheduleDAO) {
         this.scheduleDAO = scheduleDAO;
     }
+
     /**
      * Initializes the navigation bar, logo image, and default stage for AM/PM and DatePicker
      * Loads the current dates month calendar and any changes in DatePicker

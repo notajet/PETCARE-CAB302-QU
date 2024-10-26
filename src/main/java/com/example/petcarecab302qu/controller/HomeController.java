@@ -18,6 +18,9 @@ public class HomeController extends NavigationController {
     @FXML
     public ImageView logoImage;
 
+    /**
+     * Initialises the home screen, setting the logo image if available.
+     */
     @FXML
     public void initialize() {
         if (logoImage != null) {
@@ -44,6 +47,9 @@ public class HomeController extends NavigationController {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
     }
 
+    /**
+     * The exit button used to close the application window.
+     */
     @FXML
     public Button exitButton;
 

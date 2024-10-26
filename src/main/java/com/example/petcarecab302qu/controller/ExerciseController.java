@@ -56,13 +56,27 @@ public class ExerciseController extends NavigationController {
 
     private PetSelectionVbox petSelectionVbox;
 
+    /**
+     * ListView for displaying recent exercises logged by the user.
+     * Each entry contains details about an exercise including pet name, type, duration, and date.
+     */
     @FXML
     public ListView<String> recentExerciseList;
 
+    /**
+     * Default constructor for the ExerciseController.
+     * Initializes the controller with the default {@link SqliteExerciseDAO} instance.
+     */
     public ExerciseController() {
         this.exerciseDAO = new SqliteExerciseDAO();
     }
 
+    /**
+     * Constructor for the ExerciseController with a specified {@link IExerciseDAO} instance.
+     * Allows dependency injection of a custom data access object for exercises.
+     *
+     * @param exerciseDAO The data access object for handling exercise data.
+     */
     public ExerciseController(IExerciseDAO exerciseDAO) {
         this.exerciseDAO = exerciseDAO;
     }
