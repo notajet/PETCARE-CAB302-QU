@@ -3,6 +3,7 @@ package com.example.petcarecab302qu.controller;
 import com.example.petcarecab302qu.model.entities.Exercise;
 import com.example.petcarecab302qu.model.interfaces.IExerciseDAO;
 import com.example.petcarecab302qu.model.sqlite.SqliteExerciseDAO;
+import com.example.petcarecab302qu.util.PetSelectionVbox;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -59,7 +60,7 @@ public class ExerciseController extends NavigationController {
     }
 
     /**
-     * Initialize the navigation bar and configures the toggle group of radio buttons for exercise type
+     * Initialise the navigation bar and configures the toggle group of radio buttons for exercise type
      */
     @FXML
     public void initialize(){
@@ -92,7 +93,9 @@ public class ExerciseController extends NavigationController {
     }
 
     /**
-     * Gets selected radio button for exercise type
+     * Retrieves the selected exercise type from the radio buttons.
+     *
+     * @return A string representing the exercise type ("walk", "run", or "play"), or null if none is selected.
      */
     private String getSelectedExerciseType() {
         if (walkRadioButton.isSelected()) {
@@ -129,7 +132,7 @@ public class ExerciseController extends NavigationController {
             return;
         }
 
-        String notes = notesArea.getText(); //optional
+        String notes = notesArea.getText();
         String dateToString = date.toString();
         String selectedPetName = petSelectionVbox.getSelectedPet().getName();
 
@@ -144,6 +147,9 @@ public class ExerciseController extends NavigationController {
 
     }
 
+    /**
+     * Resets the input fields and selections to their default states.
+     */
     private void resets() {
         walkRadioButton.setSelected(false);
         runRadioButton.setSelected(false);

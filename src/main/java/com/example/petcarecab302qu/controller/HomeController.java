@@ -20,7 +20,6 @@ public class HomeController extends NavigationController {
 
     @FXML
     public void initialize() {
-        // Initialize the logo image if the ImageView is defined
         if (logoImage != null) {
             Image logo = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
             logoImage.setImage(logo);
@@ -40,7 +39,6 @@ public class HomeController extends NavigationController {
      *
      * @param event triggered by sign up button
      */
-
     @FXML
     public void handleSignUpAction(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");

@@ -138,6 +138,7 @@ public class DietController extends NavigationController {
         AnchorPane.setTopAnchor(result.dietFormBox(), buttonLayoutY + verticalOffset);
         rootPane.getChildren().add(result.dietFormBox());
     }
+
     /**
      * Generates and returns form components for creating a new diet plan.
      *

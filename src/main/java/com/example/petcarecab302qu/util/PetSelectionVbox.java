@@ -1,4 +1,4 @@
-package com.example.petcarecab302qu.controller;
+package com.example.petcarecab302qu.util;
 
 import com.example.petcarecab302qu.model.entities.Pet;
 import com.example.petcarecab302qu.model.sqlite.SqlitePetDAO;
@@ -12,6 +12,12 @@ import javafx.scene.shape.Circle;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * A custom VBox component for displaying and selecting pet profiles.
+ * This class is responsible for loading pet data from the database,
+ * displaying each pet as a button with its profile image, and handling
+ * the selection of a pet.
+ **/
 public class PetSelectionVbox {
 
     private VBox petBox;

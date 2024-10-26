@@ -12,8 +12,16 @@ public class Exercise {
     private Integer duration;
     private String notes;
 
+    /**
+     * Constructs a new Exercise with the specified pet name, date, type, duration, and notes.
+     *
+     * @param petName   the name of the pet associated with this exercise
+     * @param date      the date of the exercise
+     * @param type      the type of exercise (e.g., walk, run, play)
+     * @param duration  the duration of the exercise in minutes
+     * @param notes     additional notes related to the exercise
+     */
     public Exercise(String petName, String date, String type, Integer duration, String notes) {
-        //this.id = id;
         this.petName = petName;
         this.exerciseId = exerciseId;
         this.date = date;
@@ -33,7 +41,6 @@ public class Exercise {
     public int getDuration() { return duration; }
 
     public String getNotes() { return notes; }
-
 
     public void setExerciseId(int exerciseId) {
         this.exerciseId = exerciseId;

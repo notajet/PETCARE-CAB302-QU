@@ -24,7 +24,7 @@ public class NavigationController {
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/petcarecab302qu/navigation-bar.fxml"));
                 VBox navigation = loader.load();
-                navigationBar.getChildren().add(navigation); // Only add if navigationBar is empty
+                navigationBar.getChildren().add(navigation);
             } catch (IOException e) {
                 e.printStackTrace();
             }

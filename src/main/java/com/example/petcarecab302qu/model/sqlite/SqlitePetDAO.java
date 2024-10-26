@@ -43,6 +43,11 @@ public class SqlitePetDAO implements IPetDAO {
         }
     }
 
+    @Override
+    public Pet getPet(int petId) {
+        return null;
+    }
+    
     /**
      * Adds a new pet to the pets table in the database.
      *
@@ -130,11 +135,6 @@ public class SqlitePetDAO implements IPetDAO {
             e.printStackTrace();
             System.out.println("Error updating pet in database: " + e.getMessage());
         }
-    }
-
-    @Override
-    public Pet getPet(int petId) {
-        return null;
     }
 
     /**

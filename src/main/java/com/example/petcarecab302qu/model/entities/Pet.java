@@ -14,6 +14,18 @@ public class Pet {
     private double height;
     private String imageUrl;
 
+    /**
+     * Constructs a new Pet with the specified details.
+     *
+     * @param id        the unique identifier of the pet
+     * @param name      the name of the pet
+     * @param age       the age of the pet in years
+     * @param gender    the gender of the pet
+     * @param breed     the breed of the pet
+     * @param weight    the weight of the pet in kilograms
+     * @param height    the height of the pet in centimeters
+     * @param imageUrl  the URL of the pet's image
+     */
     public Pet(int id, String name, int age, String gender, String breed, double weight, double height, String imageUrl) {
         this.id = id;
         this.name = name;

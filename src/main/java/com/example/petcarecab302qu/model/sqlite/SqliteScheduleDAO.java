@@ -8,7 +8,11 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Data Access Object (DAO) implementation for managing schedule-related operations in the database.
+ * This class provides methods for creating, adding, retrieving, and updating schedule entries
+ * in an SQLite database.
+ */
 public class SqliteScheduleDAO implements IScheduleDAO {
     private Connection connection;
 
@@ -27,7 +31,6 @@ public class SqliteScheduleDAO implements IScheduleDAO {
                 "date TEXT NOT NULL," +
                 "eventType TEXT NOT NULL," +
                 "time TEXT NOT NULL," +
-                //"repeat INTEGER NOT NULL" +
                 "complete TEXT NOT NULL"+
                 ");";
         try (Statement statement = connection.createStatement()) {

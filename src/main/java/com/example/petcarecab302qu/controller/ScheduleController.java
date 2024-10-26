@@ -3,6 +3,7 @@ package com.example.petcarecab302qu.controller;
 import com.example.petcarecab302qu.model.interfaces.IScheduleDAO;
 import com.example.petcarecab302qu.model.sqlite.SqlitePetDAO;
 import com.example.petcarecab302qu.model.sqlite.SqliteScheduleDAO;
+import com.example.petcarecab302qu.util.PetSelectionVbox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -186,7 +187,6 @@ public class ScheduleController extends NavigationController {
         LocalDate today = LocalDate.now();
 
         if (selectedDateButton != null) {
-            // Keep the highlight for today date
             if (selectedDateButton.getText().equals(String.valueOf(today.getDayOfMonth())) &&
                     selectedDate.getYear() == today.getYear() &&
                     selectedDate.getMonth() == today.getMonth()) {
@@ -195,8 +195,6 @@ public class ScheduleController extends NavigationController {
                 selectedDateButton.setStyle("");
             }
         }
-
-        // Highlight the currently selected day button
         dateButton.setStyle("-fx-border-color: orange; -fx-background-radius: 50%; -fx-border-radius: 50%; -fx-border-width: 2px; -fx-padding: 2px;");
         selectedDateButton = dateButton;
     }

@@ -62,6 +62,12 @@ public class SettingController extends NavigationController {
         }
     }
 
+    /**
+     * Handles the action for logging out and returning to the home screen.
+     * Uses the SceneLoader utility to navigate back to the home view.
+     *
+     * @param event The action event triggered by the logout button.
+     */
     public void handleLogOutButton(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
     }

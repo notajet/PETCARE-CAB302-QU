@@ -19,6 +19,11 @@ public class MainHomeController extends NavigationController {
     @FXML
     public ImageView logoImage;
 
+    /**
+     * Initializes the UI elements for the controller.
+     * Sets up the navigation bar and loads images for the logo and background.
+     * This method is called automatically after the FXML fields are injected.
+     */
     @FXML
     public void initialize(){
 
@@ -32,6 +37,12 @@ public class MainHomeController extends NavigationController {
         backgroundImage.setImage(background);
     }
 
+    /**
+     * Handles the action for logging out and returning to the home screen.
+     * Uses the SceneLoader utility to navigate back to the home view.
+     *
+     * @param event The action event triggered by the logout button.
+     */
     public void handleLogOutButton(ActionEvent event){
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/home-view.fxml");
     }

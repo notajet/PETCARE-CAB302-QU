@@ -12,6 +12,15 @@ public class DietPlan {
     private String lunch;
     private String dinner;
 
+    /**
+     * Constructs a new DietPlan with the specified name, duration, and meal details.
+     *
+     * @param name      the name of the diet plan
+     * @param duration  the duration of the diet plan in days
+     * @param breakfast the breakfast details for the diet plan
+     * @param lunch     the lunch details for the diet plan
+     * @param dinner    the dinner details for the diet plan
+     */
     public DietPlan(String name, int duration, String breakfast, String lunch, String dinner) {
         this.name = name;
         this.duration = duration;

@@ -77,11 +77,24 @@ public class LoginController {
         Password.clear();
     }
 
+    /**
+     * Handles the action for navigating back to the home screen.
+     * Calls the SceneLoader utility to load the previous scene.
+     *
+     * @param event The action event triggered by the back button.
+     * @throws IOException If there is an issue loading the scene.
+     */
     @FXML
     public void handleBackButtonOnHome(ActionEvent event) throws IOException {
         SceneLoader.handleBackOnHome(event);
     }
 
+    /**
+     * Handles the action for loading the sign-up screen.
+     * Calls the SceneLoader utility to navigate to the sign-up view.
+     *
+     * @param event The action event triggered by the sign-up button.
+     */
     @FXML
     public void handleSignUpAction(ActionEvent event) {
         SceneLoader.loadScene(event, "/com/example/petcarecab302qu/signup-view.fxml");
